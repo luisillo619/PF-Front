@@ -1,0 +1,19 @@
+.card {
+    /* border: 1px solid green; */
+    height: 350px;
+}
+.card:hover button{
+    cursor: pointer;
+}
+
+.card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}

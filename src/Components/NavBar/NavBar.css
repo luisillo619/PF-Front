@@ -1,0 +1,39 @@
+.container-NavBar {
+    height: 80px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: white;
+    background: #2C3E50;
+    padding: 0 50px 0 50px;
+}
+.container-logo__Navbar {
+    width: 45px;
+}
+
+.container-NavBar input {
+    border-radius: 5px;
+}
+
+.selection-Categories-NavBar{
+    border-radius: 5px;
+}
+
+.cart-NavBar {
+    color: white;
+}
+.button-Cart-NavBar {
+    background: transparent;
+    border: none;
+}
+
+.dropdownCategory-NavBar {
+    background: transparent;
+    border: none;
+}
+
+.dropdownCategory-NavBar:hover {
+    display: block;
+}

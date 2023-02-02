@@ -1,0 +1,45 @@
+.containerPaginado {
+    /* border: 1px solid black; */
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    right: 100%;
+}
+.container-Paginado {
+    width: 50px;
+    height: 50px;
+    font-size: 35px;
+    color: #6aa5cd;
+    border: 1px solid #6aa5cd;
+    border-radius: 3px;
+}
+
+.boton-Paginado:hover {
+    color: white;
+    background: #6aa5cd;
+}
+.container-Paginado.active {
+    background-color: #6aa5cd;
+    color: white;
+}
+.container-Paginado:hover {
+    background:#6aa5cd;
+    color: white;
+}
+.button-LandingPage {
+    width: 200px;
+    height: 50px;
+    background: #022957;
+    color: white;
+    font-size: 18px;
+    margin: 0;
+}
+.button-LandingPage:hover {
+    cursor: pointer;
+}
+.container-Paginated {
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,36 @@
+.container-MeansOfPayment {
+    padding: 50px;
+    text-align: justify;
+    font-size: 20px;
+}
+
+.container-MeansOfPayment h1 {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 50px;
+    margin: 20px;
+}
+
+.container-MeansOfPayment__Info {
+    padding: 50px;
+    background: white;
+    border-radius: 5px;
+}
+
+.container-MeansOfPayment__Info h2 {
+    margin-top: 40px;
+}
+
+.container-MeansOfPayment__Info p {
+    margin-top: 10px;
+}
+
+.images-MeansOfPayment {
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.images-MeansOfPayment img {
+    max-height: 50px;
+}

@@ -1,0 +1,44 @@
+.container-PrivacyStatement {
+    font-size: 20px;
+    text-align: justify;
+}
+
+.PrivacyStatement {
+    width: 100%;
+    background: #F2F2F2;
+    padding: 30px;
+}
+
+.container-PrivacyStatement h2 {
+    text-align: center;
+}
+
+.container-PrivacyStatement h2 {
+    margin-top: 40px;
+}
+
+.container-PrivacyStatement p {
+    margin-top: 15px;
+}
+
+.PrivacyStatement div {
+    width: 60%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.PrivacyStatement h1 {
+    font-size: 45px;
+    margin-bottom: 50px;
+}
+
+.PrivacyStatement p {
+    font-size: 25px;
+}
+
+.statement-PrivacyStatement {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 50px;
+    gap: 50px;
+}

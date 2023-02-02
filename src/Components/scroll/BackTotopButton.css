@@ -1,0 +1,23 @@
+.botonScroll {
+    border: none;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    height: 45px;
+    width: 45px;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #219ebc;
+    color: white;
+    transition: 300ms all ease;
+}
+
+.botonScroll:hover {
+    cursor: pointer;
+    transform: translateY(-10%);
+    background: #457b9d;
+    color: white;
+}

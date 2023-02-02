@@ -1,0 +1,15 @@
+.whatsapp-Landgin {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    height: 45px;
+    width: 45px;
+    /* background: white; */
+    color: #25D366;
+    transition: 300ms all ease;
+}
+
+.whatsapp-Landgin:hover {
+    cursor: pointer;
+    transform: scale(1.2) rotate(10deg);
+}

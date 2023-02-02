@@ -1,0 +1,31 @@
+.container-SliderOtro {
+  margin: 90px 50px 50px 50px;
+}
+
+.container-SliderOtro h1 {
+  text-align: center;
+  font-size: 50px;
+  color: #287ff9;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 320px;
+  margin: 0 10px;
+  text-align: center;
+  font-family: arial;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.product-Image {
+  transform: scale(1.05);
+  width: 100%;
+  height: 300px;
+  object-fit: cover;    /*PROPIEDAD IMPORTANTÍSIMA --> Impide que se deforme la imagen cuando la altura o el ancho no son proporcionales*/
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}

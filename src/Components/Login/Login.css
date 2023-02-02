@@ -1,0 +1,74 @@
+.container-General__Login {
+    border: 5px solid red;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    height: 500px;
+    width: 380px;
+    border: 3px solid teal;
+    border-radius: 10px;
+    margin: 50px auto;
+}
+.loginTitle {
+    font-size: 50px;
+    margin: 20px;
+    text-align: center;
+}
+
+.loginButtonsNetworks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.loginButtonsNetworks:hover {
+    cursor: pointer;
+}
+
+.loginButton-Google, .loginButton-Facebook, .loginButton-Github {
+    width: 80px;
+}
+
+.login-Submit {
+    border: none;
+    width: 50%;
+    height: 50px;
+    background: #ef233c;
+    color: white;
+    font-size: 18px;
+    margin: 10px;
+}
+.loginButtons-Email {
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #cad2c5;
+}
+.login-Submit {
+    margin-top: 10px;
+}
+.container-Username-Login {
+    margin: 10px;
+    text-align: start;
+}
+.container-Password-Login {
+    margin: 10px;
+    text-align: start;
+}
+.login-Username, .login-Password {
+    border-radius: 3px;
+    width: 250px;
+    height: 30px;
+    border: none;
+    padding: 5px;
+    margin-top: 5px;
+}

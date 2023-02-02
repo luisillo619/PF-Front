@@ -1,0 +1,104 @@
+.container-Product {
+    /* border: 1px solid black; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 320px;
+    height: 550px;
+    text-align: center;
+    font-family: arial;
+    /* margin: 30px 10px; */
+    overflow: hidden;
+    border-radius: 5px;
+    transition: 300ms;
+}
+.container-Product:hover {
+    transform: translateY(-1%);
+}
+.favorites-Product {
+    position: absolute;
+}
+.container-Product__Link {
+    text-decoration: none;
+}
+.container-Imagen__Product {
+    height: 400px;
+    overflow: hidden;
+}
+.imagen-Product {
+    height: 100%;
+    object-fit: cover;
+    transition: 300ms;
+}
+.imagen-Product:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.container-Name-Price {
+    /* border: 1px solid red; */
+    height: 100px;
+    padding: 5px;
+    color: #003554;
+}
+.container-Name-Price p {
+    margin-top: 10px;
+}
+.name-Product {
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.container-Product__Link h1{
+    color: #003554;
+}
+.free-Shipping__Product {
+    color: #09bc8a;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* .container-AddToCard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.container-ButtonAddToCard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 30px;
+    
+}
+.counter-ButtonAddToCard {
+    font-size: 30px;
+    color: #003554;
+}
+.container-ButtonAddToCard button {
+    width: 35px;
+    height: 35px;
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    border: none;
+    background: transparent;
+}
+.button-MdAdd:hover, .button-AiOutlineMinus:hover {
+    background: #0f4c5c;
+    color: white;
+}
+
+.container-AddToCardBag {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+}
+
+.container-AddToCardBag {
+    font-size: 30px;
+    color: #003554;
+}
+.container-AddToCardBag:hover {
+    color: white;
+} */

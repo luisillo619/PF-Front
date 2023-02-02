@@ -1,0 +1,31 @@
+.container-ConsumerDefense {
+    height: 100vh;
+    background: #F2F2F2;
+    padding: 50px;
+    text-align: justify;
+    font-size: 20px;
+}
+
+.container-ConsumerDefense h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.container-ConsumerDefense__Info {
+    padding: 60px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 5px;
+}
+
+.container-ConsumerDefense__Info h2 {
+    margin-top: 40px;
+}
+
+.container-ConsumerDefense__Info p {
+    margin-top: 20px;
+}
+
+.container-List__ConsumerDefense {
+    margin: 15px 0 15px 25px;
+}

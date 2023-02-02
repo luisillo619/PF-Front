@@ -1,0 +1,26 @@
+.container-PurchaseCanceled {
+    padding: 50px;
+    text-align: justify;
+    font-size: 20px;
+}
+
+.container-PurchaseCanceled h1 {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 50px;
+    margin: 20px;
+}
+
+.container-PurchaseCanceled__Info {
+    padding: 50px;
+    background: white;
+    border-radius: 5px;
+}
+
+.container-PurchaseCanceled__Info h2 {
+    margin-top: 20px;
+}
+
+.container-PurchaseCanceled__Info p {
+    margin-top: 20px;
+}
