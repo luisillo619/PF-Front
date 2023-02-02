@@ -10,7 +10,7 @@ const ButtonUser = ({ userOrderCookies }) => {
     Cookies.remove("order");
     window.open("http://localhost:3001/auth/logout", "_self");
   };
-//pepe
+//pepee
   return (
     <div className="navbar">
       <span className="logo">
