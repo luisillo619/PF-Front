@@ -11,7 +11,7 @@ import {
 
 import Cookies from "js-cookie";
 
-const baseURL = "https://pf-back-production-f70b.up.railway.app/"
+const baseURL = "https://pf-back-production-f70b.up.railway.app"
 
 export const getProducts = () => async (dispatch) => {
   try {
