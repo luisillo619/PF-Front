@@ -5,11 +5,11 @@ import { FaUser } from 'react-icons/fa';
 
 
 const ButtonUser = ({ userOrderCookies }) => {
-  const baseURL = "https://pf-back-production-f70b.up.railway.app/"
+  const baseURL = "https://pf-back-production-f70b.up.railway.app"
   const logout = () => {
     Cookies.remove("user");
     Cookies.remove("order");
-    window.open(`${baseURL}auth/logout`, "_self");
+    window.open(`${baseURL}/auth/logout`, "_self");
   };
   
 //pepee
