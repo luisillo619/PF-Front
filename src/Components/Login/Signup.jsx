@@ -7,7 +7,7 @@ import "./Signup.css";
 
 // es como para registrarse por primera vez
 function Signup() {
-  const baseURL = "http://pf-back-production-f70b.up.railway.app";
+  const baseURL = "https://pf-back-production-f70b.up.railway.app";
   const google = () => {
     window.open(`${baseURL}/auth/google`, "_self");
   };
