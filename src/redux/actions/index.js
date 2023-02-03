@@ -72,7 +72,7 @@ export const getUser = (setUser, setOrder) => async () => {
         "Access-Control-Allow-Credentials": false,
       },
     });
-  
+    console.log("estoy arto 2.0", response)
 
     if (response.status === 200) {
       const userInfo = await response.json();
