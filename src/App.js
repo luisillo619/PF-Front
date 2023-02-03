@@ -50,7 +50,7 @@ function App() {
       <NavBar userOrderCookies={userOrderCookies} />
       {/* <ButtonUser userLoginCookies={userLoginCookies}  /> */}
       <Routes>
-        <Route
+        {/* <Route
           path="/login"
           element={userLoginCookies  ? <Navigate to={"/"} /> : <Login />}
         />
@@ -78,7 +78,7 @@ function App() {
           path="/product/:name/:description/:id"
           element={<ProductDetail />}
         />
-        <Route path="*" element={<Error />} />
+        <Route path="*" element={<Error />} /> */}
       </Routes>
     </div>
   );
