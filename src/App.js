@@ -44,6 +44,8 @@ function App() {
   }, [dispatch]);
 
   console.log(userOrderCookies)
+  console.log("pepepepepe")
+  console.log(userLoginCookies)
 
   return (
     <div className="App">
