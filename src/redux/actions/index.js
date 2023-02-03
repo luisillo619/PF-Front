@@ -62,6 +62,7 @@ export const addFilter = (filter) => {
 // FALTA ESTAAAAAAAAAAAAAAAAAAAAAA
 export const getUser = (setUser, setOrder) => async () => {
   try {
+    console.log("estoy arto")
     const response = await fetch(`${baseURL}/auth/login/success`, {
       method: "GET",
       credentials: "include",
@@ -72,7 +73,7 @@ export const getUser = (setUser, setOrder) => async () => {
       },
     });
   
-console.log(response, "estoy arto")
+
     if (response.status === 200) {
       const userInfo = await response.json();
       setUser(userInfo);
