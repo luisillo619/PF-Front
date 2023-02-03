@@ -15,7 +15,7 @@ const baseURL = "https://pf-back-production-f70b.up.railway.app"
 
 export const getProducts = () => async (dispatch) => {
   try {
-    const { data } = await axios("/adminGetProducts");
+    const { data } = await axios(`${baseURL}/adminGetProducts`);
     return dispatch({
       type: GET_PRODUCTS,
       payload: data,
@@ -27,7 +27,7 @@ export const getProducts = () => async (dispatch) => {
 
 export const getOneProduct = (idProduct, setLoading) => async (dispatch) => {
   try {
-    const { data } = await axios(`/producId/${idProduct}`);
+    const { data } = await axios(`${baseURL}/producId/${idProduct}`);
     setLoading(false);
     return dispatch({
       type: GET_ONE_PRODUCT,
@@ -40,7 +40,7 @@ export const getOneProduct = (idProduct, setLoading) => async (dispatch) => {
 
 export const getCategories = () => async (dispatch) => {
   try {
-    const { data } = await axios("/adminGetCategories");
+    const { data } = await axios(`${baseURL}/adminGetCategories`);
     return dispatch({
       type: GET_CATEGORIES,
       payload: data,
@@ -105,7 +105,7 @@ export const getAllOrderDetails = (setLoading) => async (dispatch) => {
   const userLoginCookies = Cookies.get("user");
   const token = userLoginCookies && JSON.parse(userLoginCookies).token;
   const id = userLoginCookies && JSON.parse(userLoginCookies).id;
-
+//roto
   const url = `/${id}`;
   const { data } = await axios.get(url, {
     headers: {
@@ -125,7 +125,7 @@ export const addToCart =
       const userLoginCookies = Cookies.get("user");
       const token = userLoginCookies && JSON.parse(userLoginCookies).token;
 
-      const url = `/postOrder`;
+      const url = `${baseURL}/postOrder`;
       const { data } = await axios.post(
         url,
       
@@ -153,7 +153,7 @@ export const sendProductsForm = (form, setResponse, setLoading) => async () => {
   try {
     const userLogin = Cookies.get("user");
     const token = JSON.parse(userLogin).token;
-    const url = `/adminPostProducts`;
+    const url = `${baseURL}/adminPostProducts`;
 
     await axios.post(url, form, {
       headers: {
