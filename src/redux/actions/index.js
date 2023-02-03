@@ -16,6 +16,7 @@ const baseURL = "https://pf-back-production-f70b.up.railway.app"
 export const getProducts = () => async (dispatch) => {
   try {
     const { data } = await axios(`${baseURL}/adminGetProducts`);
+    console.log(data)
     return dispatch({
       type: GET_PRODUCTS,
       payload: data,
@@ -70,7 +71,8 @@ export const getUser = (setUser, setOrder) => async () => {
         "Access-Control-Allow-Credentials": false,
       },
     });
-
+    const pepepe = await response.json()
+console.log(pepepe)
     if (response.status === 200) {
       const userInfo = await response.json();
       setUser(userInfo);

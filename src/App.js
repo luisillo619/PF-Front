@@ -41,7 +41,7 @@ function App() {
     dispatch(getProducts());
     dispatch(getCategories());
     dispatch(getUser(setUser,setOrder));
-    console.log("pepe")
+   
   }, [dispatch]);
 
   console.log(userOrderCookies)
