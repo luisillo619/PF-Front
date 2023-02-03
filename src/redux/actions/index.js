@@ -74,6 +74,7 @@ export const getUser = (setUser, setOrder) => async () => {
     if (response.status === 200) {
       const userInfo = await response.json();
       setUser(userInfo);
+      console.log("soy la info", userInfo)
       Cookies.set("user", JSON.stringify(userInfo), {
         maxAge: `${60 * 60}`,
       });
