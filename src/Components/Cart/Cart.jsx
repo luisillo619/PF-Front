@@ -40,12 +40,12 @@ function Cart() {
 
   console.log(orderDetails);
   return (
-    <div>
+    <div className=" flex flex-col w-screen justify-items-center items-center bg-amber-200 bg-opacity-40  ">
       {!loading && (
         <>
           {orderDetails.amount.map((e) => {
             return (
-              <div>
+              <div  className="flex flex-row w-screen flex-wrap mt-20">
                 <CartItem
                   key={e._id}
                   id={e._id}
@@ -60,6 +60,15 @@ function Cart() {
           <Stripe priceTotal={priceTotal} />
         </>
       )}
+      <div className=" bg-white flex flex-row w-3/5    h-36 ">
+                 <div className="flex w-screen justify-center items-center">
+                 <p >Total to pay: ${priceTotal} </p>
+
+                 </div>
+                 <div className="flex w-screen justify-center item-center ">
+                         <Stripe priceTotal={priceTotal}/>
+                       </div>
+                 </div>
       {loading && <Loader />}
     </div>
   );
