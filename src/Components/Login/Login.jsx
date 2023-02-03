@@ -6,16 +6,17 @@ import './Login.css';
 
 
 const Login = () => {
+  const baseURL = "https://pf-back-production-f70b.up.railway.app/"
   const google = () => {
-    window.open("http://localhost:3001/auth/google", "_self");
+    window.open(`${baseURL}auth/google`, "_self");
   };
 
   const github = () => {
-    window.open("http://localhost:3001/auth/github", "_self");
+    window.open(`${baseURL}auth/github`, "_self");
   };
 
   const facebook = () => {
-    window.open("http://localhost:3001/auth/facebook", "_self");
+    window.open(`${baseURL}auth/facebook`, "_self");
   };
 
   

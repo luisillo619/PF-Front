@@ -102,7 +102,7 @@ import BBVABancomer from '../../assets/BBVA_Bancomer.png';
 import BancoNacion from '../../assets/Banco Nacion.png';
 import GrupoAval from '../../assets/Grupo Aval.png';
 import './ProductDetail.css';
-import ImageMagnify from 'react-image-magnify';
+
 
 
 
@@ -174,7 +174,7 @@ return (
         {!loading && (
             <div >
                 <div className="container-ProductDetails">
-                        <div className="container-Image-ProductDetails">
+                        {/* <div className="container-Image-ProductDetails">
                             <ImageMagnify
                                 smallImage={{
                                     alt: productDetail.name,
@@ -191,7 +191,8 @@ return (
                                     height: '130%',
                                 }}
                             />
-                        </div>
+                        </div> */}
+                         <img src={productDetail.image} alt={productDetail.name} />
                         <div className="container-Details">
                             <div className="specification-Details">
                                 <h1>{productDetail.name}</h1>
