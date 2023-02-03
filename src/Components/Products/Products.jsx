@@ -38,10 +38,9 @@ export default function Products() {
     };
 
    
-
     useEffect(()=>{
         dispatch(getProducts())
-    }, [])
+    }, [dispatch])
 
 
     return (
@@ -52,8 +51,7 @@ export default function Products() {
                    {
                         currentProducts?.map((e) =>{
                             return (
-                                <Link key={e._id} to='/category' >
-                                    <div>
+                                <div key={e._id}>
                                     <Product
                                         key={e._id}
                                         id={e._id}
@@ -64,14 +62,14 @@ export default function Products() {
                                         counter={e.counter}
                                         />  
                                 </div>
-                                </Link>
+                            
                             )
                         })
                      }
                 </div>
             </div>
-            <div className="paginated-rigth">
-                <Paginated productPorPage={productPorPage} allProducts={products.length} paginated={paginated} currentPage= {currentPage} />
+            <div   className="paginated-rigth">
+                <Paginated  productPorPage={productPorPage} allProducts={products.length} paginated={paginated} currentPage= {currentPage} />
             </div>
         </div>
     );

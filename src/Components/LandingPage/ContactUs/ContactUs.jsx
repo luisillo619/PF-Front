@@ -139,9 +139,9 @@ export default function ContactUs () {
                                     src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120392.68756597559!2d-99.19326626484833!3d19.443858339565598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff6bccdc6b8d%3A0x3fedc6910f11554a!2sCoffee%20Mate%20Experience!5e0!3m2!1ses!2sco!4v1674973089760!5m2!1ses!2sco`}
                                     width="600"
                                     height="450"
-                                    frameborder="0"
+                                    frameBorder="0"
                                     style={{border:0}}
-                                    allowfullscreen
+                                    allowFullScreen
                                 />
                             </div>
                         </div>
