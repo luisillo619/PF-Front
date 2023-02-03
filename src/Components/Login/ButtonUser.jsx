@@ -11,6 +11,7 @@ const ButtonUser = ({ userOrderCookies }) => {
     Cookies.remove("order");
     window.open(`${baseURL}auth/logout`, "_self");
   };
+  
 //pepee
   return (
     <div className="navbar">

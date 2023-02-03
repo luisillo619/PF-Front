@@ -7,10 +7,10 @@ import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
-
+// CI=false npm run build
 const container = document.getElementById("root");
 const root = createRoot(container);
-axios.defaults.baseURL = "https://pf-back-production-f70b.up.railway.app/";
+axios.defaults.baseURL = "https://pf-back-production-f70b.up.railway.app";
 root.render(
   <React.StrictMode>
     <Provider store={store}>
