@@ -8,7 +8,7 @@ import './Login.css';
 const Login = () => {
 
   const google = () => {
-    window.open(`https://pf-back-production-f70b.up.railway.app/auth/google`, "_self");
+    window.open(`http://pf-back-production-f70b.up.railway.app/auth/google`, "_self");
   };
 
   const github = () => {
