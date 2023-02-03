@@ -6,6 +6,28 @@ import CartItem from "./CartItem";
 import { Stripe } from "./Stripe";
 
 function Cart() {
+
+  const cart = useSelector((state)=> state.cart) 
+  console.log("sada",cart);
+  const filterPrice = cart.map(p=> p.price * p.counter).reduce((a,b)=> a+b)
+  console.log("filter", filterPrice);
+  const filterCounter = cart.map(c=>c.counter)  
+  console.log("count", filterCounter);
+   
+  
+  const [priceTotal , setPriceTotal] = useState([0])
+  
+    for (let i = 0; i < filterCounter.length; i++) {
+      var sumar = 0 + filterCounter[i] // 3 3 1
+       
+       console.log("suma" ,sumar);
+      }
+  
+ useEffect(()=>{ // poner condicional
+              
+      setPriceTotal(filterPrice)
+                           
+},[])
   const [loading, setLoading] = useState(true);
   const orderDetails = useSelector((state) => state.orderDetails);
   const dispatch = useDispatch();
@@ -35,7 +57,7 @@ function Cart() {
               </div>
             );
           })}
-          <Stripe priceTotal={orderDetails.total} />
+          <Stripe priceTotal={priceTotal} />
         </>
       )}
       {loading && <Loader />}
