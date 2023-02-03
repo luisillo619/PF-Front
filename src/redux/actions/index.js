@@ -11,7 +11,7 @@ import {
 
 import Cookies from "js-cookie";
 
-const baseURL = "http://pf-back-production-f70b.up.railway.app"
+const baseURL = "https://pf-back-production-f70b.up.railway.app"
 
 export const getProducts = () => async (dispatch) => {
   try {
@@ -63,7 +63,7 @@ export const addFilter = (filter) => {
 export const getUser = (setUser, setOrder) => async () => {
   try {
     console.log("estoy arto")
-    const response = await fetch(`${baseURL}/auth/login/success`, {
+    const response = await fetch(`http://pf-back-production-f70b.up.railway.app/auth/login/success`, {
       method: "GET",
       credentials: "include",
       headers: {
