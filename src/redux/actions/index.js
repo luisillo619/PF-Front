@@ -11,9 +11,11 @@ import {
 
 import Cookies from "js-cookie";
 
+const baseURL = "https://pf-back-production-f70b.up.railway.app/"
+
 export const getProducts = () => async (dispatch) => {
   try {
-    const { data } = await axios("http://localhost:3001/adminGetProducts");
+    const { data } = await axios("/adminGetProducts");
     return dispatch({
       type: GET_PRODUCTS,
       payload: data,
@@ -25,7 +27,7 @@ export const getProducts = () => async (dispatch) => {
 
 export const getOneProduct = (idProduct, setLoading) => async (dispatch) => {
   try {
-    const { data } = await axios(`http://localhost:3001/producId/${idProduct}`);
+    const { data } = await axios(`/producId/${idProduct}`);
     setLoading(false);
     return dispatch({
       type: GET_ONE_PRODUCT,
@@ -38,7 +40,7 @@ export const getOneProduct = (idProduct, setLoading) => async (dispatch) => {
 
 export const getCategories = () => async (dispatch) => {
   try {
-    const { data } = await axios("http://localhost:3001/adminGetCategories");
+    const { data } = await axios("/adminGetCategories");
     return dispatch({
       type: GET_CATEGORIES,
       payload: data,
@@ -56,9 +58,10 @@ export const addFilter = (filter) => {
   };
 };
 
+// FALTA ESTAAAAAAAAAAAAAAAAAAAAAA
 export const getUser = (setUser, setOrder) => async () => {
   try {
-    const response = await fetch("http://localhost:3001/auth/login/success", {
+    const response = await fetch(`${baseURL}/auth/login/success`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -75,7 +78,7 @@ export const getUser = (setUser, setOrder) => async () => {
         maxAge: `${60 * 60}`,
       });
 
-      const url = `http://localhost:3001/getNumberProducts/${userInfo.id}`;
+      const url = `${baseURL}/getNumberProducts/${userInfo.id}`;
       const order = await fetch(url);
 
       if (order.status === 200 || order.status === 404) {
@@ -103,7 +106,7 @@ export const getAllOrderDetails = (setLoading) => async (dispatch) => {
   const token = userLoginCookies && JSON.parse(userLoginCookies).token;
   const id = userLoginCookies && JSON.parse(userLoginCookies).id;
 
-  const url = `http://localhost:3001/getOrderDetails/${id}`;
+  const url = `/${id}`;
   const { data } = await axios.get(url, {
     headers: {
       "x-auth-token": `${token}`,
@@ -122,7 +125,7 @@ export const addToCart =
       const userLoginCookies = Cookies.get("user");
       const token = userLoginCookies && JSON.parse(userLoginCookies).token;
 
-      const url = `http://localhost:3001/postOrder`;
+      const url = `/postOrder`;
       const { data } = await axios.post(
         url,
       
@@ -150,7 +153,7 @@ export const sendProductsForm = (form, setResponse, setLoading) => async () => {
   try {
     const userLogin = Cookies.get("user");
     const token = JSON.parse(userLogin).token;
-    const url = `http://localhost:3001/adminPostProducts`;
+    const url = `/adminPostProducts`;
 
     await axios.post(url, form, {
       headers: {
