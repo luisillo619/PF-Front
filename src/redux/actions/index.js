@@ -71,8 +71,8 @@ export const getUser = (setUser, setOrder) => async () => {
         "Access-Control-Allow-Credentials": false,
       },
     });
-    const pepepe = await response.json()
-console.log(pepepe)
+  
+console.log(response, "estoy arto")
     if (response.status === 200) {
       const userInfo = await response.json();
       setUser(userInfo);
