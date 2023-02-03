@@ -6,17 +6,17 @@ import './Login.css';
 
 
 const Login = () => {
-  const baseURL = "https://pf-back-production-f70b.up.railway.app/"
+
   const google = () => {
-    window.open(`${baseURL}auth/google`, "_self");
+    window.open(`https://pf-back-production-f70b.up.railway.app/auth/google`, "_self");
   };
 
   const github = () => {
-    window.open(`${baseURL}auth/github`, "_self");
+    window.open(`https://pf-back-production-f70b.up.railway.app/auth/github`, "_self");
   };
 
   const facebook = () => {
-    window.open(`${baseURL}auth/facebook`, "_self");
+    window.open(`https://pf-back-production-f70b.up.railway.app/auth/facebook`, "_self");
   };
 
   
