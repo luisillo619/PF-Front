@@ -55,7 +55,7 @@ export default function LandingPage () {
                     width= '90%'
                     height= '100%'
                     controls= { true }
-                    volume= '0.3'
+                    // volume= '0.3'
                     // playing
                     // loop
                     // playbackRate={1.75}

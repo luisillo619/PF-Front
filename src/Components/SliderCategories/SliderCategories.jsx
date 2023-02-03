@@ -9,7 +9,7 @@ import "./SliderCategories.css";
 export default function SliderOtro() {
 
     const product = productData.map((item) => (
-        <Product name={ item.name } url={ item.imageurl } price={ item.price } Description={ item.description } />
+        <Product key={item.name} name={ item.name } url={ item.imageurl } price={ item.price } Description={ item.description } />
     ));
 
 
