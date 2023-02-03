@@ -3,7 +3,7 @@ import Loader from "../Loader/Loader";
 import { useState } from "react";
 
 
-function CartItem({ image, product, quantity, unitPrice }) {
+function CartItem({ image, product, quantity, unitPrice, setPriceTotal, priceTotal }) {
   const [loadingPost, setLoadingPost] = useState(false);
   const [cantidad, setCantidad] = useState(quantity) 
   const [count, setCount] = useState(1);

@@ -53,6 +53,9 @@ function Cart() {
                   product={e.product}
                   quantity={e.quantity}
                   unitPrice={e.unitPrice}
+                  setPriceTotal={setPriceTotal}
+                  priceTotal={priceTotal}
+                  counter={e.counter}
                 />
               </div>
             );
