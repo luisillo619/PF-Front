@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
 import Google from "../../assets/Google.webp";
 import Facebook from "../../assets/Facebook.png";
 import GitHub from "../../assets/GitHub.png";
 import "./Signup.css";
 import useLogin from "../../hooks/useLogin";
+import { Link } from "react-router-dom";
 //AGREGAR PROCESS.ENV
 
 
@@ -71,7 +71,7 @@ function Signup() {
       <form>
         <div className="container-General__Login">
           <div className="register">
-            <h1 className="loginTitle">Sign Up</h1>
+            <h1 className="loginTitle">Registrate</h1>
             <div className="wrapper">
               <div className="loginButtonsNetworks">
                 <div className="loginButton-Google" onClick={google}>
@@ -86,7 +86,7 @@ function Signup() {
               </div>
 
               <div className="loginButtons-Email">
-                <div className="container-Username-Login">
+                {/* <div className="container-Username-Login">
                   <p>Username</p>
                   <input
                     className="login-Username"
@@ -98,9 +98,9 @@ function Signup() {
                         onChange={handleChange}
                         required
                   />
-                </div>
+                </div> */}
                 <div className="container-Username-Login">
-                  <p>Email</p>
+                  <p>Correo</p>
                   <input
                     className="login-Username"
                     type="text"
@@ -113,7 +113,7 @@ function Signup() {
                   />
                 </div>
                 <div className="container-Password-Login">
-                  <p>Password</p>
+                  <p>Contraseña</p>
                   <input
                     className="login-Password"
                     type="text"
@@ -126,6 +126,13 @@ function Signup() {
                   />
                 </div>
                 <button className="login-Submit">Registrate</button>
+
+                <p>
+                  Tienes cuenta?{" "}
+                  <Link style={{ textDecoration: "none" }} to="/login">
+                    Ingresa
+                  </Link>
+                </p>
               </div>
             </div>
           </div>

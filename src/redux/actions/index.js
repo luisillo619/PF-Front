@@ -52,13 +52,27 @@ export const login = (form, setLoading, setResponse) => async () => {
   try {
     // RECORDAR EL TOKEEEEEN
     const { data } = await axios.post(`http://localhost:3001/login`, {form});
+   
     setLoading(false);
     setResponse(true);
     // data = {id:231, token}
+
+    // PONER UN IF, SI ES ESTATUS 200, REDIRIGIR, SI NO, MOSTRAR ERROR
+    // window.location.href = 'http://localhost:3000';
     Cookies.set("user", JSON.stringify(data), {
       maxAge: `${60 * 60}`,
     });
 
+    const url = `http://localhost:3001/getNumberProducts/${data.id}`;
+      const order = await fetch(url);
+      if (order.status === 200 || order.status === 404) {
+        const data = await order.json();
+        const numberProducts = parseInt(data.numberOfProductsInCart);
+        Cookies.set("order", JSON.stringify(numberProducts), {
+          maxAge: `${60 * 60}`,
+        });
+      }
+      window.location.href = 'http://localhost:3000';
   } catch (error) {
     console.log(error);
   }
@@ -112,7 +126,7 @@ export const getUser = (setUser, setOrder) => async () => {
         "Access-Control-Allow-Credentials": false,
       },
     });
-    console.log("estoy arto 2.0", response)
+
 
     if (response.status === 200) {
       const userInfo = await response.json();

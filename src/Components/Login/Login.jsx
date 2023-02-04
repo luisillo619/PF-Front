@@ -64,7 +64,7 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <div className="container-General__Login">
           <div className="login">
-            <h1 className="loginTitle">Sign In</h1>
+            <h1 className="loginTitle">Ingresa</h1>
 
             <div className="wrapper">
               <div className="loginButtonsNetworks">
@@ -80,7 +80,7 @@ const Login = () => {
               </div>
               <div className="loginButtons-Email">
                 <div className="container-Email-Login">
-                  <p>Email</p>
+                  <p>Correo</p>
                   <input
                     className="login-Email"
                     type="text"
@@ -95,7 +95,7 @@ const Login = () => {
                 </div>
 
                 <div className="container-Password-Login">
-                  <p>Password</p>
+                  <p>Contraseña</p>
                   <input
                     className="login-Password"
                     type="password"
