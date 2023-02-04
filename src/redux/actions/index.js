@@ -6,13 +6,16 @@ import {
   GET_ONE_PRODUCT,
   ADD_PRODUCT_CART,
   FILTER_BY_LANDING_PAGE,
-  ORDER_DETIALS
+  ORDER_DETIALS,
+  GET_ONE_USER
 } from "../types/index";
 
 import Cookies from "js-cookie";
 
 // const baseURL = "https://pf-back-production-f70b.up.railway.app"
 
+
+//Trae todos los productos
 export const getProducts = () => async (dispatch) => {
   try {
     const { data } = await axios(`http://localhost:3001/adminGetProducts`);
@@ -25,6 +28,43 @@ export const getProducts = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+
+//Action para rendeirzar el panel del Admin o del user
+export const getOneUser = (id,setLoading) => async (dispatch) => {
+  try {
+    // RECORDAR EL TOKEEEEEN
+    const { data } = await axios(`http://localhost:3001/getAccountProfile/${id}`, );
+    setLoading(false)
+    return dispatch({
+      type: GET_ONE_USER,
+      payload: data,
+    });
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+//Action para el login, no se envía al reducer, se envía a las cookies
+export const login = (form, setLoading, setResponse) => async () => {
+  try {
+    // RECORDAR EL TOKEEEEEN
+    const { data } = await axios.post(`http://localhost:3001/login`, {form});
+    setLoading(false);
+    setResponse(true);
+    // data = {id:231, token}
+    Cookies.set("user", JSON.stringify(data), {
+      maxAge: `${60 * 60}`,
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 
 export const getOneProduct = (idProduct, setLoading) => async (dispatch) => {
   try {

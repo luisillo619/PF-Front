@@ -2,7 +2,7 @@ import React from 'react';
 import {CreateProducts} from './CreateProducts/CreateProducts';
 import GoHome from './GoHome/GoHome';
 import SeeAllOrders from './SeeAllOrders/SeeAllOrders';
-import SeeAllProducts from './SeeAllProducts/SeeAllProducts';
+import {SeeAllProducts} from './SeeAllProducts/SeeAllProducts';
 import './PanelAdmin.css';
 
 
@@ -21,7 +21,7 @@ export default function PanelAdmin () {
             </div>
             <div>
                 <CreateProducts />
-                {/* <GoHome /> */}
+                <GoHome />
                 <SeeAllOrders />
                 <SeeAllProducts />
             </div>

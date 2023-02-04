@@ -28,11 +28,8 @@ function useMailer(initialForm, validateForm) {
 
   const handleSubmit = (e) => {
 
-    e.preventDefault();
-    console.log(form);
-
-     handleChange(e)
-
+     e.preventDefault();
+     setErrors(validateForm(form))
     if (Object.keys(errors).length === 0) {
       setLoading(true)
       let copyForm = { ...form };
