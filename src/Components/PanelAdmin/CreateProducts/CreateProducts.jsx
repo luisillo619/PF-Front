@@ -75,11 +75,7 @@ export const CreateProducts = () => {
     initialForm,
     validationsForm
   );
-  console.log("asdasdasdsad");
-  
-
-  
-
+ 
   return (
    <div className="flex flex-row w-6/6 h-screen">
      

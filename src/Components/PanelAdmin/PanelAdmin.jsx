@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useSelector } from "react-redux";
 import {CreateProducts} from './CreateProducts/CreateProducts';
 import GoHome from './GoHome/GoHome';
 import SeeAllOrders from './SeeAllOrders/SeeAllOrders';
@@ -11,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function PanelAdmin () {
+    const userInfo = useSelector((state)=> state.getOneUser);
  console.log("panelA");
 
     const dispatch = useDispatch()
@@ -29,6 +31,7 @@ export default function PanelAdmin () {
                 <div className='panelAdmin-Bienbenido'>
                     <h1>Bienvenido</h1>
                     <p>{adminUser?.userName}</p> {/* aqui nombre del Admin */}
+                    <p>{userInfo.admin}</p>
                 </div>
                 <div >
                     <h1>Panel del Administrador</h1>
@@ -36,7 +39,7 @@ export default function PanelAdmin () {
             </div>
             <div>
                 <CreateProducts />
-                {/* <GoHome /> */}
+                <GoHome />
                 <SeeAllOrders />
                 <SeeAllProducts />
             </div>

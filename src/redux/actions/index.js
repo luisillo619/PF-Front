@@ -8,15 +8,19 @@ import {
   FILTER_BY_LANDING_PAGE,
   ORDER_DETIALS,
   GET_ALL_USERS
+  GET_ONE_USER
 } from "../types/index";
 
 import Cookies from "js-cookie";
 
-const baseURL = "https://pf-back-production-f70b.up.railway.app/"
+// const baseURL = "https://pf-back-production-f70b.up.railway.app"
 
+
+//Trae todos los productos
 export const getProducts = () => async (dispatch) => {
   try {
-    const { data } = await axios("/adminGetProducts");
+    const { data } = await axios(`http://localhost:3001/adminGetProducts`);
+    console.log(data)
     return dispatch({
       type: GET_PRODUCTS,
       payload: data,
@@ -26,9 +30,60 @@ export const getProducts = () => async (dispatch) => {
   }
 };
 
+
+//Action para rendeirzar el panel del Admin o del user
+export const getOneUser = (id,setLoading) => async (dispatch) => {
+  try {
+    // RECORDAR EL TOKEEEEEN
+    const { data } = await axios(`http://localhost:3001/getAccountProfile/${id}`, );
+    setLoading(false)
+    return dispatch({
+      type: GET_ONE_USER,
+      payload: data,
+    });
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+//Action para el login, no se envía al reducer, se envía a las cookies
+export const login = (form, setLoading, setResponse) => async () => {
+  try {
+    // RECORDAR EL TOKEEEEEN
+    const { data } = await axios.post(`http://localhost:3001/login`, {form});
+   
+    setLoading(false);
+    setResponse(true);
+    // data = {id:231, token}
+
+    // PONER UN IF, SI ES ESTATUS 200, REDIRIGIR, SI NO, MOSTRAR ERROR
+    // window.location.href = 'http://localhost:3000';
+    Cookies.set("user", JSON.stringify(data), {
+      maxAge: `${60 * 60}`,
+    });
+
+    const url = `http://localhost:3001/getNumberProducts/${data.id}`;
+      const order = await fetch(url);
+      if (order.status === 200 || order.status === 404) {
+        const data = await order.json();
+        const numberProducts = parseInt(data.numberOfProductsInCart);
+        Cookies.set("order", JSON.stringify(numberProducts), {
+          maxAge: `${60 * 60}`,
+        });
+      }
+      window.location.href = 'http://localhost:3000';
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
 export const getOneProduct = (idProduct, setLoading) => async (dispatch) => {
   try {
-    const { data } = await axios(`/producId/${idProduct}`);
+    const { data } = await axios(`http://localhost:3001/producId/${idProduct}`);
     setLoading(false);
     return dispatch({
       type: GET_ONE_PRODUCT,
@@ -41,7 +96,7 @@ export const getOneProduct = (idProduct, setLoading) => async (dispatch) => {
 
 export const getCategories = () => async (dispatch) => {
   try {
-    const { data } = await axios("/adminGetCategories");
+    const { data } = await axios(`http://localhost:3001/adminGetCategories`);
     return dispatch({
       type: GET_CATEGORIES,
       payload: data,
@@ -62,7 +117,8 @@ export const addFilter = (filter) => {
 // FALTA ESTAAAAAAAAAAAAAAAAAAAAAA
 export const getUser = (setUser, setOrder) => async () => {
   try {
-    const response = await fetch(`${baseURL}/auth/login/success`, {
+    console.log("estoy arto")
+    const response = await fetch(`http://localhost:3001/auth/login/success`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -72,14 +128,16 @@ export const getUser = (setUser, setOrder) => async () => {
       },
     });
 
+
     if (response.status === 200) {
       const userInfo = await response.json();
       setUser(userInfo);
+      console.log("soy la info", userInfo)
       Cookies.set("user", JSON.stringify(userInfo), {
         maxAge: `${60 * 60}`,
       });
 
-      const url = `${baseURL}/getNumberProducts/${userInfo.id}`;
+      const url = `http://localhost:3001/getNumberProducts/${userInfo.id}`;
       const order = await fetch(url);
 
       if (order.status === 200 || order.status === 404) {
@@ -106,8 +164,8 @@ export const getAllOrderDetails = (setLoading) => async (dispatch) => {
   const userLoginCookies = Cookies.get("user");
   const token = userLoginCookies && JSON.parse(userLoginCookies).token;
   const id = userLoginCookies && JSON.parse(userLoginCookies).id;
-
-  const url = `/${id}`;
+//roto
+  const url = `http://localhost:3001/getOrderDetails/${id}`;
   const { data } = await axios.get(url, {
     headers: {
       "x-auth-token": `${token}`,
@@ -126,7 +184,7 @@ export const addToCart =
       const userLoginCookies = Cookies.get("user");
       const token = userLoginCookies && JSON.parse(userLoginCookies).token;
 
-      const url = `/postOrder`;
+      const url = `http://localhost:3001/postOrder`;
       const { data } = await axios.post(
         url,
       
@@ -154,7 +212,7 @@ export const sendProductsForm = (form, setResponse, setLoading) => async () => {
   try {
     const userLogin = Cookies.get("user");
     const token = JSON.parse(userLogin).token;
-    const url = `/adminPostProducts`;
+    const url = `http://localhost:3001/adminPostProducts`;
 
     await axios.post(url, form, {
       headers: {

@@ -8,6 +8,9 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import ButtonUser from "../Login/ButtonUser";
+import logo from '../../assets/7.png';
+import './NavBar.css';
+
 
 function Select({ options, value, onChange, name }) {
   return (
@@ -51,10 +54,10 @@ const filterValidations = (filtersState, dispatch, addFilter) => {
   dispatch(addFilter(validations));
 };
 
-function NavBar({ userOrderCookies }) {
+function NavBar({ userOrderCookies,userLoginCookies }) {
   const { filtersState, handleChange, nameOptions, products, categories } =
     useFilter(filterValidations);
-
+ 
   const userOrderLenght = userOrderCookies && parseInt(userOrderCookies);
 
   const productsCart = useSelector((state) => state.productsCart);
@@ -65,49 +68,49 @@ function NavBar({ userOrderCookies }) {
     if (productsCart || userOrderLenght) {
       setCount(productsCart || userOrderLenght);
     } else setCount(0);
+
+
   }, [productsCart, userOrderLenght]);
 
-  return (
-    <div>
-      <input
-        type="search"
-        list="names"
-        id="productName"
-        name="productName"
-        value={filtersState.productName}
-        onChange={handleChange}
-        placeholder="Buscar Productos"
-      />
-      <datalist id="names">
-        {nameOptions(products, filtersState.productName)}
-      </datalist>
 
-      <label htmlFor="productCategory">Categorias de Productos</label>
-      <Select
-        options={categories}
-        value={filtersState.productCategory}
-        onChange={handleChange}
-        name="productCategory"
-      />
+    return (
+    <div className="container-NavBarAll">
+        <div className='container-logo__Navbar'>
+            <Link style={{textDecoration: 'none'}} className="link" to="/"><img src={ logo } alt="Logo" /></Link>
+        </div>
 
-      <label htmlFor="productPrice">Rangos de Precios</label>
-      <Select
-        options={priceRange}
-        value={filtersState.productPrice}
-        onChange={handleChange}
-        name="productPrice"
-      />
+        <div className="container-FilterSearch__Navbar">
+            <input
+                className="inputSearchNavBar"
+                type="text"
+                list="names"
+                id="productName"
+                name="productName"
+                value={filtersState.productName}
+                onChange={handleChange}
+                placeholder="Buscar Productos"
+            />
+            <div className="filter-Mavbar">
+                <datalist className="datalist" id="names">
+                    {nameOptions(products, filtersState.productName)}
+                </datalist>
+                <Select options={categories} value={filtersState.productCategory} onChange={ handleChange } name="productCategory" />
+                <Select options={priceRange} value={filtersState.productPrice} onChange={handleChange} name="productPrice" />
+            </div>
+        </div>
 
-      <ButtonUser userOrderCookies={userOrderCookies}/>
-
-      <Link to="/cart">
-        <button>
-          <FontAwesomeIcon size="xl" icon={faCartShopping} />
-          <p>{count}</p>
-        </button>
-      </Link>
+        <div className="container-Button-Cart">
+            <ButtonUser userOrderCookies={userOrderCookies} userLoginCookies={userLoginCookies}/>
+            <Link to="/cart">
+                <button>
+                    <FontAwesomeIcon className="cartShopping" size="xl" icon={faCartShopping} />
+                    <p className="count-Cart">{count}</p>
+                </button>
+            </Link>
+        </div>
     </div>
-  );
+    );
 }
+
 
 export default NavBar;
