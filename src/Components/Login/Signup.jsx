@@ -7,17 +7,17 @@ import "./Signup.css";
 
 // es como para registrarse por primera vez
 function Signup() {
-  const baseURL = "https://pf-back-production-f70b.up.railway.app";
+  // const baseURL = "https://pf-back-production-f70b.up.railway.app";
   const google = () => {
-    window.open(`${baseURL}/auth/google`, "_self");
+    window.open(`http://localhost:3001/auth/google`, "_self");
   };
 
   const github = () => {
-    window.open(`${baseURL}/auth/github`, "_self");
+    window.open(`http://localhost:3001/auth/github`, "_self");
   };
 
   const facebook = () => {
-    window.open(`${baseURL}/auth/facebook`, "_self");
+    window.open(`http://localhost:3001/auth/facebook`, "_self");
   };
 
   return (
