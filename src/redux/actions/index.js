@@ -6,7 +6,8 @@ import {
   GET_ONE_PRODUCT,
   ADD_PRODUCT_CART,
   FILTER_BY_LANDING_PAGE,
-  ORDER_DETIALS
+  ORDER_DETIALS,
+  GET_ALL_USERS
 } from "../types/index";
 
 import Cookies from "js-cookie";
@@ -173,3 +174,26 @@ export const filterByLandingPage = (filter) => {
     payload: filter,
   };
 };
+
+export const disableEnableProds = async id => {
+  try {
+  await axios.get(`http://localhost:3001/adminDeleteProducts//${id}`) // luego cambiar a ruta deploid
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const getAllUsers = () => {
+  try {
+    return async dispatch => { // unicamente el admin ejecuta esta ruta
+      const allUsers = (await axios("http://localhost:3001/getAllUsers")).data // luego cambiar a ruta deploid
+      dispatch({
+        type: GET_ALL_USERS,
+        payload: allUsers
+      })
+    }
+    
+  } catch (error) { 
+    console.log(error);
+  }
+}

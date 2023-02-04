@@ -7,7 +7,7 @@ import { faEdit} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-export const SeeAllProducts = ()=>{
+export const SeeAllProducts = () =>{
     
     const products = useSelector((state)=> state.products)
     const dispatch = useDispatch()

@@ -1,19 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {CreateProducts} from './CreateProducts/CreateProducts';
 import GoHome from './GoHome/GoHome';
 import SeeAllOrders from './SeeAllOrders/SeeAllOrders';
-import SeeAllProducts from './SeeAllProducts/SeeAllProducts';
+import {SeeAllProducts} from './SeeAllProducts/SeeAllProducts';
 import './PanelAdmin.css';
+import { getAllUsers } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 
 export default function PanelAdmin () {
  console.log("panelA");
+
+    const dispatch = useDispatch()
+
+    useEffect( () => {
+        dispatch(getAllUsers())
+    },[dispatch])
+
+    const allUsers = useSelector( state => state.users ) 
+    const adminUser = allUsers.find( us => us.admin )
+    console.log(adminUser);
+
     return (
         <div className='container-panelAdmin'>
             <div>
                 <div className='panelAdmin-Bienbenido'>
                     <h1>Bienvenido</h1>
-                    <p>Carlos Mario!</p>
+                    <p>{adminUser?.userName}</p> {/* aqui nombre del Admin */}
                 </div>
                 <div >
                     <h1>Panel del Administrador</h1>
