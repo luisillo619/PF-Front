@@ -5,11 +5,12 @@ import { FaUser } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneUser } from "../../redux/actions/index";
+// import { FaHouseUser } from 'react-icons/fa';
 
 
 const ButtonUser = ({ userOrderCookies, userLoginCookies }) => {
   // const baseURL = "https://pf-back-production-f70b.up.railway.app"
-  const userInfo = useSelector((state)=> state.getOneUser)
+  const userInfo = useSelector((state)=> state.getOneUser);
   const idUser = userLoginCookies && JSON.parse(userLoginCookies).id;
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch();
@@ -33,12 +34,14 @@ const ButtonUser = ({ userOrderCookies, userLoginCookies }) => {
           {!loading && userInfo.admin ?   
             <span className="logo">
                 <Link className="link" to="/panelAdmin">
-                  Panel Admin
+                  {/* <FaHouseUser className="panelAdminFaHouseUser" /> */}
+                  PANEL
                 </Link> 
             </span>: 
             <span className="logo">
               <Link className="link" to="/panelUser">
-                Panel User
+                {/* <FaHouseUser className="panelAdminFaHouseUser" /> */}
+                TU CUENTA
               </Link> 
             </span>
           }
