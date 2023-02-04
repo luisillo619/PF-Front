@@ -10,6 +10,7 @@ const initialState = {
   },
   productsCart: 0,
   orderDetails: null,
+  getOneUser: null
 };
 
 export default function reducer(state = initialState, { type, payload }) {
@@ -35,6 +36,12 @@ export default function reducer(state = initialState, { type, payload }) {
         ...state,
         oneProductId: payload,
       };
+
+    case "GET_ONE_USER":
+      return{
+        ...state,
+        getOneUser: payload
+      }
     case "ADD_PRODUCT_CART":
       return {
         ...state,

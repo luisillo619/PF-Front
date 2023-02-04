@@ -41,13 +41,16 @@ function App() {
     dispatch(getProducts());
     dispatch(getCategories());
     dispatch(getUser(setUser,setOrder));
+   
   }, [dispatch]);
 
-  console.log(userOrderCookies)
+  // console.log(userOrderCookies)
+  // console.log("pepepepepe")
+  console.log(userLoginCookies)
 
   return (
     <div className="App">
-      <NavBar userOrderCookies={userOrderCookies} />
+      <NavBar userOrderCookies={userOrderCookies} userLoginCookies={userLoginCookies} />
       {/* <ButtonUser userLoginCookies={userLoginCookies}  /> */}
       <Routes>
         <Route
