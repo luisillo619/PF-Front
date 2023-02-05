@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../../../redux/actions';
-
+import { SideBarAdmin } from '../SideBar/SidebarAdmin';
 const SeeAllUsers = () => {
 
     const allUsers = useSelector( state => state.users ) // Se deberia mapear
@@ -19,28 +19,68 @@ const SeeAllUsers = () => {
     // console.log(onlyUsers)
     
     return (
-        <div>
+             <div className="flex flex-row w-6/6 h-screen "> 
+          <div className="w-screen">
+    
+         <div className=" flex flex-row h-screen  bg-blue-400 bg-opacity-25">
+            
+          <div className="flex flex-row w-1/6  justify-center  bg-white border-gray-500 ">
+    
+         <SideBarAdmin/> 
+          </div>
+          <div className="flex flex-col w-5/6  content-center items-center justify-start  ">
+           <div className="flex flex-col w-5/6 h-5/6 content-start  items-start  border-solid border-gray-500 border mt-4  bg-white"   >
+          
+          <div className='flex flex-row w-full border-solid border-gray-500 border'>
+          <div className="flex flex-row w-3/12 ">
+           <p className="mx-4">Name</p>
+           </div>
+           <div className="flex flex-row w-6/12 justify-center mr-8">
+           <p className="mx-4">Email</p>
+           </div>
+           <div className="flex flex-row w-2/12 ">
+           <p className="">Admin</p>
+           </div>
+           <div className="flex flex-row w-2/12 -ml-4">
+           <p className="mx-4">Bloqued</p>
+           </div>
+           <div className="flex flex-row ml-4 ">
+           <p className="mx-4">Login</p>
+           </div>
+           </div> 
+        
+              
             {onlyUsers?.map( user => {
                 return (
-                    <div className='flex m-5'>
-                        <div>
-                            <p className="mx-4"> Name : {user.name} </p>
+                    <div className="flex flex-row w-full justify-start bg-white border-solid border-gray-500 border">
+                        
+                             
+                        <div className="flex flex-row w-3/12  h-10 overflow-hidden">
+                            <p className=" mx-4">  {user.name ? user.name : "Not have Username"} </p>
                         </div>
-                        <div>
-                            <p className="mx-4"> Email: {user.email} </p>
+                        <div className="flex flex-row w-6/12  overflow-hidden">
+                            <p className="mx-4">  {user.email ? user.email : "Not have email"} </p>
                         </div>
-                        <div>
-                            <p className="mx-4"> Admin: {user.admin ? "True" : "False"} </p>
+                        <div className="flex flex-row w-2/12 ml-4 ">
+                            <p className="mx-4">  {user.admin ? "True" : "False"} </p>
                         </div> 
-                        <div>
-                            <p className="mx-4"> Bloqued: {user.isBlocked ? "True" : "False"} </p>
+                        <div className="flex flex-row w-2/12">
+                            <p className="mx-4">  {user.isBlocked ? "True" : "False"} </p>
                         </div>
-                        <div>
-                            <p className="mx-4"> Login: {user.loginBy} </p>
+                        <div className="flex flex-row  w-2/12">
+                            <p className="ml-8 text-center">  {user.loginBy ? user.loginBy : "Email"} </p>
                         </div>
-                    </div>)
+                        
+                        
+                    </div>
+                    )
                     })}
-        </div>)
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        )
 }
 
 

@@ -80,10 +80,8 @@ export const CreateProducts = () => {
    <div className="flex flex-row w-6/6 h-screen">
      
      <div className="w-screen" >
-       <div className="w-6/6 flex-col h-16 bg-[#2C3E50] ">
-         {/* <Navbar/> */}
-    </div> 
-    <div className="flex flex-row h-screen bg-amber-200 bg-opacity-40">
+      
+    <div className="flex flex-row h-screen bg-blue-400 bg-opacity-25">
 
        <div className="flex flex-row w-1/6 border-r justify-center  bg-white border-gray-500 ">
 
@@ -91,10 +89,10 @@ export const CreateProducts = () => {
        </div>
     <div className="flex flex-col w-5/6 content-center items-center justify-start " >
     <form 
-     className="flex flex-col w-5/6 h-5/6 justify-evenly content-start  items-center  border-solid border-gray-500 border mt-4 rounded-lg bg-white"  
+     className="flex flex-col w-5/6 h-screen justify-evenly content-start  items-center  border-solid border-gray-500 border mt-4  bg-white"  
      onSubmit={ handleSubmit }> 
 
-      <div className="text-black flex flex-row  border-solid border-gray-500 border  w-2/5 rounded-lg" >
+      <div className="text-black flex flex-row  border-solid border-gray-500 border  w-2/5 rounded-lg " >
 
     <label htmlFor="name">Name:</label>
     <input 
@@ -109,7 +107,7 @@ export const CreateProducts = () => {
     />
       </div>
 
-      <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
+      <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg ">
 
        <label  htmlFor="price">Price:</label>
       <input
@@ -139,9 +137,9 @@ export const CreateProducts = () => {
         />
         </div>
 
-        <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
+        <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg justify-center items-center self-center">
         {/* Cloudinary */}
-        <CloudinayImages setForm={setForm} form={form}/>
+        <CloudinayImages  setForm={setForm} form={form}/>
         
        
       
@@ -175,7 +173,7 @@ export const CreateProducts = () => {
 
         <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
 
-      <label htmlFor="news">News:</label>
+      <label  htmlFor="news">News:</label>
       <select  className="mx-2" id="news" name="news" value={form.news} 
         onChange={handleChange}
         onBlur={handleBlur}
