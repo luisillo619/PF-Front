@@ -85,7 +85,7 @@ export const SeeAllProducts = ()=>{
       
       <div className="flex flex-row w-5/6 h-5/6 justify-around bg-white border-solid border-gray-500 border"  key={p._id}>
  <div className="flex flex-row h-10 items-center justify-center ">
-           <Link to={`/panelAdmin/panelAdminPutProducts/${p._id}`}>
+           <Link to={`/panelAdmin/adminPutProducts/${p._id}`}>
 
            <button className="mx-4 flex flex-row"><FontAwesomeIcon icon={faEdit} /></button>
            </Link> 
