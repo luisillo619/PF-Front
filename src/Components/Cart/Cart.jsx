@@ -16,26 +16,31 @@ function Cart() {
     };
   }, [dispatch]);
 
-  console.log(orderDetails);
+ 
   return (
     <div>
       {!loading && (
         <>
-          {orderDetails.amount.map((e) => {
-            return (
-              <div>
-                <CartItem
-                  key={e._id}
-                  id={e._id}
-                  image={e.image}
-                  product={e.product}
-                  quantity={e.quantity}
-                  unitPrice={e.unitPrice}
-                />
-              </div>
-            );
-          })}
-          <Stripe priceTotal={orderDetails.total} />
+          {orderDetails ? (
+            orderDetails.amount.map((e) => {
+              return (
+                <div>
+                  <CartItem
+                    key={e._id}
+                    id={e._id}
+                    image={e.image}
+                    product={e.product}
+                    quantity={e.quantity}
+                    unitPrice={e.unitPrice}
+                  />
+                </div>
+              );
+            }) 
+          ) : (
+            <p>Sin ordenes</p>
+          )
+          }
+          {orderDetails && <Stripe priceTotal={orderDetails.total} />}
         </>
       )}
       {loading && <Loader />}
