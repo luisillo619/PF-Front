@@ -14,13 +14,24 @@ import {
 import Cookies from "js-cookie";
 
 // const baseURL = "https://pf-back-production-f70b.up.railway.app"
+export const postComment = (commentInfo) => async (dispatch) =>{
+  try {
+    // quitar auth porque no le estamos mandando el token
+    const { data } = await axios("http://localhost:3001/postComent", commentInfo);
 
+
+
+
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 //Trae todos los productos
 export const getProducts = () => async (dispatch) => {
   try {
     const { data } = await axios(`http://localhost:3001/adminGetProducts`);
-    console.log(data)
+   
     return dispatch({
       type: GET_PRODUCTS,
       payload: data,
@@ -117,7 +128,7 @@ export const addFilter = (filter) => {
 // FALTA ESTAAAAAAAAAAAAAAAAAAAAAA
 export const getUser = (setUser, setOrder) => async () => {
   try {
-    console.log("estoy arto")
+  
     const response = await fetch(`http://localhost:3001/auth/login/success`, {
       method: "GET",
       credentials: "include",
@@ -165,6 +176,7 @@ export const getAllOrderDetails = (setLoading) => async (dispatch) => {
   const token = userLoginCookies && JSON.parse(userLoginCookies).token;
   const id = userLoginCookies && JSON.parse(userLoginCookies).id;
 //roto
+
   const url = `http://localhost:3001/getOrderDetails/${id}`;
   const { data } = await axios.get(url, {
     headers: {

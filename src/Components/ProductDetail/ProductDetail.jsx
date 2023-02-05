@@ -102,6 +102,7 @@ import BBVABancomer from '../../assets/BBVA_Bancomer.png';
 import BancoNacion from '../../assets/Banco Nacion.png';
 import GrupoAval from '../../assets/Grupo Aval.png';
 import './ProductDetail.css';
+import { Reviews } from "./Reviews";
 
 
 
@@ -244,6 +245,10 @@ return (
                 <Link to='/category' style={{ textDecoration: 'none' }}>
                     <button className="button-ProductDetails">VOLVER</button>
                 </Link>
+
+                <div className="mt-10">
+          <Reviews />
+      </div>
 
                 <div className="meansOfPayment">
                     <div className="meansOfPaymentUno">
