@@ -35,7 +35,7 @@ const SeeAllUsers = () => {
           <div className="flex flex-row w-3/12 ">
            <p className="mx-4">Name</p>
            </div>
-           <div className="flex flex-row w-3/12">
+           <div className="flex flex-row w-6/12 justify-center mr-8">
            <p className="mx-4">Email</p>
            </div>
            <div className="flex flex-row w-2/12 ">
@@ -55,20 +55,20 @@ const SeeAllUsers = () => {
                     <div className="flex flex-row w-full justify-start bg-white border-solid border-gray-500 border">
                         
                              
-                        <div className="flex flex-row w-2/12  ">
-                            <p className=" mx-4">  {user.name} </p>
+                        <div className="flex flex-row w-3/12  h-10 overflow-hidden">
+                            <p className=" mx-4">  {user.name ? user.name : "Not have Username"} </p>
                         </div>
-                        <div className="flex flex-row w-4/12 ">
-                            <p className="mx-4">  {user.email} </p>
+                        <div className="flex flex-row w-6/12  overflow-hidden">
+                            <p className="mx-4">  {user.email ? user.email : "Not have email"} </p>
                         </div>
-                        <div className="flex flex-row w-2/12 -ml-2 ">
+                        <div className="flex flex-row w-2/12 ml-4 ">
                             <p className="mx-4">  {user.admin ? "True" : "False"} </p>
                         </div> 
                         <div className="flex flex-row w-2/12">
                             <p className="mx-4">  {user.isBlocked ? "True" : "False"} </p>
                         </div>
                         <div className="flex flex-row  w-2/12">
-                            <p className="mx-4">  {user.loginBy} </p>
+                            <p className="ml-8 text-center">  {user.loginBy ? user.loginBy : "Email"} </p>
                         </div>
                         
                         
