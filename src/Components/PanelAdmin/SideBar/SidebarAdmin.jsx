@@ -5,8 +5,6 @@ export const SideBarAdmin = ()=> {
 
     return (
         
-
-              
     
         <div>
 
@@ -21,10 +19,14 @@ export const SideBarAdmin = ()=> {
                 
                 </Link>
 
-
-                <button className=" bg-gray-200 border border-gray-500 mt-4 w-fit rounded-md my-4  p-1">View all Users</button> 
+                <Link to="/panelAdmin/getAllUsers">
+                    <button className=" bg-gray-200 border border-gray-500 mt-4 w-fit rounded-md my-4  p-1">View all Users</button> 
+                </Link>
+                <Link to="/panelAdmin/getOrderDetails">
+                
                 <button className=" bg-gray-200 border border-gray-500 mt-4 w-fit rounded-md  my-4 p-1">View all Orders</button>
-                <Link to="/home">
+                </Link>
+                <Link to="/category">
                 <button className=" bg-gray-200 border border-gray-500 mt-4 w-fit rounded-md  my-4 p-1">Go Home</button>
                 
                 </Link>
