@@ -3,7 +3,7 @@ import useForm from "../../../hooks/useForm"
 import { SideBarAdmin } from "../SideBar/SidebarAdmin";
 import Message from "../../Loader/Message";
 import Loader from "../../Loader/Loader"
-
+import CloudinayImages from "../../Cloudinay/CloudinayImages";
 
 
 
@@ -73,7 +73,7 @@ const validationsForm = (form) => {
 
 export const PutForm = () => {
   const { form, handleBlur, handleChange, handleSubmit, cat, loading,
-    response} = useForm(
+    response,setForm} = useForm(
     initialForm,
     validationsForm
   );
@@ -147,17 +147,7 @@ export const PutForm = () => {
 
         <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
         {/* Cloudinary */}
-      <label htmlFor="image">Image:</label> 
-      <input
-      className="mx-2"
-        name="image"
-        id="image"
-        placeholder="New Image"
-        onBlur={handleBlur}
-        onChange={handleChange}
-        value={ form.image }
-        autoComplete="nope"
-        />
+        <CloudinayImages  setForm={setForm} form={form}/>
         
        
       
