@@ -7,7 +7,7 @@ import {
   ADD_PRODUCT_CART,
   FILTER_BY_LANDING_PAGE,
   ORDER_DETIALS,
-  GET_ALL_USERS
+  GET_ALL_USERS,
   GET_ONE_USER
 } from "../types/index";
 

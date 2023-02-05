@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react';
-import { useSelector } from "react-redux";
-import {CreateProducts} from './CreateProducts/CreateProducts';
-import GoHome from './GoHome/GoHome';
-import SeeAllOrders from './SeeAllOrders/SeeAllOrders';
-import {SeeAllProducts} from './SeeAllProducts/SeeAllProducts';
 import './PanelAdmin.css';
 import { getAllUsers } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-
+import {SideBarAdmin} from "../PanelAdmin/SideBar/SidebarAdmin"
 
 
 
@@ -26,26 +21,19 @@ export default function PanelAdmin () {
     console.log(adminUser);
 
     return (
-        <div className='container-panelAdmin'>
-            <div>
-                <div className='panelAdmin-Bienbenido'>
+        <div className='flex flex-col h-screen bg-white mt-4 rounded-lg '>
+           
+                <div className='flex flex-col h-screen bg-white mt-4 rounded-lg justify-start items-center'>
                     <h1>Bienvenido</h1>
-                    <p>{adminUser?.userName}</p> {/* aqui nombre del Admin */}
-                    <p>{userInfo.admin}</p>
-                </div>
-                <div >
+                     <p>{adminUser?.userName}</p> 
+                     {/* <p>{userInfo.admin}</p>  */}
                     <h1>Panel del Administrador</h1>
+                    
+               <div className='flex flex-col self-center'>
+               <SideBarAdmin/>
                 </div>
-            </div>
-            <div>
-                <CreateProducts />
-                <GoHome />
-                <SeeAllOrders />
-                <SeeAllProducts />
-            </div>
-            <div>
-                <h1>Panel del Admin</h1>
-            </div>
+                </div>
+    
         </div>
     )
 };
