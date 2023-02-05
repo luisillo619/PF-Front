@@ -97,7 +97,7 @@ export const PutForm = () => {
        </div>
     <div className="flex flex-col w-5/6 content-center items-center justify-start " >
     <form 
-     className="flex flex-col w-5/6 h-5/6 justify-evenly content-start  items-center  border-solid border-gray-500 border mt-4  bg-white"  
+     className="flex flex-col w-5/6 h-screen justify-evenly content-start  items-center  border-solid border-gray-500 border mt-4  bg-white"  
      onSubmit={ handleSubmit }> 
 
       <div className="text-black flex flex-row  border-solid border-gray-500 border  w-2/5 rounded-lg" >
@@ -145,7 +145,7 @@ export const PutForm = () => {
         />
         </div>
 
-        <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
+        <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg justify-center items-center self-center">
         {/* Cloudinary */}
         <CloudinayImages  setForm={setForm} form={form}/>
         
