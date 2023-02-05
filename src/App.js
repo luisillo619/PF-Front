@@ -72,7 +72,7 @@ function App() {
         <Route path="/panelAdmin" element={<PanelAdmin />} />
         <Route exact path="/panelAdmin/adminPostProducts" element={<CreateProducts/>} />
         <Route exact path="/panelAdmin/adminGetProducts" element={<SeeAllProducts/>} />
-        <Route exact path="/panelAdmin/adminSeeAllUsers" element={<SeeAllUsers/>} />
+        <Route exact path="/panelAdmin/getAllUsers" element={<SeeAllUsers/>} />
         {/* <Route exact path="/panelAdmin/adminPutProducts/:id" element={<PutForm/>} /> */}
         <Route path="/panelUser" element={<PanelUser />} />
         <Route path="/legalNoticies" element={<LegalNoticies />} />
