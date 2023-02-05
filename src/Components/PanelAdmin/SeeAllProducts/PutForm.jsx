@@ -86,9 +86,7 @@ export const PutForm = () => {
    <div className="flex flex-row w-6/6 h-screen">
      
      <div className="w-screen" >
-       <div className="w-6/6 flex-col h-16 bg-[#2C3E50] ">
-         {/* <Navbar/> */}
-    </div> 
+      
     <div className="flex flex-row h-screen bg-blue-400 bg-opacity-25">
 
        <div className="flex flex-row w-1/6 border-r justify-center  bg-white border-gray-500 ">
