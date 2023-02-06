@@ -2,21 +2,22 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../../../redux/actions';
 import { SideBarAdmin } from '../SideBar/SidebarAdmin';
+
+
 const SeeAllUsers = () => {
 
-    const allUsers = useSelector( state => state.users ) // Se deberia mapear
-    const onlyUsers = allUsers.filter( us => !us.admin ) // provisorio
-
-    // no todos los users tienen las mismas propiedades, sin el filtro no anda.
-    // nota: todos los users en db tener la misma estructura incluido el admin
-
+    const allUsers = useSelector( state => state.users ) 
+    
     const dispatch = useDispatch()
 
     useEffect( () => {
         dispatch(getAllUsers())
     },[dispatch])
 
-    // console.log(onlyUsers)
+    const admimUser = async (id) => {
+        await putAdminUser(id)
+        dispatch(getAllUsers())
+    }
     
     return (
              <div className="flex flex-row w-6/6 h-screen "> 
@@ -39,7 +40,7 @@ const SeeAllUsers = () => {
            <p className="mx-4">Email</p>
            </div>
            <div className="flex flex-row w-2/12 ">
-           <p className="">Admin</p>
+           <p className="">Type</p>
            </div>
            <div className="flex flex-row w-2/12 -ml-4">
            <p className="mx-4">Bloqued</p>
@@ -50,7 +51,7 @@ const SeeAllUsers = () => {
            </div> 
         
               
-            {onlyUsers?.map( user => {
+            {allUsers?.map( user => {
                 return (
                     <div className="flex flex-row w-full justify-start bg-white border-solid border-gray-500 border">
                         
@@ -62,7 +63,8 @@ const SeeAllUsers = () => {
                             <p className="mx-4">  {user.email ? user.email : "Not have email"} </p>
                         </div>
                         <div className="flex flex-row w-2/12 ml-4 ">
-                            <p className="mx-4">  {user.admin ? "True" : "False"} </p>
+                            <p className="mx-4">  {user.admin ? "Admin" : "User"} </p>
+                            <button onClick={() => admimUser(user._id)} >Admin/User</button> {/* aqui el boton */}
                         </div> 
                         <div className="flex flex-row w-2/12">
                             <p className="mx-4">  {user.isBlocked ? "True" : "False"} </p>
