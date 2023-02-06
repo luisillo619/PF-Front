@@ -51,9 +51,9 @@ export const Reviews = () => {
 
   console.log(commentsId)
   return (
-    <div className="bg-white rounded-lg w-5/6">
+    <div className="bg-white p-2 w-5/6">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="comment">Reviews</label>
+        <label className="flex h-8 justify-center items-center m-2" htmlFor="comment">Reseñas</label>
         <input
           type="text"
           value={comment}
@@ -62,7 +62,7 @@ export const Reviews = () => {
           onChange={handleChange}
           placeholder="Write your Review for this Product"
         />
-        <div className="flex flex-row w-2/6 my-4">
+        <div className="flex flex-row w-2/6 ">
           {[1, 2, 3, 4, 5].map((i) => (
             <div
               key={i}
@@ -71,12 +71,15 @@ export const Reviews = () => {
               <FontAwesomeIcon
                 onClick={() => addStar(i)}
                 icon={faStar}
-                className={score[`s${i}`] ? "text-blue-400 w-7 h-7" : "text-gray-300 hover:text-blue-400 w-7 h-7"}
+                className={score[`s${i}`] ? "text-[#022957] w-7 h-7" : "text-gray-300 hover:text-[#022957] w-7 h-7"}
               />
             </div>
           ))}
         </div>
-        <button type="submit">Submit</button>
+        <div className="flex flex-col items-center m-2">
+        <button className="flex  h-11 w-40 justify-center items-center content-center self-center bg-[#022957] text-white" type="submit">Enviar</button>
+
+        </div>
       </form>
 
      {commentsId && commentsId.map(e=>{
