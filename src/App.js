@@ -14,6 +14,10 @@ import ProductDetail from "./Components/ProductDetail/ProductDetail";
 import Login from "./Components/Login/Login";
 import Cart from "./Components/Cart/Cart";
 import Error from "./Components/Error/Error";
+import {CreateProducts}  from "./Components/PanelAdmin/CreateProducts/CreateProducts"
+import {SeeAllProducts}  from "./Components/PanelAdmin/SeeAllProducts/SeeAllProducts";
+import SeeAllUsers from "./Components/PanelAdmin/SeeAllUsers/SeeAllUsers";
+import { PutForm } from "./Components/PanelAdmin/SeeAllProducts/PutForm";
 
 // import ButtonUser from "./Components/Login/ButtonUser";
 
@@ -27,6 +31,8 @@ import {
   getUser,
 } from "./redux/actions";
 import { Navigate } from "react-router-dom";
+
+;
 // filtrar por promociones(ofertas), agregan un boton en el navBar para mostrar las promociones
 
 function App() {
@@ -64,6 +70,10 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/category" element={<Category />} />
         <Route path="/panelAdmin" element={<PanelAdmin />} />
+        <Route exact path="/panelAdmin/adminPostProducts" element={<CreateProducts/>} />
+        <Route exact path="/panelAdmin/adminGetProducts" element={<SeeAllProducts/>} />
+        <Route exact path="/panelAdmin/getAllUsers" element={<SeeAllUsers/>} />
+         <Route exact path="/panelAdmin/adminPutProducts/:id" element={<PutForm/>} /> 
         <Route path="/panelUser" element={<PanelUser />} />
         <Route path="/legalNoticies" element={<LegalNoticies />} />
         <Route path="/privacyStatement" element={<PrivacyStatement />} />

@@ -3,7 +3,8 @@ import useForm from "../../../hooks/useForm"
 import { SideBarAdmin } from "../SideBar/SidebarAdmin";
 import Message from "../../Loader/Message";
 import Loader from "../../Loader/Loader"
-import CloudinayImages from "../../Cloudinay/CloudinayImages";
+
+
 
 
 //import ButtonUploadImage from "./ButtonUploadImage";
@@ -33,10 +34,11 @@ function Select({ options, value, onChange, name }) {
     price: "",
     description: "",
     image: "",
-   category: "",
+   
     news: "",
     salesOff: false,
     stock: "",
+    isDeleted: false,
   };
 
 
@@ -69,18 +71,24 @@ const validationsForm = (form) => {
 };
 
 
-export const CreateProducts = () => {
+export const PutForm = () => {
   const { form, handleBlur, handleChange, handleSubmit, cat, loading,
-    response, setForm} = useForm(
+    response} = useForm(
     initialForm,
     validationsForm
   );
- 
+  console.log("asdasdasdsad");
+  
+
+     console.log(form);
+
   return (
    <div className="flex flex-row w-6/6 h-screen">
      
      <div className="w-screen" >
-      
+       <div className="w-6/6 flex-col h-16 bg-[#2C3E50] ">
+         {/* <Navbar/> */}
+    </div> 
     <div className="flex flex-row h-screen bg-blue-400 bg-opacity-25">
 
        <div className="flex flex-row w-1/6 border-r justify-center  bg-white border-gray-500 ">
@@ -89,17 +97,17 @@ export const CreateProducts = () => {
        </div>
     <div className="flex flex-col w-5/6 content-center items-center justify-start " >
     <form 
-     className="flex flex-col w-5/6 h-screen justify-evenly content-start  items-center  border-solid border-gray-500 border mt-4  bg-white"  
+     className="flex flex-col w-5/6 h-5/6 justify-evenly content-start  items-center  border-solid border-gray-500 border mt-4  bg-white"  
      onSubmit={ handleSubmit }> 
 
-      <div className="text-black flex flex-row  border-solid border-gray-500 border  w-2/5 rounded-lg " >
+      <div className="text-black flex flex-row  border-solid border-gray-500 border  w-2/5 rounded-lg" >
 
     <label htmlFor="name">Name:</label>
     <input 
        className="mx-2"
       name="name"
       id="name"
-      placeholder="Name"
+      placeholder="New name"
         onBlur={handleBlur}
         onChange={handleChange}
       value={ form.name }
@@ -107,14 +115,14 @@ export const CreateProducts = () => {
     />
       </div>
 
-      <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg ">
+      <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
 
        <label  htmlFor="price">Price:</label>
       <input
       className="mx-2"
         name="price"
         id="price"
-        placeholder="Price"
+        placeholder="New Price"
         onBlur={handleBlur}
         onChange={handleChange}
         value={ form.price }
@@ -129,7 +137,7 @@ export const CreateProducts = () => {
       className="mx-2"
         name="description"
         id="description"
-        placeholder="Description"
+        placeholder="New Description"
         onBlur={handleBlur}
         onChange={handleChange}
         value={ form.description }
@@ -137,9 +145,19 @@ export const CreateProducts = () => {
         />
         </div>
 
-        <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg justify-center items-center self-center">
+        <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
         {/* Cloudinary */}
-        <CloudinayImages  setForm={setForm} form={form}/>
+      <label htmlFor="image">Image:</label> 
+      <input
+      className="mx-2"
+        name="image"
+        id="image"
+        placeholder="New Image"
+        onBlur={handleBlur}
+        onChange={handleChange}
+        value={ form.image }
+        autoComplete="nope"
+        />
         
        
       
@@ -152,7 +170,7 @@ export const CreateProducts = () => {
       className="mx-2"
         name="stock"
         id="stock"
-        placeholder="Stock"
+        placeholder="Stock Available"
         onBlur={handleBlur}
         onChange={handleChange}
         value={ form.stock }
@@ -173,7 +191,7 @@ export const CreateProducts = () => {
 
         <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
 
-      <label  htmlFor="news">News:</label>
+      <label htmlFor="news">News:</label>
       <select  className="mx-2" id="news" name="news" value={form.news} 
         onChange={handleChange}
         onBlur={handleBlur}
@@ -197,10 +215,26 @@ export const CreateProducts = () => {
         <option value="False">False</option>
       </select>
 
+
+        </div>
+        <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
+
+
+      <label htmlFor="isDeleted">Is Deleted:</label>
+      <select  className="mx-2" id="isDeleted" name="isDeleted" value={form.isDeleted}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        >
+        <option value="Selected Option">Selected Option:</option>
+        <option value="True">True</option>
+        <option value="False">False</option>
+      </select>
+      
+
         </div>
         
 
-        <input className="border-solid border-gray-500 border w-1/6 rounded-lg hover:bg-amber-50 cursor-pointer"  type="submit" value="Create Product" />
+        <input className="border-solid border-gray-500 border w-1/6 rounded-lg hover:bg-amber-50 cursor-pointer"  type="submit" value="Edit Product" />
        
     </form>
     {loading && <Loader/>} 

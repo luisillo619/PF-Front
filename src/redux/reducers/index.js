@@ -2,6 +2,7 @@ const initialState = {
   products: [],
   oneProductId: [],
   categories: [],
+  users: [],
   cart: [],
   filters: {
     productName: "",
@@ -62,6 +63,7 @@ export default function reducer(state = initialState, { type, payload }) {
         orderDetails: payload,
       };
 
+
     case "ERRORS":
       return{
         ...state,
@@ -81,12 +83,14 @@ export default function reducer(state = initialState, { type, payload }) {
       }
 
     
-    // case "NEWPRODUCT_FORM":
 
-    //     return {
-    //       ...state,
-    //       products: [...state.products, payload]
-    //     }
+    case "GET_ALL_USERS":
+      return {
+        ...state,
+        users: payload
+      };
+
+
 
     default:
       return { ...state };
