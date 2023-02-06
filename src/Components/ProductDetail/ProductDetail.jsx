@@ -227,7 +227,7 @@ console.log(loadingButton)
 
               {count > 1 && (
                 <button onClick={subtractionHandler} value="-">
-                  -
+                  
                 </button>
               )}
             </div>
@@ -251,7 +251,7 @@ console.log(loadingButton)
             <button className="button-ProductDetails">VOLVER</button>
           </Link>
 
-          <div className="mt-10">
+          <div className="mt-10 flex flex-col justify-center items-center">
             <Reviews />
           </div>
 

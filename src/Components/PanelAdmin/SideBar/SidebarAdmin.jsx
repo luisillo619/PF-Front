@@ -8,7 +8,7 @@ export const SideBarAdmin = ()=> {
     
         <div>
 
-            <div className=" flex flex-col mt-4 ">
+            <div className=" flex flex-col mt-4 justify-center items-center ">
                 <Link to="/panelAdmin/adminPostProducts">
                 <button className=" bg-gray-200  border border-gray-500 mt-4 w-fit rounded-md my-4   p-1">Create Product</button> 
                 
