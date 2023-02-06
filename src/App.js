@@ -18,6 +18,7 @@ import {CreateProducts}  from "./Components/PanelAdmin/CreateProducts/CreateProd
 import {SeeAllProducts}  from "./Components/PanelAdmin/SeeAllProducts/SeeAllProducts";
 import SeeAllUsers from "./Components/PanelAdmin/SeeAllUsers/SeeAllUsers";
 import { PutForm } from "./Components/PanelAdmin/SeeAllProducts/PutForm";
+import Favorites from "./Components/Favorites/Favorites";
 
 // import ButtonUser from "./Components/Login/ButtonUser";
 
@@ -67,6 +68,7 @@ function App() {
           path="/signup"
           element={userLoginCookies  ? <Navigate to={"/"} /> : <Signup />}
         />
+        <Route exact path="/favorites" component={Favorites} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/category" element={<Category />} />
         <Route path="/panelAdmin" element={<PanelAdmin />} />

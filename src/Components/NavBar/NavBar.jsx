@@ -108,6 +108,10 @@ function NavBar({ userOrderCookies,userLoginCookies }) {
                 </button>
             </Link>
         </div>
+         
+        <Link  to='/favorites'>
+            <label  >Favorites</label>
+          </Link>
     </div>
     );
 }

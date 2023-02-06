@@ -12,7 +12,6 @@ import {
   GET_COMMENTS_PRODUCT,
   POST_NEW_COMMENT,
   ERRORS,
-
 } from "../types/index";
 
 import Cookies from "js-cookie";
@@ -115,10 +114,10 @@ export const login = (form, setLoading, setResponse) => async () => {
 };
 
 export const register =
-  (form, setLoading, setResponse, setErrorRegister) => async () => {
+  (form, setLoading, setResponse, setErrorRegister,  setLoadingButton) => async () => {
     try {
       await axios.post(`http://localhost:3001/register`, { form });
-      setLoading(false);
+      setLoading(true);
       setResponse(true);
       setErrorRegister(null);
       setTimeout(() => {
