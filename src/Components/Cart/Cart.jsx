@@ -5,9 +5,12 @@ import Loader from "../Loader/Loader";
 import CartItem from "./CartItem";
 import { Stripe } from "./Stripe";
 
+
 function Cart() {
   const [loading, setLoading] = useState(true);
+
   const orderDetails = useSelector((state) => state.orderDetails);
+  console.log(orderDetails)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllOrderDetails(setLoading));
@@ -41,6 +44,7 @@ function Cart() {
           )
           }
           {orderDetails && <Stripe priceTotal={orderDetails.total} />}
+          {orderDetails && orderDetails.total}
         </>
       )}
       {loading && <Loader />}

@@ -1,13 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/actions";
+import { login, register } from "../redux/actions";
 
 
 function useLogin(initialForm, validateForm) {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
 
+  const [errorRegister, setErrorRegister ] = useState(null)
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -32,6 +33,17 @@ function useLogin(initialForm, validateForm) {
     }
   };
 
+  const handleSubmitRegister = (e) => {
+    e.preventDefault();
+     setErrors(validateForm(form));
+     console.log(errors);
+    if (Object.keys(errors).length === 0) {
+      console.log(form)
+      setLoading(true);
+      dispatch(register(form, setLoading,setResponse,setErrorRegister))
+    }
+  };
+
   const handleBlur = (e) => {
     handleChange(e);
     setErrors(validateForm(form));
@@ -46,6 +58,7 @@ function useLogin(initialForm, validateForm) {
     loading,
     response,
     errors,
+    handleSubmitRegister,errorRegister
   };
 }
 

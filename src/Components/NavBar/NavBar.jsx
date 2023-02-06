@@ -61,7 +61,7 @@ function NavBar({ userOrderCookies,userLoginCookies }) {
   const userOrderLenght = userOrderCookies && parseInt(userOrderCookies);
 
   const productsCart = useSelector((state) => state.productsCart);
-
+    console.log(productsCart, "carrito")
   const [count, setCount] = useState(productsCart && userOrderLenght);
 
   useEffect(() => {
