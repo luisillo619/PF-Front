@@ -3,7 +3,7 @@ import useForm from "../../../hooks/useForm"
 import { SideBarAdmin } from "../SideBar/SidebarAdmin";
 import Message from "../../Loader/Message";
 import Loader from "../../Loader/Loader"
-
+import CloudinayImages from "../../Cloudinay/CloudinayImages";
 
 
 
@@ -73,7 +73,7 @@ const validationsForm = (form) => {
 
 export const PutForm = () => {
   const { form, handleBlur, handleChange, handleSubmit, cat, loading,
-    response} = useForm(
+    response,setForm} = useForm(
     initialForm,
     validationsForm
   );
@@ -86,9 +86,7 @@ export const PutForm = () => {
    <div className="flex flex-row w-6/6 h-screen">
      
      <div className="w-screen" >
-       <div className="w-6/6 flex-col h-16 bg-[#2C3E50] ">
-         {/* <Navbar/> */}
-    </div> 
+      
     <div className="flex flex-row h-screen bg-blue-400 bg-opacity-25">
 
        <div className="flex flex-row w-1/6 border-r justify-center  bg-white border-gray-500 ">
@@ -97,7 +95,7 @@ export const PutForm = () => {
        </div>
     <div className="flex flex-col w-5/6 content-center items-center justify-start " >
     <form 
-     className="flex flex-col w-5/6 h-5/6 justify-evenly content-start  items-center  border-solid border-gray-500 border mt-4  bg-white"  
+     className="flex flex-col w-5/6 h-screen justify-evenly content-start  items-center  border-solid border-gray-500 border mt-4  bg-white"  
      onSubmit={ handleSubmit }> 
 
       <div className="text-black flex flex-row  border-solid border-gray-500 border  w-2/5 rounded-lg" >
@@ -145,19 +143,9 @@ export const PutForm = () => {
         />
         </div>
 
-        <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
+        <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg justify-center items-center self-center">
         {/* Cloudinary */}
-      <label htmlFor="image">Image:</label> 
-      <input
-      className="mx-2"
-        name="image"
-        id="image"
-        placeholder="New Image"
-        onBlur={handleBlur}
-        onChange={handleChange}
-        value={ form.image }
-        autoComplete="nope"
-        />
+        <CloudinayImages  setForm={setForm} form={form}/>
         
        
       
