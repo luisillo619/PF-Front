@@ -4,6 +4,8 @@ import GitHub from "../../assets/GitHub.png";
 import "./Signup.css";
 import useLogin from "../../hooks/useLogin";
 import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader";
+import Message from "../Loader/Message";
 //AGREGAR PROCESS.ENV
 
 
@@ -18,28 +20,37 @@ function validate(input) {
   let errors = {};
   const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const regexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  const regexUserName = /^[a-zA-Z0-9]{4,20}([._]?[a-zA-Z0-9]+)*$/
 
-  if (!input.email || !input.password) {
+  if (!input.email || !input.password  || !input.userName) {
     errors.all = "Todos los campos son requeridos";
   } else {
-    if (!input.email) {
+    if (!input.email.trim()) {
       errors.email = "El Email es requerido.";
     } else if (!regexEmail.test(input.email)) {
       errors.email = "Ingresa un email valido.";
     }
-    if (!input.password) {
+    if (!input.password.trim()) {
       errors.password = "La contraseña es requerida.";
     } else if (!regexPassword.test(input.password)) {
       errors.password =
         "Tu contraseña debe de tener entre 8 y 20 caracteres.";
     }
+    if(!input.userName.trim()){
+      errors.userName = "El User Name es requerido"
+    }
+    else if (!regexUserName.test(input.userName)) {
+      errors.userName = 
+        "Debe comenzar con una secuencia de entre 4 y 20 caracteres alfanuméricos";
+    }
+
   }
 
   return errors;
 }
 
 function Signup() {
-
+const register = "register"
 
   const {
     form,
@@ -49,7 +60,9 @@ function Signup() {
     loading,
     response,
     errors,
-  } = useLogin(initialForm, validate);
+    handleSubmitRegister,
+    errorRegister
+  } = useLogin(initialForm, validate, register);
 
   
 
@@ -68,7 +81,7 @@ function Signup() {
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmitRegister}>
         <div className="container-General__Login">
           <div className="register">
             <h1 className="loginTitle">Registrate</h1>
@@ -86,7 +99,7 @@ function Signup() {
               </div>
 
               <div className="loginButtons-Email">
-                {/* <div className="container-Username-Login">
+                <div className="container-Username-Login">
                   <p>Username</p>
                   <input
                     className="login-Username"
@@ -98,7 +111,9 @@ function Signup() {
                         onChange={handleChange}
                         required
                   />
-                </div> */}
+                    {errors.userName && <p>{errors.userName}</p>}
+                </div>
+              
                 <div className="container-Username-Login">
                   <p>Correo</p>
                   <input
@@ -111,7 +126,9 @@ function Signup() {
                         onChange={handleChange}
                         required
                   />
+                     {errors.email && <p>{errors.email}</p>}
                 </div>
+             
                 <div className="container-Password-Login">
                   <p>Contraseña</p>
                   <input
@@ -124,7 +141,10 @@ function Signup() {
                         onChange={handleChange}
                         required
                   />
-                </div>
+                   {errors.password && <p>{errors.password}</p>}
+                </div>  
+                {errorRegister && <p>{errorRegister}</p> }
+                {errors.all && <p>{errors.all}</p>}
                 <button className="login-Submit">Registrate</button>
 
                 <p>
@@ -138,6 +158,11 @@ function Signup() {
           </div>
         </div>
       </form>
+
+      {loading && <Loader />}
+      {response && (
+        <Message msg="REGISTRO EXITOSO" bgColor="#198754" />
+      )}
     </>
   );
 }

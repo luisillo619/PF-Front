@@ -11,7 +11,9 @@ const initialState = {
   },
   productsCart: 0,
   orderDetails: null,
-  getOneUser: null
+  getOneUser: null,
+  errors: [],
+  commentsId: []
 };
 
 export default function reducer(state = initialState, { type, payload }) {
@@ -61,17 +63,34 @@ export default function reducer(state = initialState, { type, payload }) {
         orderDetails: payload,
       };
 
+
+    case "ERRORS":
+      return{
+        ...state,
+        errors: [...state.errors, payload]
+      }
+
+    case "GET_COMMENTS_PRODUCT":
+      return{
+        ...state,
+        commentsId: payload
+      }
+
+    case "POST_NEW_COMMENT":
+      return{
+        ...state,
+        commentsId: [...state.commentsId, payload]
+      }
+
+    
+
     case "GET_ALL_USERS":
       return {
         ...state,
         users: payload
       };
-    // case "NEWPRODUCT_FORM":
 
-    //     return {
-    //       ...state,
-    //       products: [...state.products, payload]
-    //     }
+
 
     default:
       return { ...state };

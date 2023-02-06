@@ -25,7 +25,7 @@ export const Stripe = ({ priceTotal }) => {
       console.log(error);
     }
     setLoading(false);
-    if (!isLoading) window.location.href = "http://localhost:3000/cart";
+    if (!isLoading) window.location.href = "http://localhost:3000/";
   };
   const Key =
     "pk_test_51MWP3JJ3jAR1l2SZf36NOPzaOgYoV81q3GmahowVuOVjmPSHoEMBKshXs7UGLfbwzxogy39fjTaK8x2vK8oJHgLc00qVXlEX2H";
