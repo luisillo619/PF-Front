@@ -7,7 +7,7 @@ import {
   ADD_PRODUCT_CART,
   FILTER_BY_LANDING_PAGE,
   ORDER_DETIALS,
-
+  GET_ALL_USERS,
   GET_ONE_USER,
   GET_COMMENTS_PRODUCT,
   POST_NEW_COMMENT,
@@ -331,7 +331,7 @@ export const filterByLandingPage = (filter) => {
 
 export const disableEnableProds = async id => {
   try {
-  await axios.get(`http://localhost:3001/adminDeleteProducts//${id}`) // luego cambiar a ruta deploid
+  await axios.get(`http://localhost:3001/adminDeleteProducts/${id}`) // luego cambiar a ruta deploid
   } catch (error) {
     console.log(error);
   }
@@ -348,6 +348,15 @@ export const getAllUsers = () => {
     }
     
   } catch (error) { 
+    console.log(error);
+  }
+}
+
+
+export const putAdminUser = async id => {
+  try {
+    await axios(` http://localhost:3001/adminChangeUser/${id}`) // cambiar a ruta deploid
+    } catch (error) {
     console.log(error);
   }
 }
