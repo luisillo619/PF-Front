@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../../../redux/actions';
 import { SideBarAdmin } from '../SideBar/SidebarAdmin';
-
+import { putAdminUser } from '../../../redux/actions';
 
 const SeeAllUsers = () => {
 
@@ -15,7 +15,7 @@ const SeeAllUsers = () => {
     },[dispatch])
 
     const admimUser = async (id) => {
-        await putAdminUser(id)
+        await dispatch(putAdminUser(id))
         dispatch(getAllUsers())
     }
     
