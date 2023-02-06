@@ -27,7 +27,7 @@ const CloudinayImages = ({ form, setForm }) => {
   };
 
   return (
-    <div>
+    <div className= "flex w-5/5 m-auto justify-center items-center self-center content-center mt-4">
       <Container>
         <FormGroup>
           {/* <Label for="exampleFile">File</Label> */}

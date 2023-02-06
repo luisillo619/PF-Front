@@ -17,7 +17,7 @@ import Error from "./Components/Error/Error";
 import {CreateProducts}  from "./Components/PanelAdmin/CreateProducts/CreateProducts"
 import {SeeAllProducts}  from "./Components/PanelAdmin/SeeAllProducts/SeeAllProducts";
 import SeeAllUsers from "./Components/PanelAdmin/SeeAllUsers/SeeAllUsers";
-
+import { PutForm } from "./Components/PanelAdmin/SeeAllProducts/PutForm";
 
 // import ButtonUser from "./Components/Login/ButtonUser";
 
@@ -47,13 +47,16 @@ function App() {
     dispatch(getProducts());
     dispatch(getCategories());
     dispatch(getUser(setUser,setOrder));
+   
   }, [dispatch]);
 
-  console.log(userOrderCookies)
+  // console.log(userOrderCookies)
+  // console.log("pepepepepe")
+  console.log(userLoginCookies)
 
   return (
     <div className="App">
-      <NavBar userOrderCookies={userOrderCookies} />
+      <NavBar userOrderCookies={userOrderCookies} userLoginCookies={userLoginCookies} />
       {/* <ButtonUser userLoginCookies={userLoginCookies}  /> */}
       <Routes>
         <Route
@@ -69,8 +72,8 @@ function App() {
         <Route path="/panelAdmin" element={<PanelAdmin />} />
         <Route exact path="/panelAdmin/adminPostProducts" element={<CreateProducts/>} />
         <Route exact path="/panelAdmin/adminGetProducts" element={<SeeAllProducts/>} />
-        <Route exact path="/panelAdmin/adminSeeAllUsers" element={<SeeAllUsers/>} />
-        {/* <Route exact path="/panelAdmin/adminPutProducts/:id" element={<PutForm/>} /> */}
+        <Route exact path="/panelAdmin/getAllUsers" element={<SeeAllUsers/>} />
+         <Route exact path="/panelAdmin/adminPutProducts/:id" element={<PutForm/>} /> 
         <Route path="/panelUser" element={<PanelUser />} />
         <Route path="/legalNoticies" element={<LegalNoticies />} />
         <Route path="/privacyStatement" element={<PrivacyStatement />} />

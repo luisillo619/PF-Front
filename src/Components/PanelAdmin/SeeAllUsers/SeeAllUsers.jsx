@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers, putAdminUser } from '../../../redux/actions';
+import { getAllUsers } from '../../../redux/actions';
 import { SideBarAdmin } from '../SideBar/SidebarAdmin';
-
 
 
 const SeeAllUsers = () => {
