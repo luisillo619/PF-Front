@@ -359,3 +359,11 @@ export const putAdminUser = async id => {
     console.log(error);
   }
 }
+
+export const blockAdminUser = async id => {
+  try {
+    await axios(`http://localhost:3001/adminBlockUser/${id}`) // cambiar a ruta deploid
+    } catch (error) {
+    console.log(error);
+  }
+}

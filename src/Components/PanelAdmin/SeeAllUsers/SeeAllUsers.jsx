@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../../../redux/actions';
+import { getAllUsers, putAdminUser, blockAdminUser } from '../../../redux/actions';
 import { SideBarAdmin } from '../SideBar/SidebarAdmin';
-import { putAdminUser } from '../../../redux/actions';
 
 const SeeAllUsers = () => {
+
 
     const allUsers = useSelector( state => state.users ) 
     
@@ -15,7 +15,12 @@ const SeeAllUsers = () => {
     },[dispatch])
 
     const admimUser = async (id) => {
-        await dispatch(putAdminUser(id))
+        await putAdminUser(id)
+        dispatch(getAllUsers())
+    }
+    
+    const blockUser = async id => {
+        await blockAdminUser(id)
         dispatch(getAllUsers())
     }
     
@@ -67,7 +72,10 @@ const SeeAllUsers = () => {
                             <button onClick={() => admimUser(user._id)} >Admin/User</button> {/* aqui el boton */}
                         </div> 
                         <div className="flex flex-row w-2/12">
-                            <p className="mx-4">  {user.isBlocked ? "True" : "False"} </p>
+                            {user.isBlocked 
+                            ? <button className="mx-4 bg-red-600 active:bg-green-600 rounded-[12px] border-2 p-4" onClick={() => blockUser(user._id)} >Blocked</button>
+                            : <button className="mx-4 bg-green-600 active:bg-red-600 rounded-[12px] border-2 p-4" onClick={() => blockUser(user._id)} >Enable</button>
+                            }
                         </div>
                         <div className="flex flex-row  w-2/12">
                             <p className="ml-8 text-center">  {user.loginBy ? user.loginBy : "Email"} </p>
