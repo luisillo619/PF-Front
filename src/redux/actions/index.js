@@ -26,7 +26,7 @@ export const postComment = (commentInfo) => async (dispatch) => {
       comment: commentInfo.comment,
       rating: commentInfo.rating,
     });
-  
+
     return dispatch({
       type: POST_NEW_COMMENT,
       payload: data,
@@ -114,7 +114,8 @@ export const login = (form, setLoading, setResponse) => async () => {
 };
 
 export const register =
-  (form, setLoading, setResponse, setErrorRegister,  setLoadingButton) => async () => {
+  (form, setLoading, setResponse, setErrorRegister, setLoadingButton) =>
+  async () => {
     try {
       await axios.post(`http://localhost:3001/register`, { form });
       setLoading(true);
@@ -217,11 +218,15 @@ export const getAllOrderDetails = (setLoading) => async (dispatch) => {
   //roto
 
   const url = `http://localhost:3001/getOrderDetails/${id}`;
-  const { data } = await axios.get(url, {
-    headers: {
-      "x-auth-token": `${token}`,
-    },
-  });
+  const { data } = await axios.get(
+    url,
+    {},
+    {
+      headers: {
+        "x-auth-token": `${token}`,
+      },
+    }
+  );
   setLoading(false);
   return dispatch({
     type: ORDER_DETIALS,
@@ -328,34 +333,57 @@ export const filterByLandingPage = (filter) => {
   };
 };
 
-export const disableEnableProds = async id => {
+export const disableEnableProds = async (id) => {
   try {
-  await axios.get(`http://localhost:3001/adminDeleteProducts/${id}`) // luego cambiar a ruta deploid
+    await axios.get(`http://localhost:3001/adminDeleteProducts/${id}`); // luego cambiar a ruta deploid
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-export const getAllUsers = () => {
+export const getAllUsers = () => async (dispatch) => {
   try {
-    return async dispatch => { // unicamente el admin ejecuta esta ruta
-      const allUsers = (await axios("http://localhost:3001/getAllUsers")).data // luego cambiar a ruta deploid
-      dispatch({
-        type: GET_ALL_USERS,
-        payload: allUsers
-      })
-    }
-    
-  } catch (error) { 
+    const userLoginCookies = Cookies.get("user");
+    const token = userLoginCookies && JSON.parse(userLoginCookies).token;
+    const id = userLoginCookies && JSON.parse(userLoginCookies).id;
+    // unicamente el admin ejecuta esta ruta
+    const allUsers = (
+      await axios.get(
+        `http://localhost:3001/getAllUsers/${id}`,
+
+        {
+          headers: {
+            "x-auth-token": `${token}`,
+          },
+        }
+      )
+    ).data; // luego cambiar a ruta deploid
+    dispatch({
+      type: GET_ALL_USERS,
+      payload: allUsers,
+    });
+  } catch (error) {
     console.log(error);
   }
-}
+};
 
-
-export const putAdminUser = async id => {
+export const putAdminUser = (id) => async () => {
   try {
-    await axios(` http://localhost:3001/adminChangeUser/${id}`) // cambiar a ruta deploid
-    } catch (error) {
+    const userLoginCookies = Cookies.get("user");
+    const token = userLoginCookies && JSON.parse(userLoginCookies).token;
+    await axios.put(` http://localhost:3001/adminChangeUser/${id}`,{},
+    {
+      headers: {
+        "x-auth-token": `${token}`,
+      },
+    }); // cambiar a ruta deploid
+  } catch (error) {
     console.log(error);
   }
-}
+};
+
+// PARAMETROS DE LA RUTA POST, PUT:
+// URL, BODY, HEADER
+
+// PARAMETROS DE LAS OTRAS RUTAS
+// URL, HEADER
