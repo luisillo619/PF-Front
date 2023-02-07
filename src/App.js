@@ -68,7 +68,7 @@ function App() {
           path="/signup"
           element={userLoginCookies  ? <Navigate to={"/"} /> : <Signup />}
         />
-        <Route exact path="/favorites" component={Favorites} />
+        <Route path="/favorites" element={<Favorites/>} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/category" element={<Category />} />
         <Route path="/panelAdmin" element={<PanelAdmin />} />
