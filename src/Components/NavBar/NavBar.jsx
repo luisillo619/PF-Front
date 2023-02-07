@@ -15,19 +15,19 @@ import './NavBar.css';
 function Select({ options, value, onChange, name }) {
   return (
     <select
-      className=""
+      className="text-white "
       id={name}
       name={name}
       value={value}
       onChange={onChange}
     >
       {name === "productCategory" ? (
-        <option value="Categoria de mate">Categoria de mate</option>
+        <option className="text-white bg-[#022957] bg-opacity-70 rounded-sm"  value="Categoria de mate">Categoria de mate</option>
       ) : (
-        <option value="Rango de precios">Rango de precios</option>
+        <option className="text-white bg-[#022957] bg-opacity-70 rounded-sm" value="Rango de precios">Rango de precios</option>
       )}
       {options.map((option) => (
-        <option
+        <option className="text-white bg-[#022957] bg-opacity-70 rounded-sm"
           key={option.id || option._id}
           value={option.name || option.category}
         >
@@ -61,7 +61,7 @@ function NavBar({ userOrderCookies,userLoginCookies }) {
   const userOrderLenght = userOrderCookies && parseInt(userOrderCookies);
 
   const productsCart = useSelector((state) => state.productsCart);
-
+    console.log(productsCart, "carrito")
   const [count, setCount] = useState(productsCart && userOrderLenght);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ function NavBar({ userOrderCookies,userLoginCookies }) {
 
         <div className="container-FilterSearch__Navbar">
             <input
-                className="inputSearchNavBar"
+                className="inputSearchNavBar "
                 type="text"
                 list="names"
                 id="productName"
@@ -90,12 +90,12 @@ function NavBar({ userOrderCookies,userLoginCookies }) {
                 onChange={handleChange}
                 placeholder="Buscar Productos"
             />
-            <div className="filter-Mavbar">
-                <datalist className="datalist" id="names">
+            <div className="filter-Mavbar ">
+                <datalist className="datalist  " id="names">
                     {nameOptions(products, filtersState.productName)}
                 </datalist>
-                <Select options={categories} value={filtersState.productCategory} onChange={ handleChange } name="productCategory" />
-                <Select options={priceRange} value={filtersState.productPrice} onChange={handleChange} name="productPrice" />
+                <Select  options={categories} value={filtersState.productCategory} onChange={ handleChange } name="productCategory" />
+                <Select  options={priceRange} value={filtersState.productPrice} onChange={handleChange} name="productPrice" />
             </div>
         </div>
 
@@ -108,6 +108,10 @@ function NavBar({ userOrderCookies,userLoginCookies }) {
                 </button>
             </Link>
         </div>
+         
+        <Link  to='/favorites'>
+            <label  >Favorites</label>
+          </Link>
     </div>
     );
 }

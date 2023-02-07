@@ -56,6 +56,22 @@
     font-size: 20px;
     font-weight: bold;
 }
+.fav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 0, 0, 0);
+    color: red;
+    border: none;
+    border-radius: 50%;
+    font-size: 25px;
+    z-index: 1;
+  }
+  
+  .fav:hover {
+    color: rgb(182, 39, 39);
+    cursor: pointer;
+  }
 
 /* .container-AddToCard {
     display: grid;
