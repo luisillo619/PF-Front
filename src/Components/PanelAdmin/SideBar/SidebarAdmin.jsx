@@ -6,7 +6,7 @@ export const SideBarAdmin = ()=> {
     return (
         
     
-        <div>
+        <div className="">
 
             <div className=" flex flex-col mt-4 justify-center items-center ">
                 <Link to="/panelAdmin/adminPostProducts">

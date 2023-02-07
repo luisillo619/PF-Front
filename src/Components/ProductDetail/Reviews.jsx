@@ -48,6 +48,12 @@ export const Reviews = () => {
     });
     setCommentInfo({ ...commentInfo, rating });
   };
+  
+  const starM = <FontAwesomeIcon
+  size="sm"
+  icon={faStar}
+  className="text-[#022957] w-7 h-7"
+/>
 
   console.log(commentsId)
   return (
@@ -83,9 +89,31 @@ export const Reviews = () => {
       </form>
 
      {commentsId && commentsId.map(e=>{
-      return <div>
-        <p>{e.comment}</p>
-        <p>{e.rating}</p>
+      return <div className="border mt-4 rounded">
+        <p className="flex items-start justify-start mb-5 hover:cursor-pointer mt-2">{e.comment}</p>
+
+        {[e.rating].map((i) => (
+            <div
+              key={i}
+              className="flex items-start justify-start mb-5 hover:cursor-pointer"
+            > 
+      {e.rating ===1 ? <div>{starM}</div> : ""} 
+
+      {e.rating ===2 ? <div>{starM}{starM}</div> : ""}
+
+      {e.rating ===3 ? <div> {starM} {starM} {starM} </div> : ""}
+              
+      {e.rating ===4 ? <div>{starM} {starM} {starM} {starM} </div> : ""}
+
+      {e.rating ===5 ? <div>{starM} {starM} {starM} {starM} {starM}</div> : ""}
+     
+            </div>
+          ))}
+        {/* <div>
+         {e.rating === 1 ? ( addStar(1)) : (<> {e.rating === 2 ? ( addStar(2)  ) : ( <>{e.rating === 3 ? (addStar(3)) : (
+<> {e.rating === 4 ? ( addStar(4)) : (addStar(5) )}</> )} </>)}</> )}</div>
+       */}
+
         {/* <p>{e.name}</p> */}
       </div>
      })}
