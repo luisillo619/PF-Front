@@ -319,7 +319,7 @@ export const sendProductsForm = (form, setResponse, setLoading) => async () => {
     const userLogin = Cookies.get("user");
     const token = JSON.parse(userLogin).token;
     const url = `http://localhost:3001/adminPostProducts`;
-
+    
     await axios.post(url, form, {
       headers: {
         "x-auth-token": `${token}`,
