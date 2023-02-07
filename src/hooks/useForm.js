@@ -14,6 +14,7 @@ function useMailer(initialForm, validateForm) {
   const idProduct = useParams().id;
   const handleChange = (e) => {
     const { name, value } = e.target;
+   
     e.preventDefault();
     setForm({
       ...form,
@@ -29,6 +30,7 @@ function useMailer(initialForm, validateForm) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validateForm(form));
+    console.log(form)
     if (Object.keys(errors).length === 0) {
       setLoading(true);
       let copyForm = { ...form };
@@ -38,7 +40,7 @@ function useMailer(initialForm, validateForm) {
         stock: parseInt(copyForm.stock),
         salesOff: copyForm.salesOff === "True" ? true : false,
       };
-      console.log(form);
+  
       if (idProduct) {
         // dispatch(putProductsForm(form,setResponse,setLoading,idProduct))
       } else dispatch(sendProductsForm(form, setResponse, setLoading));
@@ -54,6 +56,7 @@ function useMailer(initialForm, validateForm) {
     loading,
     response,
     setForm,
+    errors
   };
 }
 

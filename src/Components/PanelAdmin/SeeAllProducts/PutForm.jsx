@@ -45,28 +45,74 @@ function Select({ options, value, onChange, name }) {
 
 const validationsForm = (form) => {
   const regexString = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-  const regexNumber = /^(\d{1,3}(?:[.]\d{3})*(?:[,]\d+)?)/;
-  const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
-
+  const regexNumber = /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/;
+  console.log(form);
   const errors = {};
-//   if (
-//     !form.user_name 
-//     !form.user_telephone 
-//     !form.user_email ||
-//     !form.user_message
-//   ) {
-//     errors.all = "Todos los campos son necesarios";
-//   } else {
-//     if (!regexString.test(form.user_name)) {
-//       errors.user_name = "El nombre no puede contener numeros";
-//     } else if (!regexNumber.test(form.user_telephone)) {
-//       errors.user_telephone = "El telefono debe ser un numero";
-//     } else if (!regexEmail.test(form.user_email)) {
-//       errors.user_email = "Deber ser un email valido";
-//     } else if (!regexString.test(form.user_message)) {
-//       errors.user_message = "El mensaje no puede contener numeros";
-//     }
-//   }
+  if (
+    !form.name ||
+    !form.price ||
+    !form.description ||
+    !form.news ||
+    !form.stock ||
+    !form.salesOff ||
+    !form.image
+    // !form.user_email ||
+    // !form.user_message
+  ) {
+    errors.all = "Todos los campos son necesarios";
+  } else {
+    if (!form.name) {
+      errors.name = "EL nombre es requerido.";
+    } else if (!regexString.test(form.name)) {
+      errors.name = "El nombre no puede contener numeros";
+    }
+
+    if (!form.price) {
+      errors.price = "EL precio es requerido.";
+    } else if (!regexNumber.test(form.price)) {
+      errors.price = "El precio debe ser en numero";
+    }
+
+    if (!form.description) {
+      errors.description = "La descripcion es requerida.";
+    } else if (!regexString.test(form.description)) {
+      errors.description = "La descripcion no puede tener numeros";
+    } else if (form.description.length > 200) {
+      errors.description =
+        "La descripción no puede tener más de 200 caracteres";
+    }
+
+    if (form.news === "Selected Option") {
+      errors.news = "debes seleccionar una opcion";
+    }
+    if (!form.stock) {
+      errors.stock = "Debes agregar un stock";
+    } else if (!regexNumber.test(form.stock)) {
+      errors.stock = "El stock solo puede ser numerico";
+    }
+
+    if (!form.category) {
+      errors.category = "La categoria es requerida.";
+    } else if (form.category === "Selected Option") {
+      errors.category = "debes seleccionar una opcion";
+    }
+
+    if (!form.salesOff) {
+      errors.salesOff = "El salesOff es requerido.";
+    } else if (form.salesOff === "Selected Option") {
+      errors.salesOff = "debes seleccionar una opcion";
+    }
+
+    if (!form.news) {
+      errors.news = "Las news son requeridas.";
+    } else if (form.news === "Selected Option") {
+      errors.news = "debes seleccionar una opcion";
+    }
+
+    if(!form.image){
+      errors.image = "La imagen es requerida"
+    }
+  }
   return errors;
 };
 
@@ -77,7 +123,7 @@ export const PutForm = () => {
     initialForm,
     validationsForm
   );
-  console.log("asdasdasdsad");
+
   
 
      console.log(form);
