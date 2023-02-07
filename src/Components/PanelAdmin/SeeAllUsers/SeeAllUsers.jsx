@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../../../redux/actions';
 import { SideBarAdmin } from '../SideBar/SidebarAdmin';
 import { putAdminUser } from '../../../redux/actions';
-
+// seee alll
 const SeeAllUsers = () => {
 
     const allUsers = useSelector( state => state.users ) 
