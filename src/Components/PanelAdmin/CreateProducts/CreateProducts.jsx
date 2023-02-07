@@ -47,24 +47,24 @@ const validationsForm = (form) => {
   const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
 
   const errors = {};
-//   if (
-//     !form.user_name 
-//     !form.user_telephone 
-//     !form.user_email ||
-//     !form.user_message
-//   ) {
-//     errors.all = "Todos los campos son necesarios";
-//   } else {
-//     if (!regexString.test(form.user_name)) {
-//       errors.user_name = "El nombre no puede contener numeros";
-//     } else if (!regexNumber.test(form.user_telephone)) {
-//       errors.user_telephone = "El telefono debe ser un numero";
-//     } else if (!regexEmail.test(form.user_email)) {
-//       errors.user_email = "Deber ser un email valido";
-//     } else if (!regexString.test(form.user_message)) {
-//       errors.user_message = "El mensaje no puede contener numeros";
-//     }
-//   }
+  // if (
+  //   !form.user_name 
+  //   !form.user_telephone 
+  //   !form.user_email ||
+  //   !form.user_message
+  // ) {
+  //   errors.all = "Todos los campos son necesarios";
+  // } else {
+  //   if (!regexString.test(form.user_name)) {
+  //     errors.user_name = "El nombre no puede contener numeros";
+  //   } else if (!regexNumber.test(form.user_telephone)) {
+  //     errors.user_telephone = "El telefono debe ser un numero";
+  //   } else if (!regexEmail.test(form.user_email)) {
+  //     errors.user_email = "Deber ser un email valido";
+  //   } else if (!regexString.test(form.user_message)) {
+  //     errors.user_message = "El mensaje no puede contener numeros";
+  //   }
+  // }
   return errors;
 };
 

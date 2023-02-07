@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import Footer from '../Footer/Footer';
 import Slider from '../Slider/Slider';
@@ -13,9 +13,13 @@ import WhatsApp from "./WhatsApp/WhatsApp";
 import OurTeam from "./OurTeam/OurTeam";
 import ReactPlayer from 'react-player';
 import './LandingPage.css';
+import { useSelector } from 'react-redux';
 
 
 export default function LandingPage () {
+   const products = useSelector((state)=>state.products)
+   // posible math.random para que los productos populares se vayan rotando
+   const popularProducts = products.filter(e=>e.promotion.salesOff === true).slice(0,5)
 
     return (
         <div className='container-Home'>
@@ -30,12 +34,15 @@ export default function LandingPage () {
             <div className='container-PopularProducts__Landing'>
                 <h1>POPULAR PRODUCTS</h1>
                 <div className='popular-Products'>
+                    {popularProducts.length !== 0 && popularProducts.map(e=>{
+                        return <div className='see-PopularProducts__Landing'>{<img key={e.name} src={e.image} alt="" /> }</div>
+                    })}
+                    {/* <div className='see-PopularProducts__Landing'></div>
                     <div className='see-PopularProducts__Landing'></div>
                     <div className='see-PopularProducts__Landing'></div>
                     <div className='see-PopularProducts__Landing'></div>
                     <div className='see-PopularProducts__Landing'></div>
-                    <div className='see-PopularProducts__Landing'></div>
-                    <div className='see-PopularProducts__Landing'></div>
+                    <div className='see-PopularProducts__Landing'></div> */}
                 </div>
             </div>
 
