@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import { putToCart } from "../../redux/actions";
 
 
-function CartItem({ image, product, quantity, unitPrice }) {
+function CartItem({ image, product, quantity, unitPrice  }) {
+  
   const dispatch = useDispatch()
 
   const [loading, setLoading] = useState(true)
@@ -28,20 +29,45 @@ function CartItem({ image, product, quantity, unitPrice }) {
   };
 
   return (
-    <div>
-      {count < 10 && <button onClick={handlerSums}  disabled = {loading === false ? true: false } >+</button>}
-     
+
+
+    <div className="flex w-screen justify-center ">
       
-        <button onClick={subtractionHandler}  disabled = {loading === false ? true: false } value="-">
+    
+    <div className=" bg-white  flex flex-col w-3/6  self-center  justify-center items-center">
+   
+    <div className="  border-b border-solid border-slate-400 w-5/6 h-44 flex flex-row items-center justify-around
+    ">
+    <div>
+    <img className="w32 h-32" src={image} alt={product} />
+    </div>
+    <div>
+    
+        <p>Price for unit ${unitPrice}</p>
+     
+    </div>
+
+    <div className="flex justify-center">
+      {count < 10 && <button className=" inline-block w-6  h-6 bg-[#022957] bg-opacity-90  text-white font-medium text-xs  rounded shadow-md hover:bg-[#022957]  hover:shadow-lg focus:bg-[#022957]   active:bg-[#022957]  " onClick={handlerSums}  disabled = {loading === false ? true: false } >+</button>}
+      <p className="mx-2">{quantity}</p>
+        <button className=" inline-block w-6  h-6 bg-[#022957] bg-opacity-90  text-white font-medium text-xs  rounded shadow-md hover:bg-[#022957]  hover:shadow-lg focus:bg-[#022957]   active:bg-[#022957] " onClick={subtractionHandler}  disabled = {loading === false ? true: false } value="-">
           -
         </button>
+    </div>
+     
+    <div className="flex flex-col align-middle items-center pt-1">
+			<p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
+										
+       Sub-Total: {quantity * unitPrice} 
+                  
+											</p>
+								</div>
   
-      <img style={{ width: "200px" }} src={image} alt={product} />
-      {quantity}
+      
       <br />
-      {unitPrice}
-      <br />
-      <p>subtotal: {quantity * unitPrice}</p>
+      
+    </div>
+    </div>
     </div>
   );
 }
