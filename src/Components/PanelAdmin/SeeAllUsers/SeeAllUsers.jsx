@@ -5,8 +5,9 @@ import { SideBarAdmin } from '../SideBar/SidebarAdmin';
 
 const SeeAllUsers = () => {
 
-    const allUsers = useSelector( state => state.users ) 
 
+    const allUsers = useSelector( state => state.users ) 
+    
     const dispatch = useDispatch()
 
     useEffect( () => {
