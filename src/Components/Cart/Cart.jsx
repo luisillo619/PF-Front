@@ -21,16 +21,17 @@ function Cart() {
 
  
   return (
-    <div>
+    <div className="flex flex-col w-6/6  justify-center items-center self-center mt-4" >
       {!loading && (
         <>
           {orderDetails ? (
             orderDetails.amount.map((e) => {
               return (
-                <div>
+                <div className="flex justify-center items-center self-center">
                   <CartItem
                     key={e._id}
                     id={e._id}
+                   
                     image={e.image}
                     product={e.product}
                     quantity={e.quantity}
@@ -44,7 +45,7 @@ function Cart() {
           )
           }
           {orderDetails && <Stripe priceTotal={orderDetails.total} />}
-          {orderDetails && orderDetails.total}
+          ${orderDetails && orderDetails.total}
         </>
       )}
       {loading && <Loader />}

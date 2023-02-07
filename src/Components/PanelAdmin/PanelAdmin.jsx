@@ -21,15 +21,15 @@ export default function PanelAdmin () {
     console.log(adminUser);
 
     return (
-        <div className='flex flex-col h-screen bg-white mt-4 rounded-lg '>
+        <div className='flex flex-col h-screen bg-white mt-4 rounded-lg justify-items-center shadow-xl'>
            
-                <div className='flex flex-col h-screen bg-white mt-4 rounded-lg justify-start items-center'>
+                <div className='flex flex-col h-screen mt-4 rounded-lg justify-start items-center '>
                     <h1>Bienvenido</h1>
                      <p>{adminUser?.userName}</p> 
                      {/* <p>{userInfo.admin}</p>  */}
                     <h1>Panel del Administrador</h1>
                     
-               <div className='flex flex-col self-center'>
+               <div className='flex flex-col item-center'>
                <SideBarAdmin/>
                 </div>
                 </div>

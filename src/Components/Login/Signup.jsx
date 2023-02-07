@@ -6,6 +6,7 @@ import useLogin from "../../hooks/useLogin";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import Message from "../Loader/Message";
+import React, { useState} from "react";
 //AGREGAR PROCESS.ENV
 
 
@@ -52,6 +53,7 @@ function validate(input) {
 function Signup() {
 const register = "register"
 
+
   const {
     form,
     handleBlur,
@@ -61,7 +63,7 @@ const register = "register"
     response,
     errors,
     handleSubmitRegister,
-    errorRegister
+    errorRegister,
   } = useLogin(initialForm, validate, register);
 
   
@@ -145,7 +147,7 @@ const register = "register"
                 </div>  
                 {errorRegister && <p>{errorRegister}</p> }
                 {errors.all && <p>{errors.all}</p>}
-                <button className="login-Submit">Registrate</button>
+                <button className="login-Submit" disabled={ loading === true ? true: false } >Registrate</button>
 
                 <p>
                   Tienes cuenta?{" "}
