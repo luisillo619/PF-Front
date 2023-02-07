@@ -380,6 +380,7 @@ export const putAdminUser = (id) => async () => {
   } catch (error) {
     console.log(error);
   }
+
 };
 
 // PARAMETROS DE LA RUTA POST, PUT:
@@ -387,3 +388,14 @@ export const putAdminUser = (id) => async () => {
 
 // PARAMETROS DE LAS OTRAS RUTAS
 // URL, HEADER
+
+
+
+export const blockAdminUser = async id => {
+  try {
+    await axios(`http://localhost:3001/adminBlockUser/${id}`) // cambiar a ruta deploid
+    } catch (error) {
+    console.log(error);
+  }
+}
+

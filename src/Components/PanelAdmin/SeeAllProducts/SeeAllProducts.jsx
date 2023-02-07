@@ -1,6 +1,6 @@
 import {  useSelector } from "react-redux"
 import React, { useEffect, useState } from "react"
-import { putProductsForm, disableEnableProds, getProducts } from "../../../redux/actions";
+import { disableEnableProds, getProducts } from "../../../redux/actions";
 import { SideBarAdmin } from "../SideBar/SidebarAdmin"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit} from "@fortawesome/free-solid-svg-icons";
@@ -26,26 +26,6 @@ export const SeeAllProducts = ()=>{
       
     }
 
-    const objStorage = (
-      name,
-      price,
-      description,
-      image,
-      stock,
-      catefory,
-      news,
-      sale,
-      isDelete) => {
-        localStorage.setItem("productByEdit", name,
-        price,
-        description,
-        image,
-        stock,
-        catefory,
-        news,
-        sale,
-        isDelete)
-    }
 
 
     return (
@@ -100,12 +80,7 @@ export const SeeAllProducts = ()=>{
         : <div className="flex flex-row "> <button className="self-center mx-4 bg-green-700 w-16  rounded-md h-8 p-1
         ">Active</button></div>
         }
-        {/* <div className="flex flex-row "> <p className="mx-4"> {p.isDeleted ? "Disable" : "Active"}</p></div>
-        <div className="flex flex-row "> <p className="mx-4"> {p.isDeleted ? "Disable" : "Active"}</p></div> */}
-
-           
-           
-          
+   
       </div>
         
                     )})
