@@ -37,7 +37,7 @@ export const Reviews = () => {
     setComment("");
     setScore(initialScore);
   };
-
+ // eesto ya se subioo ...
   const addStar = (rating) => {
     setScore({
       s1: rating >= 1,
@@ -97,6 +97,7 @@ export const Reviews = () => {
               key={i}
               className="flex items-start justify-start mb-5 hover:cursor-pointer"
             > 
+      
       {e.rating ===1 ? <div>{starM}</div> : ""} 
 
       {e.rating ===2 ? <div>{starM}{starM}</div> : ""}
