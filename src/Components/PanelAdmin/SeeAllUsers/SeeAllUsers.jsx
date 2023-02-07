@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers, putAdminUser, blockAdminUser } from '../../../redux/actions';
 import { SideBarAdmin } from '../SideBar/SidebarAdmin';
 
+
 const SeeAllUsers = () => {
 
 
@@ -14,15 +15,17 @@ const SeeAllUsers = () => {
         dispatch(getAllUsers())
     },[dispatch])
 
-    const admimUser = async (id) => {
-        await putAdminUser(id)
+    const blockUser = async id => {
+        await dispatch(blockAdminUser(id))
         dispatch(getAllUsers())
     }
     
-    const blockUser = async id => {
-        await blockAdminUser(id)
+    const admimUser = async (id) => {
+        await dispatch(putAdminUser(id))
         dispatch(getAllUsers())
     }
+    
+
     
     return (
              <div className="flex flex-row w-6/6 h-screen "> 

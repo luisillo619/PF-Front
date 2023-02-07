@@ -42,7 +42,8 @@ function useMailer(initialForm, validateForm) {
       };
   
       if (idProduct) {
-        // dispatch(putProductsForm(form,setResponse,setLoading,idProduct))
+        form.isDeleted = form.isDeleted === "True"? true : false
+        dispatch(putProductsForm(form,setResponse,setLoading,idProduct))
       } else dispatch(sendProductsForm(form, setResponse, setLoading));
     } else return;
   };
