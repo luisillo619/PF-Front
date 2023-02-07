@@ -13,7 +13,9 @@ const initialState = {
   orderDetails: null,
   getOneUser: null,
   errors: [],
-  commentsId: []
+  commentsId: [],
+  getAddress: '',
+  // getOrders: '',
 };
 
 export default function reducer(state = initialState, { type, payload }) {
@@ -91,6 +93,35 @@ export default function reducer(state = initialState, { type, payload }) {
       };
 
 
+
+
+
+      case "GET_ADDRESS":
+      return{
+        ...state,
+        getAddress: payload
+      }
+    case 'POST_ADDRESS':                              //El post no hace nada, pero se debe de poner
+      return {
+          ...state
+      };
+    case 'POST_COMPLETE_INFO':                        //El post no hace nada, pero se debe de poner
+      return {
+          ...state
+      };
+    case "PUT_ADDRESS":
+      return{
+        ...state
+      }
+    case 'DELETE_ADDRESS': 
+      return {
+          ...state,
+      };
+    // case "GET_ORDERS":
+    //   return{
+    //     ...state,
+    //     getOrders: payload
+    //   }
 
     default:
       return { ...state };

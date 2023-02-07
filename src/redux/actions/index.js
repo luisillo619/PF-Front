@@ -12,6 +12,12 @@ import {
   GET_COMMENTS_PRODUCT,
   POST_NEW_COMMENT,
   ERRORS,
+  GET_ADDRESS,
+  POST_ADDRESS,
+  PUT_ADDRESS,
+  POST_COMPLETE_INFO,
+  DELETE_ADDRESS,
+  // GET_ORDERS,
 } from "../types/index";
 
 import Cookies from "js-cookie";
@@ -399,3 +405,103 @@ export const blockAdminUser = async id => {
   }
 }
 
+
+//^Obtiene las address del usuario logeado
+export function getAddress(userId) {
+  return async function (dispatch) {
+      try {
+          let json = await axios.get(`http://localhost:3001/getAddress/${userId}`);
+          return dispatch ({type: GET_ADDRESS, payload: json.data });
+      } catch (error) {
+          console.log(error);
+      }
+  };
+};
+
+
+//^Crea las address del usuario en la DB
+export function postAddress (userId, userToken, input) {
+  return async function (dispatch) {
+      try {
+        const url = `http://localhost:3001/postAddress/${userId}`;
+        const { data } = await axios.post(url, input, {
+          headers: { "x-auth-token": `${userToken}` }
+        });
+        window.location.href = "http://localhost:3000/panelUser";
+        return dispatch({ type: POST_ADDRESS, payload: data })
+      } catch (error) {
+          console.log({msg: error});
+      }
+  };
+};
+
+
+//^Crea name, lastName y docIdentity
+export function postCompleteInfo (userId, userToken, input) {
+  return async function (dispatch) {
+      try {
+        const url = `http://localhost:3001/postCompleteInfo/${userId}`;
+        const { data } = await axios.post(url, input, {  //url es la ruta, el input ó {} lo que envío cómo body el 3cer parámetro la cabecera
+          headers: { "x-auth-token": `${userToken}` }
+        });
+        window.location.href = "http://localhost:3000/panelUser";
+        return dispatch({ type: POST_COMPLETE_INFO, payload: data })
+      } catch (error) {
+          console.log({msg: error});
+      }
+  };
+};
+
+
+//^Modifica las address creadas
+export function putAddress (userId, addressId, userToken, input) {
+  return async function (dispatch) {
+      try {
+        const url = `http://localhost:3001/putAddress/${userId}/${addressId}`;
+        const { data } = await axios.put(url, input, {
+          headers: { "x-auth-token": `${userToken}` }
+        });
+        window.location.href = "http://localhost:3000/panelUser";
+        return dispatch({ type: PUT_ADDRESS, payload: data })
+      } catch (error) {
+          console.log({msg: error});
+      }
+  };
+};
+
+
+//^Elimina las direcciones creadas
+export function deleteAddress(userId, addressId, userToken) {
+  console.log('Address ' + addressId)
+  console.log('User ' + userId)
+  console.log('userToken ' + userToken)
+  return async function (dispatch) {
+    try {
+      const url = `http://localhost:3001/deleteAddress/${userId}/${addressId}`;
+      const { data } = await axios.delete(url, {
+        headers: { "x-auth-token": `${userToken}` }
+      });
+      window.location.reload();
+      return dispatch({ type: DELETE_ADDRESS, payload: data })
+    } catch (error) {
+      console.log({msg: error});
+    }
+  };
+};
+
+
+
+
+
+
+// //^Trae todas las ordenes del usuario
+// export function getOrders(userId) {
+//   return async function (dispatch) {
+//       try {
+//         const json = `http://localhost:3001/getOrderDetails/${userId}`;
+//           return dispatch ({type: GET_ORDERS, payload: json.data });
+//       } catch (error) {
+//           console.log(error);
+//       }
+//   };
+// };
