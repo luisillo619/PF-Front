@@ -1,88 +1,3 @@
-// import React from "react";
-// import { useParams } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { addToCart, getOneProduct } from "../../redux/actions";
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import Cookies from "js-cookie";
-// import Loader from "../Loader/Loader";
-
-// function ProductDetail() {
-//   const navigate = useNavigate();
-//   const idProduct = useParams().id;
-//   const dispatch = useDispatch();
-//   const productDetail = useSelector((state) => state.oneProductId);
-//   const priceProduct = productDetail.price;
-//   const [loading, setLoading] = useState(true);
-
-//   const [count, setCount] = useState(1);
-//   const userLogin = Cookies.get("user");
-//   const userId = userLogin && JSON.parse(userLogin).id;
-
-//   useEffect(() => {
-//     dispatch(getOneProduct(idProduct, setLoading));
-//     return () => {
-//       dispatch(getOneProduct(idProduct, setLoading));
-//     };
-//   }, [dispatch, idProduct]);
-
-//   const handleClick = () => {
-//     if (userLogin) {
-//       if (productDetail.stock) {
-//         // setCount(1);
-
-//         const total = priceProduct * count;
-
-//         dispatch(
-//           addToCart(
-//             idProduct,
-//             userId,
-//             total,
-//             count,
-
-//             priceProduct,
-//             productDetail.image
-//           )
-//         );
-//       } else alert("no hay che");
-//     } else navigate("/login");
-//   };
-
-//   const subtractionHandler = () => {
-//     if (count > 1) setCount(count - 1);
-//   };
-
-//   const handlerSums = () => {
-//     if (count < 10) setCount(count + 1);
-//   };
-
-//   return (
-//     <div>
-//       {!loading && (
-//         <>
-//           <img src={productDetail.image} alt={productDetail.name} />
-//           <p>{productDetail.description}</p>
-//           {count}
-//           <br />
-//           {count < 10 && <button onClick={handlerSums}>+</button>}
-
-//           <button onClick={handleClick}>Agregar al carrito</button>
-
-//           {count > 1 && (
-//             <button onClick={subtractionHandler} value="-">
-//               -
-//             </button>
-//           )}
-//         </>
-//       )}
-//       {loading && <Loader />}
-//     </div>
-//   );
-// }
-
-// export default ProductDetail;
-
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -112,6 +27,7 @@ function ProductDetail() {
   const priceProduct = productDetail.price;
   const [loading, setLoading] = useState(true);
   const [loadingButton, setLoadingButton] = useState(true)
+  const [mensaje, setMensaje] = useState(null)
   const [count, setCount] = useState(1);
   const userLogin = Cookies.get("user");
   const userId = userLogin && JSON.parse(userLogin).id;
@@ -139,7 +55,8 @@ function ProductDetail() {
 
             priceProduct,
             productDetail.image,
-            setLoadingButton
+            setLoadingButton,
+            setMensaje
           )
         );
       } else alert("no hay che");
@@ -205,32 +122,27 @@ console.log(loadingButton)
                 </div>
               </div>
             </div>
-            {loading} <div className="container-CartButton">
-              {count}
-              <br />
-              {count < 10 && (
-                <button className="button-MdAdd" onClick={handlerSums}>
-                  <MdAdd />
-                </button>
-              )}
-              <button disabled={loadingButton === false ? true: false } onClick={handleClick}>
-                AÑADIR AL CARRITO
-              </button>
-              {count > 1 && (
-                <button
-                  className="button-AiOutlineMinus"
-                  onClick={subtractionHandler}
-                >
-                  <AiOutlineMinus />
-                </button>
-              )}
+            {loading} 
 
-              {count > 1 && (
-                <button onClick={subtractionHandler} value="-">
-                  
-                </button>
-              )}
+
+            <div className="container-CartButton">
+              
+              <div>
+                {count > 1 && ( <button className="button-AiOutlineMinus" onClick={subtractionHandler} > <AiOutlineMinus /> </button> )}
+                {count}
+                {count < 10 && ( <button className="button-MdAdd" onClick={handlerSums}> <MdAdd /> </button> )}
+              </div>
+
+              <br />
+              {/* <button className="" disabled={loadingButton === false ? true: false } onClick={handleClick}> AÑADIR AL CARRITO </button> */}
+              <div className="button-ProductDetailsAdd"><button className="button-ProductDetails" disabled={loadingButton === false ? true: false }  onClick={handleClick}>AÑADIR AL CARRITO</button></div>
+
+              
+              
+             
             </div>
+{mensaje && mensaje}
+
           </div>
           <div className="protectedPurchase">
             <span className="span-ProtectedPurchase">

@@ -241,7 +241,7 @@ export const getAllOrderDetails = (setLoading) => async (dispatch) => {
 };
 
 export const addToCart =
-  (idProduct, idUser, total, count, unitPrice, image, setLoadingButton) =>
+  (idProduct, idUser, total, count, unitPrice, image, setLoadingButton,setMensaje) =>
   async (dispatch) => {
     try {
       const userLoginCookies = Cookies.get("user");
@@ -265,7 +265,9 @@ export const addToCart =
           },
         }
       );
+     
       setLoadingButton(true);
+      setMensaje(data.message)
       Cookies.set("order", JSON.stringify(data.numberOfProductsInCart), {
         maxAge: `${60 * 60}`,
       });
@@ -274,6 +276,8 @@ export const addToCart =
         payload: parseInt(data.numberOfProductsInCart),
       });
     } catch (err) {
+      setLoadingButton(true);
+      setMensaje("Producto no se agrego al carrito")
       console.log(err);
     }
   };
