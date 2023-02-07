@@ -1,0 +1,15 @@
+.container-PanelUser {
+    padding: 30px;
+    /* border: 5px solid red; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container-h1PanelUserHead {
+    font-size: 50px;
+    font-weight: bold;
+    line-height: 0px;
+}
+
+.container-PanelUserHead div h1 {
+    font-size: 40px;
+}

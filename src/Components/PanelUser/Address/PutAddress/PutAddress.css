@@ -1,0 +1,16 @@
+.button-PutAddress {
+    border-radius: 4px;
+    background: #4361ee;
+    width: 100px;
+    height: 40px;
+    color: white;
+}
+
+.buttonPutAddress {
+    border-radius: 4px;
+    background: #4361ee;
+    width: 100px;
+    height: 40px;
+    color: white;
+    margin: 20px;
+}
