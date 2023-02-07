@@ -37,6 +37,7 @@ import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
+  deleteCookies,
   getCategories,
   getProducts,
   getUser,
@@ -58,12 +59,13 @@ function App() {
     dispatch(getProducts());
     dispatch(getCategories());
     dispatch(getUser(setUser,setOrder));
-   
+   dispatch(deleteCookies())
   }, [dispatch]);
 
   // console.log(userOrderCookies)
-  // console.log("pepepepepe")
-  console.log(userLoginCookies)
+  // console.log("pepepepepe")}
+ 
+  console.log(user)
 
   return (
     <div className="App">
