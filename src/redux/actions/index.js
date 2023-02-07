@@ -12,6 +12,12 @@ import {
   GET_COMMENTS_PRODUCT,
   POST_NEW_COMMENT,
   ERRORS,
+  GET_ADDRESS,
+  POST_ADDRESS,
+  PUT_ADDRESS,
+  POST_COMPLETE_INFO,
+  DELETE_ADDRESS,
+  // GET_ORDERS,
 } from "../types/index";
 
 import Cookies from "js-cookie";
@@ -26,7 +32,7 @@ export const postComment = (commentInfo) => async (dispatch) => {
       comment: commentInfo.comment,
       rating: commentInfo.rating,
     });
-  
+
     return dispatch({
       type: POST_NEW_COMMENT,
       payload: data,
@@ -114,7 +120,8 @@ export const login = (form, setLoading, setResponse) => async () => {
 };
 
 export const register =
-  (form, setLoading, setResponse, setErrorRegister,  setLoadingButton) => async () => {
+  (form, setLoading, setResponse, setErrorRegister, setLoadingButton) =>
+  async () => {
     try {
       await axios.post(`http://localhost:3001/register`, { form });
       setLoading(true);
@@ -217,11 +224,15 @@ export const getAllOrderDetails = (setLoading) => async (dispatch) => {
   //roto
 
   const url = `http://localhost:3001/getOrderDetails/${id}`;
-  const { data } = await axios.get(url, {
-    headers: {
-      "x-auth-token": `${token}`,
-    },
-  });
+  const { data } = await axios.get(
+    url,
+    {},
+    {
+      headers: {
+        "x-auth-token": `${token}`,
+      },
+    }
+  );
   setLoading(false);
   return dispatch({
     type: ORDER_DETIALS,
@@ -308,7 +319,7 @@ export const sendProductsForm = (form, setResponse, setLoading) => async () => {
     const userLogin = Cookies.get("user");
     const token = JSON.parse(userLogin).token;
     const url = `http://localhost:3001/adminPostProducts`;
-
+    
     await axios.post(url, form, {
       headers: {
         "x-auth-token": `${token}`,
@@ -328,34 +339,169 @@ export const filterByLandingPage = (filter) => {
   };
 };
 
-export const disableEnableProds = async id => {
+export const disableEnableProds = async (id) => {
   try {
-  await axios.get(`http://localhost:3001/adminDeleteProducts/${id}`) // luego cambiar a ruta deploid
+    await axios.get(`http://localhost:3001/adminDeleteProducts/${id}`); // luego cambiar a ruta deploid
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-export const getAllUsers = () => {
+export const getAllUsers = () => async (dispatch) => {
   try {
-    return async dispatch => { // unicamente el admin ejecuta esta ruta
-      const allUsers = (await axios("http://localhost:3001/getAllUsers")).data // luego cambiar a ruta deploid
-      dispatch({
-        type: GET_ALL_USERS,
-        payload: allUsers
-      })
-    }
-    
-  } catch (error) { 
+    const userLoginCookies = Cookies.get("user");
+    const token = userLoginCookies && JSON.parse(userLoginCookies).token;
+    const id = userLoginCookies && JSON.parse(userLoginCookies).id;
+    // unicamente el admin ejecuta esta ruta
+    const allUsers = (
+      await axios.get(
+        `http://localhost:3001/getAllUsers/${id}`,
+
+        {
+          headers: {
+            "x-auth-token": `${token}`,
+          },
+        }
+      )
+    ).data; // luego cambiar a ruta deploid
+    dispatch({
+      type: GET_ALL_USERS,
+      payload: allUsers,
+    });
+  } catch (error) {
     console.log(error);
   }
-}
+};
 
-
-export const putAdminUser = async id => {
+export const putAdminUser = (id) => async () => {
   try {
-    await axios(` http://localhost:3001/adminChangeUser/${id}`) // cambiar a ruta deploid
+    const userLoginCookies = Cookies.get("user");
+    const token = userLoginCookies && JSON.parse(userLoginCookies).token;
+    await axios.put(` http://localhost:3001/adminChangeUser/${id}`,{},
+    {
+      headers: {
+        "x-auth-token": `${token}`,
+      },
+    }); // cambiar a ruta deploid
+  } catch (error) {
+    console.log(error);
+  }
+
+};
+
+// PARAMETROS DE LA RUTA POST, PUT:
+// URL, BODY, HEADER
+
+// PARAMETROS DE LAS OTRAS RUTAS
+// URL, HEADER
+
+
+
+export const blockAdminUser = async id => {
+  try {
+    await axios(`http://localhost:3001/adminBlockUser/${id}`) // cambiar a ruta deploid
     } catch (error) {
     console.log(error);
   }
 }
+
+
+//^Obtiene las address del usuario logeado
+export function getAddress(userId) {
+  return async function (dispatch) {
+      try {
+          let json = await axios.get(`http://localhost:3001/getAddress/${userId}`);
+          return dispatch ({type: GET_ADDRESS, payload: json.data });
+      } catch (error) {
+          console.log(error);
+      }
+  };
+};
+
+
+//^Crea las address del usuario en la DB
+export function postAddress (userId, userToken, input) {
+  return async function (dispatch) {
+      try {
+        const url = `http://localhost:3001/postAddress/${userId}`;
+        const { data } = await axios.post(url, input, {
+          headers: { "x-auth-token": `${userToken}` }
+        });
+        window.location.href = "http://localhost:3000/panelUser";
+        return dispatch({ type: POST_ADDRESS, payload: data })
+      } catch (error) {
+          console.log({msg: error});
+      }
+  };
+};
+
+
+//^Crea name, lastName y docIdentity
+export function postCompleteInfo (userId, userToken, input) {
+  return async function (dispatch) {
+      try {
+        const url = `http://localhost:3001/postCompleteInfo/${userId}`;
+        const { data } = await axios.post(url, input, {  //url es la ruta, el input ó {} lo que envío cómo body el 3cer parámetro la cabecera
+          headers: { "x-auth-token": `${userToken}` }
+        });
+        window.location.href = "http://localhost:3000/panelUser";
+        return dispatch({ type: POST_COMPLETE_INFO, payload: data })
+      } catch (error) {
+          console.log({msg: error});
+      }
+  };
+};
+
+
+//^Modifica las address creadas
+export function putAddress (userId, addressId, userToken, input) {
+  return async function (dispatch) {
+      try {
+        const url = `http://localhost:3001/putAddress/${userId}/${addressId}`;
+        const { data } = await axios.put(url, input, {
+          headers: { "x-auth-token": `${userToken}` }
+        });
+        window.location.href = "http://localhost:3000/panelUser";
+        return dispatch({ type: PUT_ADDRESS, payload: data })
+      } catch (error) {
+          console.log({msg: error});
+      }
+  };
+};
+
+
+//^Elimina las direcciones creadas
+export function deleteAddress(userId, addressId, userToken) {
+  console.log('Address ' + addressId)
+  console.log('User ' + userId)
+  console.log('userToken ' + userToken)
+  return async function (dispatch) {
+    try {
+      const url = `http://localhost:3001/deleteAddress/${userId}/${addressId}`;
+      const { data } = await axios.delete(url, {
+        headers: { "x-auth-token": `${userToken}` }
+      });
+      window.location.reload();
+      return dispatch({ type: DELETE_ADDRESS, payload: data })
+    } catch (error) {
+      console.log({msg: error});
+    }
+  };
+};
+
+
+
+
+
+
+// //^Trae todas las ordenes del usuario
+// export function getOrders(userId) {
+//   return async function (dispatch) {
+//       try {
+//         const json = `http://localhost:3001/getOrderDetails/${userId}`;
+//           return dispatch ({type: GET_ORDERS, payload: json.data });
+//       } catch (error) {
+//           console.log(error);
+//       }
+//   };
+// };

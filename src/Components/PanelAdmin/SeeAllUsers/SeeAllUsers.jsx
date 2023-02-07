@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../../../redux/actions';
+import { getAllUsers, putAdminUser, blockAdminUser } from '../../../redux/actions';
 import { SideBarAdmin } from '../SideBar/SidebarAdmin';
+
 import { putAdminUser } from '../../../redux/actions';
-// seee alll
+
 const SeeAllUsers = () => {
+
 
     const allUsers = useSelector( state => state.users ) 
     
@@ -15,7 +17,14 @@ const SeeAllUsers = () => {
     },[dispatch])
 
     const admimUser = async (id) => {
-        await (putAdminUser(id))
+
+        await putAdminUser(id)
+        dispatch(getAllUsers())
+    }
+    
+    const blockUser = async id => {
+        await blockAdminUser(id)
+
         dispatch(getAllUsers())
     }
     
@@ -66,8 +75,14 @@ const SeeAllUsers = () => {
                             <p  className="flex mx-4 justify-around">  {user.admin ? <p className='bg-black h-fit flex w-fit justify-center items-center text-yellow-400 p-1 rounded'>Admin</p> : <p className='bg-[#022957] h-fit flex w-fit justify-center items-center text-white p-1 rounded'>User</p>} </p>
                             <button className="flex bg-gray-200  border border-gray-500  w-fit h-fit rounded-md justify-around   p-1 active:bg-slate-600" onClick={() => admimUser(user._id)} >Admin/User</button> {/* aqui el boton */}
                         </div> 
+
                         <div className="flex flex-row w-1/12 self-center">
-                            <p className="mx-4">  {user.isBlocked ? "True" : "False"} </p>
+         
+                            {user.isBlocked 
+                            ? <button className="mx-4 bg-red-600 active:bg-green-600 rounded-[12px] border-2 p-4" onClick={() => blockUser(user._id)} >Blocked</button>
+                            : <button className="mx-4 bg-green-600 active:bg-red-600 rounded-[12px] border-2 p-4" onClick={() => blockUser(user._id)} >Enable</button>
+                            }
+
                         </div>
                         <div className="flex flex-row  w-2/12 self-center">
                             <p className="ml-8 text-center">  {user.loginBy ? user.loginBy : "Email"} </p>
