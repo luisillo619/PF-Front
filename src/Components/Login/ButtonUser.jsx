@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneUser } from "../../redux/actions/index";
 // import { FaHouseUser } from 'react-icons/fa';
-
+const { REACT_APP_API_URL } = process.env;
 
 const ButtonUser = ({ userOrderCookies, userLoginCookies }) => {
-  // const baseURL = "https://pf-back-production-f70b.up.railway.app"
+ 
   const userInfo = useSelector((state)=> state.getOneUser);
   const idUser = userLoginCookies && JSON.parse(userLoginCookies).id;
   const [loading, setLoading] = useState(true)
@@ -18,7 +18,7 @@ const ButtonUser = ({ userOrderCookies, userLoginCookies }) => {
   const logout = () => {
     Cookies.remove("user");
     Cookies.remove("order");
-    window.open(`http://localhost:3001/auth/logout`, "_self");
+    window.open(`${REACT_APP_API_URL}/auth/logout`, "_self");
   };
 
   useEffect(() => {

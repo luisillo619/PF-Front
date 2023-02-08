@@ -20,8 +20,8 @@ export default function LandingPage() {
   // posible math.random para que los productos populares se vayan rotando
   const popularProducts = products
     .filter((e) => e.promotion.salesOff === true && e.isDeleted === false)
-    .slice(0, 6)
-    .sort(() => Math.random() - 0.5);
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 6);
   return (
     <div className="container-Home">
       <Slider />
