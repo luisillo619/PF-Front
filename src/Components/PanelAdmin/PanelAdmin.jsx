@@ -18,7 +18,7 @@ export default function PanelAdmin () {
 
     const allUsers = useSelector( state => state.users ) 
     const adminUser = allUsers.find( us => us.admin )
-    console.log(adminUser);
+    
 
     return (
         <div className='flex flex-col h-screen bg-white mt-4 rounded-lg justify-items-center shadow-xl'>

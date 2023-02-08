@@ -37,13 +37,13 @@ const initialForm = {
   description: "",
   image: "",
   category: "",
-  news: "",
+  // news: "",
   salesOff: false,
   stock: "",
 };
 
 const validationsForm = (form) => {
-  const regexString = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+  const regexString = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s.,:;"']+$/;
   const regexNumber = /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/;
   console.log(form);
   const errors = {};
@@ -51,10 +51,11 @@ const validationsForm = (form) => {
     !form.name ||
     !form.price ||
     !form.description ||
-    !form.news ||
+    // !form.news ||
     !form.stock ||
     !form.salesOff ||
-    !form.image
+    !form.image ||
+    !form.category
     // !form.user_email ||
     // !form.user_message
   ) {
@@ -81,9 +82,9 @@ const validationsForm = (form) => {
         "La descripción no puede tener más de 200 caracteres";
     }
 
-    if (form.news === "Selected Option") {
-      errors.news = "debes seleccionar una opcion";
-    }
+    // if (form.news === "Selected Option") {
+    //   errors.news = "debes seleccionar una opcion";
+    // }
     if (!form.stock) {
       errors.stock = "Debes agregar un stock";
     } else if (!regexNumber.test(form.stock)) {
@@ -102,11 +103,11 @@ const validationsForm = (form) => {
       errors.salesOff = "debes seleccionar una opcion";
     }
 
-    if (!form.news) {
-      errors.news = "Las news son requeridas.";
-    } else if (form.news === "Selected Option") {
-      errors.news = "debes seleccionar una opcion";
-    }
+    // if (!form.news) {
+    //   errors.news = "Las news son requeridas.";
+    // } else if (form.news === "Selected Option") {
+    //   errors.news = "debes seleccionar una opcion";
+    // }
     if(!form.image){
       errors.image = "La imagen es requerida"
     }
@@ -218,7 +219,7 @@ export const CreateProducts = () => {
               </div>
               {errors.category && <p className="danger">{errors.category}</p>}
 
-              <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
+              {/* <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
                 <label htmlFor="news">News:</label>
                 <select
                   className="mx-2"
@@ -233,7 +234,7 @@ export const CreateProducts = () => {
                   <option value="False">False</option>
                 </select>
               </div>
-              {errors.news && <p className="danger">{errors.news}</p>}
+              {errors.news && <p className="danger">{errors.news}</p>} */}
 
               <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
                 <label htmlFor="salesOff">Sales Off:</label>

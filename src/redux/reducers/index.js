@@ -1,6 +1,6 @@
 const initialState = {
   products: [],
-  oneProductId: [],
+  oneProductId: {},
   categories: [],
   users: [],
   cart: [],
@@ -119,6 +119,12 @@ export default function reducer(state = initialState, { type, payload }) {
         return {
             ...state,
         };
+
+        case "RESET_ONE_PRODUCT":
+          return{
+            ...state,
+            oneProductId: {}
+          }
     default:
       return { ...state };
   }

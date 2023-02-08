@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import {
   GET_PRODUCTS,
   ADD_FILTER,
@@ -17,10 +18,12 @@ import {
   POST_COMPLETE_INFO,
   DELETE_ADDRESS,
   GET_ORDERS,
-  DELETE_ACCOUNT
+  DELETE_ACCOUNT,
+  RESET_ONE_PRODUCT
 } from "../types/index";
 
 import Cookies from "js-cookie";
+const { REACT_APP_API_URL } = process.env;
 
 // const baseURL = "https://pf-back-production-f70b.up.railway.app"
 export const postComment = (commentInfo) => async (dispatch) => {
@@ -60,7 +63,8 @@ export const getAllCommentsProduct = (idProduct) => async (dispatch) => {
 //Trae todos los productos
 export const getProducts = () => async (dispatch) => {
   try {
-    const { data } = await axios(`http://localhost:3001/adminGetProducts`);
+    console.log(REACT_APP_API_URL);
+    const { data } = await axios(`${REACT_APP_API_URL}/adminGetProducts`);
     // console.log(data)
     return dispatch({
       type: GET_PRODUCTS,
@@ -139,12 +143,21 @@ export const register =
 
 export const getOneProduct =
   (idProduct, setLoading, setLoadingButton) => async (dispatch) => {
+
     try {
-      const { data } = await axios(
-        `http://localhost:3001/producId/${idProduct}`
+      const userLoginCookies = Cookies.get("user");
+      const token = userLoginCookies && JSON.parse(userLoginCookies).token;
+      const id = userLoginCookies && JSON.parse(userLoginCookies).id;
+      const { data } = await axios.get(
+        `http://localhost:3001/producId/${id}/${idProduct}`,
+        {
+          headers: {
+            "x-auth-token": `${token}`,
+          },
+        }
       );
 
-      setLoading(false);
+      if(setLoading)setLoading(false);
       return dispatch({
         type: GET_ONE_PRODUCT,
         payload: data,
@@ -329,6 +342,7 @@ export const putToCart =
 
 export const sendProductsForm = (form, setResponse, setLoading) => async () => {
   try {
+    
     const userLogin = Cookies.get("user");
     const token = userLogin && JSON.parse(userLogin).token;
     const id = userLogin && JSON.parse(userLogin).token;
@@ -510,23 +524,22 @@ export function putAddress(userId, addressId, userToken, input) {
 
 //^Elimina las direcciones creadas
 export function deleteAddress(userId, addressId, userToken) {
-  console.log('Address ' + addressId)
-  console.log('User ' + userId)
-  console.log('userToken ' + userToken)
+  console.log("Address " + addressId);
+  console.log("User " + userId);
+  console.log("userToken " + userToken);
   return async function (dispatch) {
     try {
       const url = `http://localhost:3001/deleteAddress/${userId}/${addressId}`;
       const { data } = await axios.delete(url, {
-        headers: { "x-auth-token": `${userToken}` }
+        headers: { "x-auth-token": `${userToken}` },
       });
       window.location.reload();
-      return dispatch({ type: DELETE_ADDRESS, payload: data })
+      return dispatch({ type: DELETE_ADDRESS, payload: data });
     } catch (error) {
-      console.log({msg: error});
+      console.log({ msg: error });
     }
   };
-};
-
+}
 
 export const putProductsForm =
   (form, setResponse, setLoading, idProduct) => async () => {
@@ -591,37 +604,44 @@ export const deleteCookies = () => async () => {
   }
 };
 
-export function getOrders (userId, userToken) {
-  console.log('Id ' + userId)
-  console.log('Token ' + userToken)
+export function getOrders(userId, userToken) {
+  console.log("Id " + userId);
+  console.log("Token " + userToken);
   return async function (dispatch) {
-      try {
-        const url = `http://localhost:3001/allOrders/${userId}`;
-        const { data } = await axios.get(url, {
-          headers: { "x-auth-token": `${userToken}` }
-        });
-        // window.location.href = "http://localhost:3000/panelUser";
-        return dispatch({ type: GET_ORDERS, payload: data })
-      } catch (error) {
-          console.log({msg: error});
-      }
+    try {
+      const url = `http://localhost:3001/allOrders/${userId}`;
+      const { data } = await axios.get(url, {
+        headers: { "x-auth-token": `${userToken}` },
+      });
+      // window.location.href = "http://localhost:3000/panelUser";
+      return dispatch({ type: GET_ORDERS, payload: data });
+    } catch (error) {
+      console.log({ msg: error });
+    }
   };
-};
+}
 
 export function deleteAccount(userId, userToken) {
   return async function (dispatch) {
     try {
       const url = `http://localhost:3001/deleteAccount/${userId}`;
       const { data } = await axios.delete(url, {
-        headers: { "x-auth-token": `${userToken}` }
+        headers: { "x-auth-token": `${userToken}` },
       });
       Cookies.remove("user");
       Cookies.remove("order");
-      window.location.href = "http://localhost:3000/"
-      return dispatch({ type: DELETE_ACCOUNT, payload: data })
+      window.location.href = "http://localhost:3000/";
+      return dispatch({ type: DELETE_ACCOUNT, payload: data });
     } catch (error) {
-      console.log({msg: error});
+      console.log({ msg: error });
     }
+  };
+}
+
+export const reseteOneProduct = () => {
+  return {
+    type: RESET_ONE_PRODUCT,
+   
   };
 };
 // PARAMETROS DE LA RUTA POST, PUT:
