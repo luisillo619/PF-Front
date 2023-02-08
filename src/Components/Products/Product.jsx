@@ -10,23 +10,26 @@ export default function Product({
   productPrice,
   productDescription
 }) {
-    const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem("favorites")) || []);
-    const [isFavorited, setIsFavorited] = useState(favorites.find(e => e.id === id) || false);
-    
-    function handleFavorite() {
-      const currentFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      const newFavorites = [...currentFavorites];
-      console.log(currentFavorites);
-      if (isFavorited) {
-        const index = newFavorites.findIndex(e => e.id === id);
-        newFavorites.splice(index, 1);
-        setIsFavorited(false);
-      } else {
-        newFavorites.push({ id, productName, productImage, productDescription });
-        setIsFavorited(true);
-      }
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
-    }
+  const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem("favorites")) || []);
+const [isFavorited, setIsFavorited] = useState(favorites.find(e => e.id === id) || false);
+
+function handleFavorite() {
+  const currentFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const newFavorites = [...currentFavorites];
+  if (isFavorited) {
+    const index = newFavorites.findIndex(e => e.id === id);
+    newFavorites.splice(index, 1);
+    setIsFavorited(false);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    setFavorites(newFavorites);
+    window.location.reload();
+  } else {
+    newFavorites.push({ id, productName, productImage, productDescription,productPrice });
+    setIsFavorited(true);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    setFavorites(newFavorites);
+  }
+}
 
   return (
     <div className="container-Product">

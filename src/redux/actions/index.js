@@ -390,44 +390,44 @@ export const getAllUsers = () => async (dispatch) => {
   }
 };
 
-export const putAdminUser = (id) => async (dispatch) => {
+export const putAdminUser = (id,setLoading) => async (dispatch) => {
   try {
     const userLoginCookies = Cookies.get("user");
     const token = userLoginCookies && JSON.parse(userLoginCookies).token;
-    const { data } = await axios.put(
-      ` http://localhost:3001/adminChangeUser/${id}`,
-      {},
-      {
-        headers: {
-          "x-auth-token": `${token}`,
-        },
-      }
-    ); // cambiar a ruta deploid
+    setLoading(false);
+    const {data} = await axios.put(` http://localhost:3001/adminChangeUser/${id}`,{},
+    {
+      headers: {
+        "x-auth-token": `${token}`,
+      },
+    }); // cambiar a ruta deploid
 
-    return;
+    setLoading(true);
+    return
   } catch (error) {
     console.log(error);
   }
+
 };
 
-export const blockAdminUser = (id) => async () => {
+export const blockAdminUser = (id, setLoading) => async () => {
   try {
     const userLoginCookies = Cookies.get("user");
     const token = userLoginCookies && JSON.parse(userLoginCookies).token;
-    console.log(id);
-    await axios.put(
-      ` http://localhost:3001/adminPutLockedUser/${id}`,
-      {},
-      {
-        headers: {
-          "x-auth-token": `${token}`,
-        },
-      }
-    );
+    console.log(id)
+    setLoading(false);
+    await axios.put(` http://localhost:3001/adminPutLockedUser/${id}`,{},
+    {
+      headers: {
+        "x-auth-token": `${token}`,
+      },
+    });
+    setLoading(true);
     // cambiar a ruta deploid
   } catch (error) {
     console.log(error);
   }
+
 };
 
 //^Obtiene las address del usuario logeado

@@ -20,6 +20,7 @@ export default function Favorites() {
             productName={product.productName}
             productImage={product.productImage}
             productDescription={product.productDescription}
+            productPrice={product.productPrice}
           />
         ))}
       </div>
