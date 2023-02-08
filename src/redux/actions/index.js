@@ -325,6 +325,7 @@ export const sendProductsForm = (form, setResponse, setLoading) => async () => {
     const userLogin = Cookies.get("user");
     const token = userLogin && JSON.parse(userLogin).token;
     const id = userLogin && JSON.parse(userLogin).token;
+    setLoading(false);
     const url = `http://localhost:3001/adminPostProducts/${id}`;
     
     await axios.post(url, form, {
@@ -333,11 +334,9 @@ export const sendProductsForm = (form, setResponse, setLoading) => async () => {
       },
     });
     setResponse(true);
-    setLoading(false);
+    setLoading(true);
     return
-  } catch (err) {
-   
-    setLoading(false);
+  } catch (err) { 
     console.log(err);
   }
 };
@@ -383,10 +382,11 @@ export const getAllUsers = () => async (dispatch) => {
   }
 };
 
-export const putAdminUser = (id) => async (dispatch) => {
+export const putAdminUser = (id,setLoading) => async (dispatch) => {
   try {
     const userLoginCookies = Cookies.get("user");
     const token = userLoginCookies && JSON.parse(userLoginCookies).token;
+    setLoading(false);
     const {data} = await axios.put(` http://localhost:3001/adminChangeUser/${id}`,{},
     {
       headers: {
@@ -394,7 +394,8 @@ export const putAdminUser = (id) => async (dispatch) => {
       },
     }); // cambiar a ruta deploid
 
-   return 
+    setLoading(true);
+    return
   } catch (error) {
     console.log(error);
   }
@@ -402,17 +403,19 @@ export const putAdminUser = (id) => async (dispatch) => {
 };
 
 
-export const blockAdminUser = (id) => async () => {
+export const blockAdminUser = (id, setLoading) => async () => {
   try {
     const userLoginCookies = Cookies.get("user");
     const token = userLoginCookies && JSON.parse(userLoginCookies).token;
     console.log(id)
+    setLoading(false);
     await axios.put(` http://localhost:3001/adminPutLockedUser/${id}`,{},
     {
       headers: {
         "x-auth-token": `${token}`,
       },
     });
+    setLoading(true);
     // cambiar a ruta deploid
   } catch (error) {
     console.log(error);
