@@ -6,7 +6,7 @@ import Loader from "../Loader/Loader";
 import Message from "../Loader/Message";
 import useLogin from "../../hooks/useLogin";
 import "./Login.css";
-
+const { REACT_APP_API_URL } = process.env;
 const initialForm = {
   email: "",
   password: "",
@@ -48,15 +48,15 @@ const Login = () => {
   } = useLogin(initialForm, validate);
 
   const google = () => {
-    window.open(`http://localhost:3001/auth/google`, "_self");
+    window.open(`${REACT_APP_API_URL}/auth/google`, "_self");
   };
 
   const github = () => {
-    window.open(`http://localhost:3001/auth/github`, "_self");
+    window.open(`${REACT_APP_API_URL}/auth/github`, "_self");
   };
 
   const facebook = () => {
-    window.open(`http://localhost:3001/auth/facebook`, "_self");
+    window.open(`${REACT_APP_API_URL}/auth/facebook`, "_self");
   };
 
   return (
