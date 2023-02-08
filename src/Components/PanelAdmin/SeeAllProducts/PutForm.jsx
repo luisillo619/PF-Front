@@ -4,6 +4,7 @@ import { SideBarAdmin } from "../SideBar/SidebarAdmin";
 import Message from "../../Loader/Message";
 import Loader from "../../Loader/Loader";
 import CloudinayImages from "../../Cloudinay/CloudinayImages";
+import { useSelector } from "react-redux";
 
 //import ButtonUploadImage from "./ButtonUploadImage";
 // Componente que ayuda a rendirizar select-option, en los input de filtrado
@@ -36,15 +37,15 @@ const initialForm = {
   price: "",
   description: "",
   image: "",
-
-  news: "",
+  // news: "",
   salesOff: false,
   stock: "",
   isDeleted: false,
+  category: "",
 };
 
 const validationsForm = (form) => {
-  const regexString = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+  const regexString = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s.,:;"']+$/;
   const regexNumber = /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/;
   console.log(form);
   const errors = {};
@@ -52,10 +53,10 @@ const validationsForm = (form) => {
     !form.name ||
     !form.price ||
     !form.description ||
-    !form.news ||
+    // !form.news ||
     !form.stock ||
-    !form.salesOff 
-   
+    !form.salesOff ||
+    !form.category
     // !form.user_email ||
     // !form.user_message
   ) {
@@ -82,9 +83,9 @@ const validationsForm = (form) => {
         "La descripción no puede tener más de 200 caracteres";
     }
 
-    if (form.news === "Selected Option") {
-      errors.news = "debes seleccionar una opcion";
-    }
+    // if (form.news === "Selected Option") {
+    //   errors.news = "debes seleccionar una opcion";
+    // }
     if (!form.stock) {
       errors.stock = "El stock es requerido";
     } else if (!regexNumber.test(form.stock)) {
@@ -103,11 +104,11 @@ const validationsForm = (form) => {
       errors.salesOff = "debes seleccionar una opcion";
     }
 
-    if (!form.news) {
-      errors.news = "Las news son requeridas.";
-    } else if (form.news === "Selected Option") {
-      errors.news = "debes seleccionar una opcion";
-    }
+    // if (!form.news) {
+    //   errors.news = "Las news son requeridas.";
+    // } else if (form.news === "Selected Option") {
+    //   errors.news = "debes seleccionar una opcion";
+    // }
     if (!form.isDeleted) {
       errors.isDeleted = "El producto esta oculto es requerido";
     }
@@ -116,6 +117,8 @@ const validationsForm = (form) => {
 };
 
 export const PutForm = () => {
+  
+ 
   const {
     form,
     handleBlur,
@@ -127,7 +130,6 @@ export const PutForm = () => {
     setForm,
     errors,
   } = useForm(initialForm, validationsForm);
-
 
 
   return (
@@ -225,7 +227,7 @@ export const PutForm = () => {
 
               {errors.category && <p>{errors.category}</p>}
 
-              <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
+              {/* <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
                 <label htmlFor="news">Novedades:</label>
                 <select
                   className="mx-2"
@@ -240,7 +242,7 @@ export const PutForm = () => {
                   <option value="False">False</option>
                 </select>
               </div>
-              {errors.news && <p >{errors.news}</p>}
+              {errors.news && <p >{errors.news}</p>} */}
 
               <div className="text-black flex flex-row  border-solid border-gray-500 border w-2/5 rounded-lg">
                 <label htmlFor="salesOff">En oferta:</label>
