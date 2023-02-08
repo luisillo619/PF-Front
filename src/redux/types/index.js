@@ -19,7 +19,9 @@ export const PUT_ADDRESS = "PUT_ADDRESS"
 export const POST_ADDRESS = "POST_ADDRESS"
 export const POST_COMPLETE_INFO = "POST_COMPLETE_INFO"
 export const DELETE_ADDRESS = "DELETE_ADDRESS"
-
+export const GET_ORDERS = "GET_ORDERS"
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT"
+export const RESET_ONE_PRODUCT = "RESET_ONE_PRODUCT"
 // export const GET_ORDERS = "GET_ORDERS"
 
 

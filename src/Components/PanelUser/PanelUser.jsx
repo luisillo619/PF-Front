@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOneUser } from "../../redux/actions/index";
 import { Link } from "react-router-dom";
 import Address from './Address/Address';
-// import Orders from './Orders/Orders';
+import Orders from './Orders/Orders';
 import Perfil from './Perfil/Perfil';
 import Cookies from 'js-cookie';
 import './PanelUser.css';
@@ -18,7 +18,7 @@ export default function PanelUser () {
     
     useEffect(()=>{
         dispatch(getOneUser(userId));
-    }, [dispatch]);
+    }, [dispatch,userId]);
 
 
     return (
@@ -30,7 +30,7 @@ export default function PanelUser () {
             <div className='container-PanelUserButton'>
                 <Perfil />
                 <Address />
-                {/* <Orders /> */}
+                <Orders />
                 <Link to='/'> <button className="button-ProductDetails">Volver</button> </Link>
             </div>
         </div>

@@ -9,6 +9,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ButtonUser from "../Login/ButtonUser";
 import logo from '../../assets/7.png';
+import { AiFillHeart } from 'react-icons/ai';
+
 import './NavBar.css';
 
 
@@ -110,8 +112,8 @@ function NavBar({ userOrderCookies,userLoginCookies }) {
         </div>
          
         <Link  to='/favorites'>
-            <label  >Favorites</label>
-          </Link>
+            <AiFillHeart className='heartFavorites'/>
+        </Link>
     </div>
     );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers, putAdminUser, blockAdminUser } from '../../../redux/actions';
 import { SideBarAdmin } from '../SideBar/SidebarAdmin';
@@ -6,6 +6,7 @@ import { SideBarAdmin } from '../SideBar/SidebarAdmin';
 
 const SeeAllUsers = () => {
 
+    const [loading, setLoading] = useState(true);
 
     const allUsers = useSelector( state => state.users ) 
     
@@ -16,12 +17,12 @@ const SeeAllUsers = () => {
     },[dispatch])
 
     const blockUser = async id => {
-        await dispatch(blockAdminUser(id))
+        await dispatch(blockAdminUser(id,setLoading))
         dispatch(getAllUsers())
     }
     
     const admimUser = async (id) => {
-        await dispatch(putAdminUser(id))
+        await dispatch(putAdminUser(id,setLoading))
         dispatch(getAllUsers())
     }
     
@@ -71,13 +72,19 @@ const SeeAllUsers = () => {
                             <p className="mx-4">  {user.email ? user.email : "Not have email"} </p>
                         </div>
                         <div className="flex flex-row w-2/12 ml-4 ">
-                            <p className="mx-4">  {user.admin ? "Admin" : "User"} </p>
-                            <button onClick={() => admimUser(user._id)} >Admin/User</button> {/* aqui el boton */}
+                           
+                            {user.admin
+                            ? <button className="mx-4 bg-green-600 active:bg-green-600 rounded-[12px] border-2 p-4" onClick={() => admimUser(user._id)} disabled={loading === true ? false : true}  >Admin</button>
+                            : <button className="mx-4 bg-green-600 active:bg-green-600 rounded-[12px] border-2 p-4" onClick={() => admimUser(user._id)} disabled={loading === true ? false : true} >User</button>
+                            }
+
+
+
                         </div> 
                         <div className="flex flex-row w-2/12">
                             {user.isBlocked 
-                            ? <button className="mx-4 bg-red-600 active:bg-green-600 rounded-[12px] border-2 p-4" onClick={() => blockUser(user._id)} >Blocked</button>
-                            : <button className="mx-4 bg-green-600 active:bg-red-600 rounded-[12px] border-2 p-4" onClick={() => blockUser(user._id)} >Enable</button>
+                            ? <button className="mx-4 bg-red-600 active:bg-green-600 rounded-[12px] border-2 p-4" onClick={() => blockUser(user._id)} disabled={loading === true ? false : true}>Blocked</button>
+                            : <button className="mx-4 bg-green-600 active:bg-red-600 rounded-[12px] border-2 p-4" onClick={() => blockUser(user._id)} disabled={loading === true ? false : true}>Enable</button>
                             }
                         </div>
                         <div className="flex flex-row  w-2/12">

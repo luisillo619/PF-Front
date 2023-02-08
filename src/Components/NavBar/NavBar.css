@@ -45,6 +45,15 @@
     color: white;
 }
 
+.heartFavorites {
+    color: white;
+    font-size: 30px;
+    transition: 300ms;
+}
+.heartFavorites:hover {
+    transform: scale(1.1);
+}
+
 .count-Cart {
     width: 20px;
     height: 20px;

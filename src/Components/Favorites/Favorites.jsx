@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Product from "../Products/Product";
+import './Favorites.css';
+
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -20,10 +22,10 @@ export default function Favorites() {
             productName={product.productName}
             productImage={product.productImage}
             productDescription={product.productDescription}
+            productPrice={product.productPrice}
           />
         ))}
       </div>
     </div>
   );
 }
-

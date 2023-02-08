@@ -4,6 +4,7 @@ import { getAllOrderDetails } from "../../redux/actions";
 import Loader from "../Loader/Loader";
 import CartItem from "./CartItem";
 import { Stripe } from "./Stripe";
+import './Cart.css';
 
 
 function Cart() {
@@ -21,7 +22,7 @@ function Cart() {
 
  
   return (
-    <div className="flex flex-col w-6/6  justify-center items-center self-center mt-4" >
+    <div className="container-Cart flex flex-col w-6/6  justify-center items-center self-center mt-4" >
       {!loading && (
         <>
           {orderDetails ? (
@@ -54,4 +55,3 @@ function Cart() {
 }
 
 export default Cart;
-
