@@ -65,7 +65,7 @@ function App() {
   // console.log(userOrderCookies)
   // console.log("pepepepepe")}
  
-  console.log(user)
+  console.log(userLoginCookies)
 
   return (
     <div className="App">
