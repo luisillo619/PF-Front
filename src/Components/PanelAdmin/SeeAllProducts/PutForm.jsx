@@ -45,7 +45,7 @@ const initialForm = {
 };
 
 const validationsForm = (form) => {
-  const regexString = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s.,:;"']+$/;
+  const regexString = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s.,:;"'`´]+$/;
   const regexNumber = /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/;
   console.log(form);
   const errors = {};
