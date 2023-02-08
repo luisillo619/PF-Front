@@ -23,8 +23,7 @@ export default function Delete () {
 
     return (
         <div className="">
-            <button className="botonEliminar"  onClick={ e => handleDelete(e) }>Delete</button>{/*value={ el.id }*/}
-            {/* { e.id.toString().split("").length > 10 ? <button className="botonEliminar" value={ el.id } onClick={ e => handleDelete(e) }>Delete</button> : null } */}
+            <button className="botonEliminar"  onClick={ e => handleDelete(e) }>Delete</button>
         </div>
     );
 };

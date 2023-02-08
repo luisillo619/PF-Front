@@ -19,8 +19,7 @@ import { useSelector } from 'react-redux';
 export default function LandingPage () {
    const products = useSelector((state)=>state.products)
    // posible math.random para que los productos populares se vayan rotando
-   const popularProducts = products.filter(e=>e.promotion.salesOff === true).slice(0,5)
-
+   const popularProducts = products.filter(e=>e.promotion.salesOff === true)
     return (
         <div className='container-Home'>
 

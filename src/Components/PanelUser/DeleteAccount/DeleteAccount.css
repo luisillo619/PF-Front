@@ -1,0 +1,37 @@
+.container-DeleteAccount {
+    height: 100vh;
+}
+
+.deleteAccount {
+    padding: 50px;
+}
+
+.deleteAccount p {
+    margin: 30px 0;
+    font-size: 20px;
+}
+
+.botonEliminar-DeleteAccount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px;
+}
+
+.botonEliminarAccount {
+    border-radius: 4px;
+    background: #e63946;
+    width: 200px;
+    height: 50px;
+    color: white;
+}
+
+.deleteAccount-Gracias {
+    font-weight: bold;
+    text-align: center;
+}
+
+.deleteAccount-image {
+    max-width: 80%;
+    margin: 50px auto;
+}

@@ -20,10 +20,9 @@ export const SeeAllProducts = ()=>{
 
     
     
-    const diable_Enable = async id => {
-      await disableEnableProds(id)
-      dispatch(getProducts())
-      
+    const diable_Enable = id => {
+      dispatch(disableEnableProds(id))
+ 
     }
 
 

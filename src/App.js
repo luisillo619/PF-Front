@@ -27,6 +27,7 @@ import PostAddress from "./Components/PanelUser/Address/PostAddress/PostAddress"
 import PerfilUser from "./Components/PanelUser/Perfil/Perfil";
 import PostInfoPerfil from "./Components/PanelUser/Perfil/PostInfoPerfil";
 import OrdersUser from "./Components/PanelUser/Orders/Orders";
+import DeleteAccount from "./Components/PanelUser/DeleteAccount/DeleteAccount";
 // import DeleteAddress from "./Components/PanelUser/Address/DeleteAddress/DeleteAddress";
 
 
@@ -114,6 +115,8 @@ function App() {
           path="/product/:name/:description/:id"
           element={<ProductDetail />}
         />
+        <Route path="/panelUser/ordersUser" element={<OrdersUser />} />
+        <Route path="/panelUser/deleteAccount/:idUser" element={<DeleteAccount />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

@@ -31,7 +31,7 @@ export default function Perfil () {
                         <h1>LastName</h1>
                         <p className='textNameLastPerfilP'>{otro.lastName}</p>
                     </div>
-                    <h1>Identification Document</h1>
+                    <h1>Document Identity</h1>
                     <p>{otro.docIdentity}</p>
                     <h1>Phone</h1>
                     <p>{otro.phone}</p>
@@ -41,10 +41,13 @@ export default function Perfil () {
                     <p>{otro.userName}</p>
                     <h1>Email</h1>
                     <p>{otro.email}</p>
-                    {/* <h1>LastLogin</h1>
-                    <p>{otro.lastLogin}</p> */}
+                    <h1>SignupDate</h1>
+                    <p>{otro.signupDate}</p>
                     <div className='buttonPerfilAct'>
                         <Link to={`/panelUser/postInfoPerfil/${userId}`}> <button className="buttonPutAddressPerfil">Actualiza tus datos</button> </Link>
+                    </div>
+                    <div className='buttonPerfilAct'>
+                        <Link to={`/panelUser/deleteAccount/${userId}`}> <button className="botonEliminarAccount">Eliminar tu cuenta</button> </Link>
                     </div>
                 </div>
             </div>

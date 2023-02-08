@@ -27,7 +27,6 @@ function ProductDetail() {
   const priceProduct = productDetail.price;
   const [loading, setLoading] = useState(true);
   const [loadingButton, setLoadingButton] = useState(true)
-  const [mensaje, setMensaje] = useState(null)
   const [count, setCount] = useState(1);
   const userLogin = Cookies.get("user");
   const userId = userLogin && JSON.parse(userLogin).id;
@@ -55,8 +54,7 @@ function ProductDetail() {
 
             priceProduct,
             productDetail.image,
-            setLoadingButton,
-            setMensaje
+            setLoadingButton
           )
         );
       } else alert("no hay che");
@@ -122,27 +120,32 @@ console.log(loadingButton)
                 </div>
               </div>
             </div>
-            {loading} 
-
-
-            <div className="container-CartButton">
-              
-              <div>
-                {count > 1 && ( <button className="button-AiOutlineMinus" onClick={subtractionHandler} > <AiOutlineMinus /> </button> )}
-                {count}
-                {count < 10 && ( <button className="button-MdAdd" onClick={handlerSums}> <MdAdd /> </button> )}
-              </div>
-
+            {loading} <div className="container-CartButton">
+              {count}
               <br />
-              {/* <button className="" disabled={loadingButton === false ? true: false } onClick={handleClick}> AÑADIR AL CARRITO </button> */}
-              <div className="button-ProductDetailsAdd"><button className="button-ProductDetails" disabled={loadingButton === false ? true: false }  onClick={handleClick}>AÑADIR AL CARRITO</button></div>
+              {count < 10 && (
+                <button className="button-MdAdd" onClick={handlerSums}>
+                  <MdAdd />
+                </button>
+              )}
+              <button disabled={loadingButton === false ? true: false } onClick={handleClick}>
+                AÑADIR AL CARRITO
+              </button>
+              {count > 1 && (
+                <button
+                  className="button-AiOutlineMinus"
+                  onClick={subtractionHandler}
+                >
+                  <AiOutlineMinus />
+                </button>
+              )}
 
-              
-              
-             
+              {count > 1 && (
+                <button onClick={subtractionHandler} value="-">
+                  
+                </button>
+              )}
             </div>
-{mensaje && mensaje}
-
           </div>
           <div className="protectedPurchase">
             <span className="span-ProtectedPurchase">
