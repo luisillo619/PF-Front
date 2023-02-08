@@ -264,6 +264,7 @@ export const addToCart =
   ) =>
   async (dispatch) => {
     try {
+      console.log("aqui ando")
       const userLoginCookies = Cookies.get("user");
       const token = userLoginCookies && JSON.parse(userLoginCookies).token;
 
