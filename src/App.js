@@ -20,6 +20,16 @@ import SeeAllUsers from "./Components/PanelAdmin/SeeAllUsers/SeeAllUsers";
 import { PutForm } from "./Components/PanelAdmin/SeeAllProducts/PutForm";
 import Favorites from "./Components/Favorites/Favorites";
 
+
+import AddressUser from "./Components/PanelUser/Address/Address";
+import PutAddress from "./Components/PanelUser/Address/PutAddress/PutAddress";
+import PostAddress from "./Components/PanelUser/Address/PostAddress/PostAddress";
+import PerfilUser from "./Components/PanelUser/Perfil/Perfil";
+import PostInfoPerfil from "./Components/PanelUser/Perfil/PostInfoPerfil";
+import OrdersUser from "./Components/PanelUser/Orders/Orders";
+// import DeleteAddress from "./Components/PanelUser/Address/DeleteAddress/DeleteAddress";
+
+
 // import ButtonUser from "./Components/Login/ButtonUser";
 
 import Signup from "./Components/Login/Signup";
@@ -27,6 +37,7 @@ import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
+  deleteCookies,
   getCategories,
   getProducts,
   getUser,
@@ -48,11 +59,12 @@ function App() {
     dispatch(getProducts());
     dispatch(getCategories());
     dispatch(getUser(setUser,setOrder));
-   
+   dispatch(deleteCookies())
   }, [dispatch]);
 
   // console.log(userOrderCookies)
-  // console.log("pepepepepe")
+  // console.log("pepepepepe")}
+ 
   console.log(userLoginCookies)
 
   return (
@@ -68,7 +80,7 @@ function App() {
           path="/signup"
           element={userLoginCookies  ? <Navigate to={"/"} /> : <Signup />}
         />
-        <Route exact path="/favorites" component={Favorites} />
+        <Route path="/favorites" element={<Favorites/>} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/category" element={<Category />} />
         <Route path="/panelAdmin" element={<PanelAdmin />} />
@@ -77,6 +89,15 @@ function App() {
         <Route exact path="/panelAdmin/getAllUsers" element={<SeeAllUsers/>} />
          <Route exact path="/panelAdmin/adminPutProducts/:id" element={<PutForm/>} /> 
         <Route path="/panelUser" element={<PanelUser />} />
+
+        <Route path="/panelUser/addressUser" element={<AddressUser />} />
+        <Route path="/panelUser/putAddress/:userId/:addressId" element={<PutAddress />} />
+        <Route path="/panelUser/postAddress/:userId" element={<PostAddress />} />
+        <Route path="/panelUser/perfilUser" element={<PerfilUser />} />
+        <Route path="/panelUser/postInfoPerfil/:userId" element={<PostInfoPerfil />} />
+        <Route path="/panelUser/ordersUser" element={<OrdersUser />} />
+        {/* <Route path="/panelUser/deleteAddress/:userId/:addressId" element={<DeleteAddress />} /> */}
+
         <Route path="/legalNoticies" element={<LegalNoticies />} />
         <Route path="/privacyStatement" element={<PrivacyStatement />} />
         <Route path="/consumerDefense" element={<ConsumerDefense />} />

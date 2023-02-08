@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 export const SeeAllProducts = ()=>{
-    
+   // asdasdadsasd 
     const products = useSelector((state)=> state.products)
     const dispatch = useDispatch()
 
@@ -30,12 +30,12 @@ export const SeeAllProducts = ()=>{
 
     return (
 
-        <div className="flex flex-row h-screen overflow-scroll justify-center "> 
+        <div className="flex flex-row overflow-scroll justify-center "> 
           <div className="w-screen">
     
          <div className=" flex flex-row  bg-blue-400 bg-opacity-25">
             
-          <div className="flex flex-row w-1/6 border-r justify-center h-screen bg-white border-gray-500 ">
+          <div className="flex flex-row w-1/6 border-r justify-center  bg-white border-gray-500 ">
     
          <SideBarAdmin/> 
           </div>

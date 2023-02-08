@@ -13,7 +13,8 @@ export default function Products() {
     const dispatch = useDispatch()
     const filters = useSelector((state) => state.filters);
     let products = useSelector((state) => state.products);
-    //const allProducts= useSelector((state)=>state.products);
+  
+    products = products.filter(e=>e.isDeleted !== true)
   
 
     if (filters.productName)

@@ -2,11 +2,11 @@ import { Link } from "react-router-dom"
 
 export const SideBarAdmin = ()=> {
 
-
+//sdads
     return (
         
     
-        <div>
+        <div className="">
 
             <div className=" flex flex-col mt-4 justify-center items-center ">
                 <Link to="/panelAdmin/adminPostProducts">
