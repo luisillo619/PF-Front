@@ -23,7 +23,7 @@ import {
 } from "../types/index";
 
 import Cookies from "js-cookie";
-const { REACT_APP_API_URL } = process.env;
+const { REACT_APP_API_URL, REACT_APP_CLIENT_URL } = process.env;
 
 // const baseURL = "https://pf-back-production-f70b.up.railway.app"
 export const postComment = (commentInfo) => async (dispatch) => {
@@ -116,7 +116,7 @@ export const login = (form, setLoading, setResponse) => async () => {
         maxAge: `${60 * 60}`,
       });
     }
-    window.location.href = "http://localhost:3000";
+    window.location.href = { REACT_APP_CLIENT_URL };
   } catch (error) {
     console.log(error);
   }
@@ -131,7 +131,7 @@ export const register =
       setResponse(true);
       setErrorRegister(null);
       setTimeout(() => {
-        window.location.href = REACT_APP_API_URL;
+        window.location.href = REACT_APP_CLIENT_URL;
       }, 2000);
     } catch (error) {
       setLoading(false);
@@ -264,7 +264,7 @@ export const addToCart =
   ) =>
   async (dispatch) => {
     try {
-      console.log("aqui ando")
+      console.log("aqui ando");
       const userLoginCookies = Cookies.get("user");
       const token = userLoginCookies && JSON.parse(userLoginCookies).token;
 
@@ -383,7 +383,7 @@ export const disableEnableProds = async (idProduct) => {
         },
       }
     ); // luego cambiar a ruta deploid
-    window.location.href = "http://localhost:3000/panelAdmin/adminGetProducts";
+    window.location.href = `${REACT_APP_CLIENT_URL}/panelAdmin/adminGetProducts`;
   } catch (error) {
     console.log(error);
   }
@@ -479,7 +479,7 @@ export function postAddress(userId, userToken, input) {
       const { data } = await axios.post(url, input, {
         headers: { "x-auth-token": `${userToken}` },
       });
-      window.location.href = "http://localhost:3000/panelUser";
+      window.location.href = `${REACT_APP_CLIENT_URL}/panelUser`;
       return dispatch({ type: POST_ADDRESS, payload: data });
     } catch (error) {
       console.log({ msg: error });
@@ -496,7 +496,7 @@ export function postCompleteInfo(userId, userToken, input) {
         //url es la ruta, el input ó {} lo que envío cómo body el 3cer parámetro la cabecera
         headers: { "x-auth-token": `${userToken}` },
       });
-      window.location.href = "http://localhost:3000/panelUser";
+      window.location.href = `${REACT_APP_CLIENT_URL}/panelUser`;
       return dispatch({ type: POST_COMPLETE_INFO, payload: data });
     } catch (error) {
       console.log({ msg: error });
@@ -512,7 +512,7 @@ export function putAddress(userId, addressId, userToken, input) {
       const { data } = await axios.put(url, input, {
         headers: { "x-auth-token": `${userToken}` },
       });
-      window.location.href = "http://localhost:3000/panelUser";
+      window.location.href = `${REACT_APP_CLIENT_URL}/panelUser`;
       return dispatch({ type: PUT_ADDRESS, payload: data });
     } catch (error) {
       console.log({ msg: error });
@@ -558,8 +558,7 @@ export const putProductsForm =
       );
       setResponse(true);
       setLoading(false);
-      window.location.href =
-        "http://localhost:3000/panelAdmin/adminGetProducts";
+      window.location.href = `${REACT_APP_CLIENT_URL}/panelAdmin/adminGetProducts`;
       return;
     } catch (err) {
       setLoading(false);
@@ -590,12 +589,12 @@ export const deleteCookies = () => async () => {
     if (blockUser.data) {
       Cookies.remove("user");
       Cookies.remove("order");
-      window.location.href = "http://localhost:3000";
+      window.location.href = REACT_APP_CLIENT_URL;
     }
     if (changeAdmin.data.admin !== type) {
       Cookies.remove("user");
       Cookies.remove("order");
-      window.location.href = "http://localhost:3000";
+      window.location.href = REACT_APP_CLIENT_URL;
     }
   } catch (error) {
     console.log(error);
@@ -628,7 +627,7 @@ export function deleteAccount(userId, userToken) {
       });
       Cookies.remove("user");
       Cookies.remove("order");
-      window.location.href = "http://localhost:3000/";
+      window.location.href = REACT_APP_CLIENT_URL;
       return dispatch({ type: DELETE_ACCOUNT, payload: data });
     } catch (error) {
       console.log({ msg: error });
