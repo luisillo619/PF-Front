@@ -1,7 +1,6 @@
 import React from "react";
 import Product from "./Product";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import Paginated from "../Paginated/Paginated"
 import {useState, useEffect} from 'react';
 import {getProducts} from "../../redux/actions/index"
@@ -48,8 +47,7 @@ export default function Products() {
         <div>
             <div className="container-ProductsAll">
                 <div className="otrounos">
-                 
-                   {
+                    {
                         currentProducts?.map((e) =>{
                             return (
                                 <div key={e._id}>
@@ -63,13 +61,12 @@ export default function Products() {
                                         counter={e.counter}
                                         />  
                                 </div>
-                            
                             )
                         })
-                     }
+                    }
                 </div>
             </div>
-            <div   className="paginated-rigth">
+            <div className="paginated-rigth">
                 <Paginated  productPorPage={productPorPage} allProducts={products.length} paginated={paginated} currentPage= {currentPage} />
             </div>
         </div>

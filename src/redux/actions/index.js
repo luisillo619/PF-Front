@@ -11,14 +11,13 @@ import {
   GET_ONE_USER,
   GET_COMMENTS_PRODUCT,
   POST_NEW_COMMENT,
-  ERRORS,
   GET_ADDRESS,
   POST_ADDRESS,
   PUT_ADDRESS,
   POST_COMPLETE_INFO,
   DELETE_ADDRESS,
-  PUT_PRODUCT,
-  // GET_ORDERS,
+  GET_ORDERS,
+  DELETE_ACCOUNT
 } from "../types/index";
 
 import Cookies from "js-cookie";
@@ -356,9 +355,23 @@ export const filterByLandingPage = (filter) => {
   };
 };
 
-export const disableEnableProds = async (id) => {
+// id producto
+export const disableEnableProds = async (idProduct) => {
   try {
-    await axios.get(`http://localhost:3001/adminDeleteProducts/${id}`); // luego cambiar a ruta deploid
+    const userLoginCookies = Cookies.get("user");
+    const token = userLoginCookies && JSON.parse(userLoginCookies).token;
+    const id = userLoginCookies && JSON.parse(userLoginCookies).id;
+
+    await axios.put(
+      `http://localhost:3001/adminDeleteProducts/${id}`,
+      { idProduct },
+      {
+        headers: {
+          "x-auth-token": `${token}`,
+        },
+      }
+    ); // luego cambiar a ruta deploid
+    window.location.href = "http://localhost:3000/panelAdmin/adminGetProducts";
   } catch (error) {
     console.log(error);
   }
@@ -390,44 +403,48 @@ export const getAllUsers = () => async (dispatch) => {
   }
 };
 
-export const putAdminUser = (id,setLoading) => async (dispatch) => {
+export const putAdminUser = (id, setLoading) => async (dispatch) => {
   try {
     const userLoginCookies = Cookies.get("user");
     const token = userLoginCookies && JSON.parse(userLoginCookies).token;
     setLoading(false);
-    const {data} = await axios.put(` http://localhost:3001/adminChangeUser/${id}`,{},
-    {
-      headers: {
-        "x-auth-token": `${token}`,
-      },
-    }); // cambiar a ruta deploid
+    const { data } = await axios.put(
+      ` http://localhost:3001/adminChangeUser/${id}`,
+      {},
+      {
+        headers: {
+          "x-auth-token": `${token}`,
+        },
+      }
+    ); // cambiar a ruta deploid
 
     setLoading(true);
-    return
+    return;
   } catch (error) {
     console.log(error);
   }
-
 };
 
 export const blockAdminUser = (id, setLoading) => async () => {
   try {
     const userLoginCookies = Cookies.get("user");
     const token = userLoginCookies && JSON.parse(userLoginCookies).token;
-    console.log(id)
+    console.log(id);
     setLoading(false);
-    await axios.put(` http://localhost:3001/adminPutLockedUser/${id}`,{},
-    {
-      headers: {
-        "x-auth-token": `${token}`,
-      },
-    });
+    await axios.put(
+      ` http://localhost:3001/adminPutLockedUser/${id}`,
+      {},
+      {
+        headers: {
+          "x-auth-token": `${token}`,
+        },
+      }
+    );
     setLoading(true);
     // cambiar a ruta deploid
   } catch (error) {
     console.log(error);
   }
-
 };
 
 //^Obtiene las address del usuario logeado
@@ -493,22 +510,23 @@ export function putAddress(userId, addressId, userToken, input) {
 
 //^Elimina las direcciones creadas
 export function deleteAddress(userId, addressId, userToken) {
-  console.log("Address " + addressId);
-  console.log("User " + userId);
-  console.log("userToken " + userToken);
+  console.log('Address ' + addressId)
+  console.log('User ' + userId)
+  console.log('userToken ' + userToken)
   return async function (dispatch) {
     try {
       const url = `http://localhost:3001/deleteAddress/${userId}/${addressId}`;
       const { data } = await axios.delete(url, {
-        headers: { "x-auth-token": `${userToken}` },
+        headers: { "x-auth-token": `${userToken}` }
       });
       window.location.reload();
-      return dispatch({ type: DELETE_ADDRESS, payload: data });
+      return dispatch({ type: DELETE_ADDRESS, payload: data })
     } catch (error) {
-      console.log({ msg: error });
+      console.log({msg: error});
     }
   };
-}
+};
+
 
 export const putProductsForm =
   (form, setResponse, setLoading, idProduct) => async () => {
@@ -573,6 +591,39 @@ export const deleteCookies = () => async () => {
   }
 };
 
+export function getOrders (userId, userToken) {
+  console.log('Id ' + userId)
+  console.log('Token ' + userToken)
+  return async function (dispatch) {
+      try {
+        const url = `http://localhost:3001/allOrders/${userId}`;
+        const { data } = await axios.get(url, {
+          headers: { "x-auth-token": `${userToken}` }
+        });
+        // window.location.href = "http://localhost:3000/panelUser";
+        return dispatch({ type: GET_ORDERS, payload: data })
+      } catch (error) {
+          console.log({msg: error});
+      }
+  };
+};
+
+export function deleteAccount(userId, userToken) {
+  return async function (dispatch) {
+    try {
+      const url = `http://localhost:3001/deleteAccount/${userId}`;
+      const { data } = await axios.delete(url, {
+        headers: { "x-auth-token": `${userToken}` }
+      });
+      Cookies.remove("user");
+      Cookies.remove("order");
+      window.location.href = "http://localhost:3000/"
+      return dispatch({ type: DELETE_ACCOUNT, payload: data })
+    } catch (error) {
+      console.log({msg: error});
+    }
+  };
+};
 // PARAMETROS DE LA RUTA POST, PUT:
 // URL, BODY, HEADER
 

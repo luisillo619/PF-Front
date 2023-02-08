@@ -15,7 +15,7 @@ const initialState = {
   errors: [],
   commentsId: [],
   getAddress: "",
-  // getOrders: '',
+  getOrders: '',
 };
 
 export default function reducer(state = initialState, { type, payload }) {
@@ -110,8 +110,15 @@ export default function reducer(state = initialState, { type, payload }) {
       return {
         ...state,
       };
-    
-
+      case "GET_ORDERS":
+        return{
+          ...state,
+          getOrders: payload
+        }
+        case 'DELETE_ACCOUNT': 
+        return {
+            ...state,
+        };
     default:
       return { ...state };
   }

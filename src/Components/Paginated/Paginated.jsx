@@ -1,6 +1,7 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Paginated.css";
+
 
 export default function Paginated({
   productPorPage,
@@ -11,15 +12,16 @@ export default function Paginated({
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(allProducts / productPorPage); i++) {
     pageNumbers.push(i);
-    // console.log(pageNumbers);
   }
 
-  //window.scrollTo(0, 0);
+  
   return (
     <div className="container-Paginated">
-      {/* <Link to="/" style={{ textDecoration: "none" }}>
-        <button className="button-LandingPage">HOME</button>
-      </Link> */}
+      <div className="container-button-LandingPage">
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <button className="button-LandingPage">HOME</button>
+        </Link>
+      </div>
 
       <div className="containerPaginado">
         {pageNumbers &&
@@ -36,4 +38,4 @@ export default function Paginated({
       </div>
     </div>
   );
-}
+};

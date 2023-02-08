@@ -1,0 +1,9 @@
+.container-Cart {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    height: 100vh;
+    margin: 10px;
+}
+
+.favorites-list {
+    gap: 30px;
+}

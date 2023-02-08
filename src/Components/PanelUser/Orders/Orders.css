@@ -1,4 +1,39 @@
-.container-OrdersUser {
-    border: 3px solid teal;
-    margin: 10px;
+.container-OrderUser {
+    /* border: 3px solid teal; */
+    margin: 30px 0;
+}
+
+.div-mapOrdesUser {
+    /* border: 1px solid red; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.imegenOrder {
+    width: 400px;
+}
+
+.container-imegenOrder {
+    /* border: 1px solid salmon; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 320px;
+    height: 380px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.imegenOrderText {
+    /* border: 1px solid chocolate; */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background: #023047;
+    color: white;
 }
