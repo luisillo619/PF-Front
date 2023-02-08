@@ -6,9 +6,9 @@ import useLogin from "../../hooks/useLogin";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import Message from "../Loader/Message";
-import React, { useState} from "react";
-//AGREGAR PROCESS.ENV
 
+const { REACT_APP_API_URL } = process.env;
+//AGREGAR PROCESS.ENV
 
 // es como para registrarse por primera vez
 const initialForm = {
@@ -21,9 +21,9 @@ function validate(input) {
   let errors = {};
   const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const regexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-  const regexUserName = /^[a-zA-Z0-9]{4,20}([._]?[a-zA-Z0-9]+)*$/
+  const regexUserName = /^[a-zA-Z0-9]{4,20}([._]?[a-zA-Z0-9]+)*$/;
 
-  if (!input.email || !input.password  || !input.userName) {
+  if (!input.email || !input.password || !input.userName) {
     errors.all = "Todos los campos son requeridos";
   } else {
     if (!input.email.trim()) {
@@ -34,25 +34,21 @@ function validate(input) {
     if (!input.password.trim()) {
       errors.password = "La contraseña es requerida.";
     } else if (!regexPassword.test(input.password)) {
-      errors.password =
-        "Tu contraseña debe de tener entre 8 y 20 caracteres.";
+      errors.password = "Tu contraseña debe de tener entre 8 y 20 caracteres.";
     }
-    if(!input.userName.trim()){
-      errors.userName = "El User Name es requerido"
-    }
-    else if (!regexUserName.test(input.userName)) {
-      errors.userName = 
+    if (!input.userName.trim()) {
+      errors.userName = "El User Name es requerido";
+    } else if (!regexUserName.test(input.userName)) {
+      errors.userName =
         "Debe comenzar con una secuencia de entre 4 y 20 caracteres alfanuméricos";
     }
-
   }
 
   return errors;
 }
 
 function Signup() {
-const register = "register"
-
+  const register = "register";
 
   const {
     form,
@@ -66,19 +62,17 @@ const register = "register"
     errorRegister,
   } = useLogin(initialForm, validate, register);
 
-  
-
   // const baseURL = "https://pf-back-production-f70b.up.railway.app";
   const google = () => {
-    window.open(`http://localhost:3001/auth/google`, "_self");
+    window.open(`${REACT_APP_API_URL}/auth/google`, "_self");
   };
 
   const github = () => {
-    window.open(`http://localhost:3001/auth/github`, "_self");
+    window.open(`${REACT_APP_API_URL}/auth/github`, "_self");
   };
 
   const facebook = () => {
-    window.open(`http://localhost:3001/auth/facebook`, "_self");
+    window.open(`${REACT_APP_API_URL}/auth/facebook`, "_self");
   };
 
   return (
@@ -109,13 +103,13 @@ const register = "register"
                     placeholder="Username"
                     name="userName"
                     value={form.userName}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        required
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    required
                   />
-                    {errors.userName && <p>{errors.userName}</p>}
+                  {errors.userName && <p>{errors.userName}</p>}
                 </div>
-              
+
                 <div className="container-Username-Login">
                   <p>Correo</p>
                   <input
@@ -124,13 +118,13 @@ const register = "register"
                     placeholder="Email"
                     name="email"
                     value={form.email}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        required
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    required
                   />
-                     {errors.email && <p>{errors.email}</p>}
+                  {errors.email && <p>{errors.email}</p>}
                 </div>
-             
+
                 <div className="container-Password-Login">
                   <p>Contraseña</p>
                   <input
@@ -139,15 +133,20 @@ const register = "register"
                     placeholder="Password"
                     name="password"
                     value={form.password}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        required
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    required
                   />
-                   {errors.password && <p>{errors.password}</p>}
-                </div>  
-                {errorRegister && <p>{errorRegister}</p> }
+                  {errors.password && <p>{errors.password}</p>}
+                </div>
+                {errorRegister && <p>{errorRegister}</p>}
                 {errors.all && <p>{errors.all}</p>}
-                <button className="login-Submit" disabled={ loading === true ? true: false } >Registrate</button>
+                <button
+                  className="login-Submit"
+                  disabled={loading === true ? true : false}
+                >
+                  Registrate
+                </button>
 
                 <p>
                   Tienes cuenta?{" "}
@@ -162,12 +161,9 @@ const register = "register"
       </form>
 
       {loading && <Loader />}
-      {response && (
-        <Message msg="REGISTRO EXITOSO" bgColor="#198754" />
-      )}
+      {response && <Message msg="REGISTRO EXITOSO" bgColor="#198754" />}
     </>
   );
 }
-
 
 export default Signup;

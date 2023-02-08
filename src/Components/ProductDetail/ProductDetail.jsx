@@ -26,11 +26,11 @@ function ProductDetail() {
   const productDetail = useSelector((state) => state.oneProductId);
   const priceProduct = productDetail.price;
   const [loading, setLoading] = useState(true);
-  const [loadingButton, setLoadingButton] = useState(true)
+  const [loadingButton, setLoadingButton] = useState(true);
   const [count, setCount] = useState(1);
   const userLogin = Cookies.get("user");
   const userId = userLogin && JSON.parse(userLogin).id;
-
+  const [mensaje, setMensaje] = useState(null);
   useEffect(() => {
     dispatch(getOneProduct(idProduct, setLoading));
     return () => {
@@ -54,7 +54,8 @@ function ProductDetail() {
 
             priceProduct,
             productDetail.image,
-            setLoadingButton
+            setLoadingButton,
+            setMensaje
           )
         );
       } else alert("no hay che");
@@ -68,7 +69,7 @@ function ProductDetail() {
   const handlerSums = () => {
     if (count < 10) setCount(count + 1);
   };
-console.log(loadingButton)
+  console.log(loadingButton);
   //Función para reducir la cantidad de decimales a 3 del resultado de dividir el price por el número de cuotas
   function trunc(x, posiciones = 0) {
     var s = x.toString();
@@ -120,7 +121,8 @@ console.log(loadingButton)
                 </div>
               </div>
             </div>
-            {loading} <div className="container-CartButton">
+            {loading}{" "}
+            <div className="container-CartButton">
               {count}
               <br />
               {count < 10 && (
@@ -128,7 +130,10 @@ console.log(loadingButton)
                   <MdAdd />
                 </button>
               )}
-              <button disabled={loadingButton === false ? true: false } onClick={handleClick}>
+              <button
+                disabled={loadingButton === false ? true : false}
+                onClick={handleClick}
+              >
                 AÑADIR AL CARRITO
               </button>
               {count > 1 && (
@@ -141,12 +146,12 @@ console.log(loadingButton)
               )}
 
               {count > 1 && (
-                <button onClick={subtractionHandler} value="-">
-                  
-                </button>
+                <button onClick={subtractionHandler} value="-"></button>
               )}
             </div>
+            {mensaje}
           </div>
+
           <div className="protectedPurchase">
             <span className="span-ProtectedPurchase">
               <Link
