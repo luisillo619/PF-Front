@@ -44,6 +44,7 @@ import {
   getUser,
 } from "./redux/actions";
 import { Navigate } from "react-router-dom";
+import SeeAllOrders from "./Components/PanelAdmin/SeeAllOrders/SeeAllOrders";
 
 ;
 // filtrar por promociones(ofertas), agregan un boton en el navBar para mostrar las promociones
@@ -59,7 +60,8 @@ function App() {
   useEffect( () => {
     dispatch(getProducts());
     dispatch(getCategories());
-    setTimeout(()=>{
+ 
+     setTimeout(()=>{
       dispatch(getUser(setUser,setOrder));
      },10000) 
    dispatch(deleteCookies())
@@ -73,7 +75,7 @@ function App() {
   return (
     <div className="App">
       <NavBar userOrderCookies={userOrderCookies} userLoginCookies={userLoginCookies} />
-      {/* <ButtonUser userLoginCookies={userLoginCookies}  /> */}
+   
       <Routes>
         <Route
           path="/login"
@@ -91,6 +93,7 @@ function App() {
         <Route exact path="/panelAdmin/adminGetProducts" element={<SeeAllProducts/>} />
         <Route exact path="/panelAdmin/getAllUsers" element={<SeeAllUsers/>} />
          <Route exact path="/panelAdmin/adminPutProducts/:id" element={<PutForm/>} /> 
+         <Route exact path="/panelAdmin/getOrderDetails" element={<SeeAllOrders/>}/>
         <Route path="/panelUser" element={<PanelUser />} />
 
         <Route path="/panelUser/addressUser" element={<AddressUser />} />
@@ -99,7 +102,6 @@ function App() {
         <Route path="/panelUser/perfilUser" element={<PerfilUser />} />
         <Route path="/panelUser/postInfoPerfil/:userId" element={<PostInfoPerfil />} />
         <Route path="/panelUser/ordersUser" element={<OrdersUser />} />
-        {/* <Route path="/panelUser/deleteAddress/:userId/:addressId" element={<DeleteAddress />} /> */}
 
         <Route path="/legalNoticies" element={<LegalNoticies />} />
         <Route path="/privacyStatement" element={<PrivacyStatement />} />
